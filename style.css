@@ -256,26 +256,77 @@ span {
     text-align: center;
     background-color: #474e5d;
     color: white;
-  }
+}
 
 /*Darkmode */
 .dark-mode {
     background-color: black;
     color: white;
-  }
-  .button{
+}
+
+.button {
     user-select: none;
-    position:absolute;
+    position: absolute;
     top: 25%;
-  }
-  
-  .about-section {
+}
+
+.about-section {
     padding: 50px;
     text-align: center;
     background-color: #474e5d;
     color: white;
-  }
-  #darkmode{
+}
+
+#darkmode {
     width: 50px;
     height: 50px;
-  }
+}
+
+
+/* Slideshow container */
+.slideshow-container {
+    max-width: 1000px;
+    position: relative;
+    margin: auto;
+}
+
+.container {
+    position: relative;
+    width: 50%;
+}
+
+.image {
+    display: block;
+    width: 120%;
+    height: auto;
+}
+
+.overlay {
+    position: absolute;
+    bottom: 100%;
+    left: 0;
+    right: 0;
+    overflow: hidden;
+    width: 102%;
+    height: 0;
+    transition: .5s ease;
+    margin-left: 15px;
+}
+
+.container:hover .overlay {
+    bottom: 0;
+    height: 100%;
+
+}
+
+.text {
+    color: white;
+    font-size: 20px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
