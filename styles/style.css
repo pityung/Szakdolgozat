@@ -294,7 +294,8 @@ span {
 
 .container {
     position: relative;
-    width: 50%;
+    max-width: 200px;
+    margin: auto;
 }
 
 .image {
