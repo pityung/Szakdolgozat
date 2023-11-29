@@ -22,8 +22,32 @@
             <a href="index.html"> <img src="images/logo.jpg" alt="LOGO" id="logo"></a>
         </div>
         <div class="w3-padding-64 w3-large w3-text-grey" style="font-weight:bold">
-            <a href="#" class="w3-bar-item w3-button">Shirts</a>
-            <a href="#" class="w3-bar-item w3-button">Dresses</a>
+            <a onclick="shirtFunc()" href="javascript:void(0)" class="w3-button w3-block w3-white w3-left-align">
+                Shirts <i class="fa fa-caret-down"></i>
+            </a>
+            <div id="shirt" class="w3-bar-block w3-hide w3-padding-large w3-medium">
+                <a href="#" class="w3-bar-item w3-button w3-light-grey"><i
+                        class="fa fa-caret-right w3-margin-right"></i>Skinny</a>
+                <a href="#" class="w3-bar-item w3-button w3-light-grey"><i
+                        class="fa fa-caret-right w3-margin-right"></i>Relaxed</a>
+                <a href="#" class="w3-bar-item w3-button w3-light-grey"><i
+                        class="fa fa-caret-right w3-margin-right"></i>Bootcut</a>
+                <a href="#" class="w3-bar-item w3-button w3-light-grey"><i
+                        class="fa fa-caret-right w3-margin-right"></i>Straight</a>
+            </div>
+            <a onclick="dressFunc()" href="javascript:void(0)" class="w3-button w3-block w3-white w3-left-align">
+                Dresses <i class="fa fa-caret-down"></i>
+            </a>
+            <div id="dress" class="w3-bar-block w3-hide w3-padding-large w3-medium">
+                <a href="#" class="w3-bar-item w3-button w3-light-grey"><i
+                        class="fa fa-caret-right w3-margin-right"></i>Skinny</a>
+                <a href="#" class="w3-bar-item w3-button w3-light-grey"><i
+                        class="fa fa-caret-right w3-margin-right"></i>Relaxed</a>
+                <a href="#" class="w3-bar-item w3-button w3-light-grey"><i
+                        class="fa fa-caret-right w3-margin-right"></i>Bootcut</a>
+                <a href="#" class="w3-bar-item w3-button w3-light-grey"><i
+                        class="fa fa-caret-right w3-margin-right"></i>Straight</a>
+            </div>
             <a onclick="jeansFunc()" href="javascript:void(0)" class="w3-button w3-block w3-white w3-left-align">
                 Jeans <i class="fa fa-caret-down"></i>
             </a>
@@ -50,9 +74,45 @@
                 <a href="#" class="w3-bar-item w3-button w3-light-grey"><i
                         class="fa fa-caret-right w3-margin-right"></i>Straight</a>
             </div>
-            <a href="#" class="w3-bar-item w3-button">Gymwear</a>
-            <a href="#" class="w3-bar-item w3-button">Blazers</a>
-            <a href="#" class="w3-bar-item w3-button">Shoes</a>
+            <a onclick="gymWearFunc()" href="javascript:void(0)" class="w3-button w3-block w3-white w3-left-align">
+                Gymwear <i class="fa fa-caret-down"></i>
+            </a>
+            <div id="gymWear" class="w3-bar-block w3-hide w3-padding-large w3-medium">
+                <a href="#" class="w3-bar-item w3-button w3-light-grey"><i
+                        class="fa fa-caret-right w3-margin-right"></i>Skinny</a>
+                <a href="#" class="w3-bar-item w3-button w3-light-grey"><i
+                        class="fa fa-caret-right w3-margin-right"></i>Relaxed</a>
+                <a href="#" class="w3-bar-item w3-button w3-light-grey"><i
+                        class="fa fa-caret-right w3-margin-right"></i>Bootcut</a>
+                <a href="#" class="w3-bar-item w3-button w3-light-grey"><i
+                        class="fa fa-caret-right w3-margin-right"></i>Straight</a>
+            </div>
+            <a onclick="blazerFunc()" href="javascript:void(0)" class="w3-button w3-block w3-white w3-left-align">
+                Blazers <i class="fa fa-caret-down"></i>
+            </a>
+            <div id="blazer" class="w3-bar-block w3-hide w3-padding-large w3-medium">
+                <a href="#" class="w3-bar-item w3-button w3-light-grey"><i
+                        class="fa fa-caret-right w3-margin-right"></i>Skinny</a>
+                <a href="#" class="w3-bar-item w3-button w3-light-grey"><i
+                        class="fa fa-caret-right w3-margin-right"></i>Relaxed</a>
+                <a href="#" class="w3-bar-item w3-button w3-light-grey"><i
+                        class="fa fa-caret-right w3-margin-right"></i>Bootcut</a>
+                <a href="#" class="w3-bar-item w3-button w3-light-grey"><i
+                        class="fa fa-caret-right w3-margin-right"></i>Straight</a>
+            </div>
+            <a onclick="shoesFunc()" href="javascript:void(0)" class="w3-button w3-block w3-white w3-left-align">
+                shoes <i class="fa fa-caret-down"></i>
+            </a>
+            <div id="shoes" class="w3-bar-block w3-hide w3-padding-large w3-medium">
+                <a href="#" class="w3-bar-item w3-button w3-light-grey"><i
+                        class="fa fa-caret-right w3-margin-right"></i>Skinny</a>
+                <a href="#" class="w3-bar-item w3-button w3-light-grey"><i
+                        class="fa fa-caret-right w3-margin-right"></i>Relaxed</a>
+                <a href="#" class="w3-bar-item w3-button w3-light-grey"><i
+                        class="fa fa-caret-right w3-margin-right"></i>Bootcut</a>
+                <a href="#" class="w3-bar-item w3-button w3-light-grey"><i
+                        class="fa fa-caret-right w3-margin-right"></i>Straight</a>
+            </div>
         </div>
     </nav>
     <!-- Top menu on small screens -->
