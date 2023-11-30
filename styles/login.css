@@ -51,7 +51,7 @@ body {
 .card:nth-child(1) {
   --hue: 400;
   --saturation: 100%;
-  --lightness: 48.04%;
+  --lightness: 50%;
 }
 
 .overlay {
