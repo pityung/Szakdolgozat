@@ -23,8 +23,6 @@ body {
   color: #ddd;
 }
 
-
-
 .main__heading {
   text-align: center;
   color: #eceff1;
@@ -35,7 +33,6 @@ body {
 }
 
 .card {
-
   --hsl: var(--hue), var(--saturation), var(--lightness);
   padding: 1.5em 2em;
   display: grid;
@@ -71,8 +68,6 @@ body {
   box-shadow: 0 0 0 1px inset hsl(var(--hsl));
 }
 
-
-
 .subtitle {
   font-size: 11px;
   color: rgba(177, 177, 177, 0.3);
@@ -96,18 +91,14 @@ input {
 
   border: none;
   border-radius: 8px;
-
   box-shadow: 2px 2px 7px white;
   color: rgb(161, 153, 153);
-
   width: 80px;
-
   transition: all 1s;
 }
 
 .submit-btn:hover {
   color: rgb(255, 255, 255);
-
   box-shadow: none;
 }
 

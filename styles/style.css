@@ -193,9 +193,12 @@ img {
     perspective: 500px;
     transition: 0.5s;
 }
-.card .front img{
-    height: 100%; width: 100%;
+
+.card .front img {
+    height: 100%;
+    width: 100%;
 }
+
 .card .front {
     position: absolute;
     top: 0;
