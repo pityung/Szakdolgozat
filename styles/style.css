@@ -20,6 +20,12 @@ h4 {
 
 #cardheader {
     text-align: center;
+    width: 80%;
+    margin: auto;
+}
+
+#appbutton{
+    text-align: center;
 }
 
 .carousel-inner img {
