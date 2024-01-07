@@ -15,6 +15,11 @@
 </head>
 
 <body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="50">
+    <?php 
+
+require "mysql.php";
+
+?>
     <!-- Navbar -->
     <nav class="navbar navbar-default navbar-fixed-top" id="navbar">
         <div class="container-fluid">

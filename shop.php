@@ -14,7 +14,11 @@
 </head>
 
 <body class="w3-content" style="max-width:1200px">
+<?php 
 
+require "mysql.php";
+
+?>
     <!-- Sidebar/menu -->
     <nav class="w3-sidebar w3-bar-block w3-white w3-collapse w3-top" style="z-index:3;width:250px" id="mySidebar">
         <div class="w3-container w3-display-container w3-padding-16">
