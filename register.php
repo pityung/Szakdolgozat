@@ -22,7 +22,7 @@
                         <input type="password" name="password" value="" placeholder="Password">
                         <br><br>
                         <input type="submit" value="submit" class="submit-btn">
-                        <a href="login.html" class="shuffle"><input type="submit" value="Login" class="submit-btn"></a>
+                        <a href="login.php" class="shuffle"><input type="submit" value="Login" class="submit-btn"></a>
                     </div>
                 </div>
             </div>

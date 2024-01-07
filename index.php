@@ -37,7 +37,7 @@ require "mysql.php";
                     <li><a href="#cardheader">STYLES</a></li>
                     <li><a href="#shop">SHOP</a></li>
                     <li><a href="#app">APP</a></li>
-                    <li><a href="login.html"><span class="glyphicon glyphicon-user" id="user"></span></a></li>
+                    <li><a href="login.php"><span class="glyphicon glyphicon-user" id="user"></span></a></li>
                 </ul>
             </div>
         </div>
@@ -161,14 +161,14 @@ require "mysql.php";
     </div>
     <!-- The shop -->
     <div class="container-fluid bg-3 text-center">
-        <h3 id="shop"><a href="shop.html">what to buy?</a> </h3>
+        <h3 id="shop"><a href="shop.php">what to buy?</a> </h3>
         <div class="row">
             <div class="col-sm-4">
                 <p>For Horses</p>
                 <div class="container">
-                    <a href="shop.html"> <img src="images/forHorses1.jpg" alt="Horse" class="image"> </a>
+                    <a href="shop.php"> <img src="images/forHorses1.jpg" alt="Horse" class="image"> </a>
                     <div class="overlay">
-                        <a href="shop.html">
+                        <a href="shop.php">
                             <div class="text"><img src="images/forHorses2.jpg" alt="horse"></div>
                         </a>
                     </div>
@@ -177,9 +177,9 @@ require "mysql.php";
             <div class="col-sm-4">
                 <p>For Riders</p>
                 <div class="container">
-                    <a href="shop.html"> <img src="images/forRiders.jpg" alt="Horse" class="image"></a>
+                    <a href="shop.php"> <img src="images/forRiders.jpg" alt="Horse" class="image"></a>
                     <div class="overlay">
-                        <a href="shop.html">
+                        <a href="shop.php">
                             <div class="text"><img src="images/forRiders2.jpg" alt="horse"></div>
                         </a>
                     </div>
@@ -188,9 +188,9 @@ require "mysql.php";
             <div class="col-sm-4">
                 <p>For Stables</p>
                 <div class="container">
-                    <a href="shop.html"> <img src="images/forHusbandry.jpg" alt="Horse" class="image"></a>
+                    <a href="shop.php"> <img src="images/forHusbandry.jpg" alt="Horse" class="image"></a>
                     <div class="overlay">
-                        <a href="shop.html">
+                        <a href="shop.php">
                             <div class="text"><img src="images/forHusbandry2.jpg" alt="Horse2"></div>
                         </a>
                     </div>
@@ -202,7 +202,7 @@ require "mysql.php";
     <!-- App -->
     <div id="appbutton">
         <p>or if you dont know what to buy, check our app</p>
-        <a href="app.html" id="app"><button type="button" class="btn btn-secondary btn-lg btn-block">App</button>
+        <a href="app.php" id="app"><button type="button" class="btn btn-secondary btn-lg btn-block">App</button>
         </a>
     </div>
     <br>

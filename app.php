@@ -27,8 +27,8 @@
             </div>
             <div class="collapse navbar-collapse" id="myNavbar">
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="index.html">HOME</a></li>
-                    <li><a href="login.html"><span class="glyphicon glyphicon-user" id="user"></span></a></li>
+                    <li><a href="index.php">HOME</a></li>
+                    <li><a href="login.php"><span class="glyphicon glyphicon-user" id="user"></span></a></li>
                 </ul>
             </div>
         </div>
