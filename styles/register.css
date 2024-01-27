@@ -108,6 +108,8 @@ input {
 }
 
 .shuffle {
-  position: absolute;
-  right: 0px;
+position: relative;
+right: -218px;
+top: -65px;
+  
 }

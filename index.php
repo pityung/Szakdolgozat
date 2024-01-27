@@ -1,3 +1,9 @@
+<?php
+session_start();
+require "helpers/mysql.php";
+$db = new DataBase;
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -11,15 +17,11 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="styles/style.css">
-    <script src="scripts/function.js"></script>
+    <script src="scripts/index_function.js"></script>
 </head>
 
 <body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="50">
-    <?php 
-
-require "mysql.php";
-
-?>
+    
     <!-- Navbar -->
     <nav class="navbar navbar-default navbar-fixed-top" id="navbar">
         <div class="container-fluid">
@@ -37,7 +39,7 @@ require "mysql.php";
                     <li><a href="#cardheader">STYLES</a></li>
                     <li><a href="#shop">SHOP</a></li>
                     <li><a href="#app">APP</a></li>
-                    <li><a href="login.php"><span class="glyphicon glyphicon-user" id="user"></span></a></li>
+                    <li><a href="view/login.php"><span class="glyphicon glyphicon-user" id="user"></span></a></li>
                 </ul>
             </div>
         </div>
@@ -161,14 +163,14 @@ require "mysql.php";
     </div>
     <!-- The shop -->
     <div class="container-fluid bg-3 text-center">
-        <h3 id="shop"><a href="shop.php">what to buy?</a> </h3>
+        <h3 id="shop"><a href="view/shop.php">what to buy?</a> </h3>
         <div class="row">
             <div class="col-sm-4">
                 <p>For Horses</p>
                 <div class="container">
-                    <a href="shop.php"> <img src="images/forHorses1.jpg" alt="Horse" class="image"> </a>
+                    <a href="view/shop.php"> <img src="images/forHorses1.jpg" alt="Horse" class="image"> </a>
                     <div class="overlay">
-                        <a href="shop.php">
+                        <a href="view/shop.php">
                             <div class="text"><img src="images/forHorses2.jpg" alt="horse"></div>
                         </a>
                     </div>
@@ -177,9 +179,9 @@ require "mysql.php";
             <div class="col-sm-4">
                 <p>For Riders</p>
                 <div class="container">
-                    <a href="shop.php"> <img src="images/forRiders.jpg" alt="Horse" class="image"></a>
+                    <a href="view/shop.php"> <img src="images/forRiders.jpg" alt="Horse" class="image"></a>
                     <div class="overlay">
-                        <a href="shop.php">
+                        <a href="view/shop.php">
                             <div class="text"><img src="images/forRiders2.jpg" alt="horse"></div>
                         </a>
                     </div>
@@ -188,9 +190,9 @@ require "mysql.php";
             <div class="col-sm-4">
                 <p>For Stables</p>
                 <div class="container">
-                    <a href="shop.php"> <img src="images/forHusbandry.jpg" alt="Horse" class="image"></a>
+                    <a href="view/shop.php"> <img src="images/forHusbandry.jpg" alt="Horse" class="image"></a>
                     <div class="overlay">
-                        <a href="shop.php">
+                        <a href="view/shop.php">
                             <div class="text"><img src="images/forHusbandry2.jpg" alt="Horse2"></div>
                         </a>
                     </div>
@@ -202,7 +204,7 @@ require "mysql.php";
     <!-- App -->
     <div id="appbutton">
         <p>or if you dont know what to buy, check our app</p>
-        <a href="app.php" id="app"><button type="button" class="btn btn-secondary btn-lg btn-block">App</button>
+        <a href="view/app.php" id="app"><button type="button" class="btn btn-secondary btn-lg btn-block">App</button>
         </a>
     </div>
     <br>
