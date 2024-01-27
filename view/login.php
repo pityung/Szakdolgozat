@@ -60,6 +60,8 @@ session_start();
             <div class="overlay"></div>
         </div>
         <?php
+
+        /*debugging message for github i'm trying outs smtng */
         if (isset($msg)) {
             echo $msg;
         } else {
