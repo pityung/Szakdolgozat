@@ -2,6 +2,11 @@
 session_start();
 require "helpers/mysql.php";
 $db = new DataBase;
+if(isset($_GET['action'])) {
+    if($_GET['action'] == 'logout') {
+        session_unset(); 
+    }
+}
 ?>
 
 <!DOCTYPE html>
@@ -39,34 +44,35 @@ $db = new DataBase;
                     <li><a href="#cardheader">STYLES</a></li>
                     <li><a href="#shop">SHOP</a></li>
                     <li><a href="#app">APP</a></li>
-                    <li ><a href="#" > <img onclick="toggleMenu()"> <span class="glyphicon glyphicon-user" class="user-pic" id="user" ></span> </button> </a></li>
-                    <div class="sub-menu-wrap" id="subMenu">
-                        <div class="sub-menu">
-                            <div class="user-info">
-                                <h2>asd</h2>
-                            </div>
-                            <hr>
-                            <a href="" class="sub-menu-link">
-                                <p>Edit Profile</p>
-                                <span>></span>
-                            </a>
-                            <a href="" class="sub-menu-link">
-                                <p>Edit Profile</p>
-                                <span>></span>
-                            </a>
-                            <a href="" class="sub-menu-link">
-                                <p>Edit Profile</p>
-                                <span>></span>
-                            </a>
-                            <a href="" class="sub-menu-link">
-                                <p>Edit Profile</p>
-                                <span>></span>
-                            </a>
-                        </div>
-                    </div>
                     <?php
-                    if ($_SESSION["isLoginedIn"] == true) {
-                        print "";
+                    if (!empty($_SESSION["isLoginedIn"]) && $_SESSION["isLoginedIn"] = true ) {
+                        print '
+                        <li ><a href="#" onclick=toggleMenu()> <span class="glyphicon glyphicon-user" class="user-pic" id="user" ></span> </a></li>
+                        <div class="sub-menu-wrap" id="subMenu">
+                            <div class="sub-menu">
+                                <div class="user-info">
+                                    <h2>'.$_SESSION["username"].'</h2>
+                                </div>
+                                <hr>
+                                <a href="" class="sub-menu-link">
+                                    <p>Edit Profile</p>
+                                    <span>></span>
+                                </a>
+                                <a href="" class="sub-menu-link">
+                                    <p>Edit Profile</p>
+                                    <span>></span>
+                                </a>
+                                <a href="" class="sub-menu-link">
+                                    <p>Edit Profile</p>
+                                    <span>></span>
+                                </a>
+                                <a href="index.php?action=logout" class="sub-menu-link">
+                                    <p>Exit</p>
+                                    <span>></span>
+                                </a>
+                            </div>
+                        </div>
+                        ';
                     } else {
                         print '<li><a href="view/login.php"><span class="glyphicon glyphicon-user" id="user"></span></a></li>';
                     }

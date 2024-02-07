@@ -12,8 +12,7 @@ function Darkmode() {
     }
 }
 
-var subMenu = document.getElementById("subMenu");
-
 function toggleMenu() {
+    var subMenu = document.getElementById("subMenu");
     subMenu.classList.toggle("open-menu");
 }

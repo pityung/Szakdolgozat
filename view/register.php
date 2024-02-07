@@ -37,7 +37,8 @@ $db = new DataBase;
                                 $sql = "INSERT INTO `user` ( `username`, `user_password`, `first_name`, `last_name`, `phone`, `email`) VALUES ('" . $_POST['username'] . "','" . hash('sha256', $_POST['password']) . "','" . $_POST['first_name'] . "','" . $_POST['last_name'] . "','" . $_POST['phone'] . "','" . $_POST['email'] . "');";
                                 $result = DataBase::$conn->query($sql);
                                 $msg .= "Succesfull registration, please login in!";
-                                $_SESSION["isLoginedIn"] = 'true';
+                                $_SESSION["isLoginedIn"] = true;
+                                $_SESSION["username"] =$_POST['username'];
                         ?>
                                 <script>
                                     alert("Registered Successfull and logined in, now we get you back to the main page.");

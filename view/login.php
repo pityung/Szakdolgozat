@@ -35,12 +35,13 @@ session_start();
                                         if ($row['user_password'] == hash('sha256', $_POST['password'])) {
                                             $msg .= "welcome: " . $_POST['username'];
                                             $_SESSION["isLoginedIn"] = true;
-                                            ?>
+                                            $_SESSION["username"] =$_POST['username'];
+                        ?>
                                             <script>
-                                            alert("Logined in Successfull now we get you back to the main page.");
-                                            window.location.href = "../index.php";
+                                                alert("Logined in Successfull now we get you back to the main page.");
+                                                window.location.href = "../index.php";
                                             </script>
-                                            <?php
+                        <?php
                                         } else {
                                             $msg .= "Wrong password";
                                         }

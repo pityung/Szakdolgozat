@@ -342,16 +342,10 @@ span {
     transform: translate(-50%, -50%);
     text-align: center;
 }
-.sub-menu-wrap{
-    position: absolute;
-    top: 100%;
-    right: 0%;
-    width: 200px;
-    max-height: 400px;
-    overflow: hidden;
-    transition: max-height 0.5s;
+sub-menu,h2{
+    color: black;
 }
-.sub-menu-wrap.open-menu{
+.sub-menu-wrap{
     position: absolute;
     top: 100%;
     right: 0%;
@@ -359,6 +353,9 @@ span {
     max-height: 0px;
     overflow: hidden;
     transition: max-height 0.5s;
+}
+.sub-menu-wrap.open-menu{
+    max-height: 400px;
 }
 .sub-menu{
     background: #fff;
