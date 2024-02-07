@@ -1,10 +1,3 @@
-<?php
-session_start();
-
-require "helpers/mysql.php";
-$db = new DataBase;
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 
