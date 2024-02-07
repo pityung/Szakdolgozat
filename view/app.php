@@ -10,8 +10,8 @@
     <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="styles/style.css">
-    <script src="scripts/function.js"></script>
+    <link rel="stylesheet" href="../styles/style.css">
+    <script src="../scripts/app.js"></script>
 </head>
 
 <body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="50">
@@ -23,12 +23,12 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <img src="images/logo.jpg" alt="LOGO" id="darkmode" onclick="Darkmode()">
+                <img src="../images/logo.jpg" alt="LOGO" id="darkmode" onclick="Darkmode()">
             </div>
             <div class="collapse navbar-collapse" id="myNavbar">
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="index.php">HOME</a></li>
-                    <li><a href="login.php"><span class="glyphicon glyphicon-user" id="user"></span></a></li>
+                    <li><a href="../index.php">HOME</a></li>
+                    <li><a href="../view/login.php"><span class="glyphicon glyphicon-user" id="user"></span></a></li>
                 </ul>
             </div>
         </div>
