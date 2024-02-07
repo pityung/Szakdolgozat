@@ -34,10 +34,11 @@ session_start();
                                     if ($row = $result->fetch_assoc()) {
                                         if ($row['user_password'] == hash('sha256', $_POST['password'])) {
                                             $msg .= "welcome: " . $_POST['username'];
+                                            $_SESSION["isLoginedIn"] = true;
                                             ?>
                                             <script>
-                                                alert("Logined in Successfull now we get you back to the main page.");
-                                                window.location.href = "../index.php";
+                                            alert("Logined in Successfull now we get you back to the main page.");
+                                            window.location.href = "../index.php";
                                             </script>
                                             <?php
                                         } else {
