@@ -47,24 +47,19 @@ if(isset($_GET['action'])) {
                     <?php
                     if (!empty($_SESSION["isLoginedIn"]) && $_SESSION["isLoginedIn"] = true ) {
                         print '
-                        <li ><a href="#" onclick=toggleMenu()> <span class="glyphicon glyphicon-user" class="user-pic" id="user" ></span> </a></li>
+                        <li ><a  onclick=toggleMenu()> <span class="glyphicon glyphicon-user" class="user-pic" id="user" ></span> </a></li>
                         <div class="sub-menu-wrap" id="subMenu">
                             <div class="sub-menu">
                                 <div class="user-info">
                                     <h2>'.$_SESSION["username"].'</h2>
                                 </div>
                                 <hr>
-                                <a href="" class="sub-menu-link">
-                                    <p>Edit Profile</p>
-                                    <span>></span>
+                                <a  class="sub-menu-link">
+                                    <p>'.$_SESSION["name"].'</p>
+                                    
                                 </a>
-                                <a href="" class="sub-menu-link">
-                                    <p>Edit Profile</p>
-                                    <span>></span>
-                                </a>
-                                <a href="" class="sub-menu-link">
-                                    <p>Edit Profile</p>
-                                    <span>></span>
+                                <a  class="sub-menu-link">
+                                    <p>'.$_SESSION["phone"].'</p>
                                 </a>
                                 <a href="index.php?action=logout" class="sub-menu-link">
                                     <p>Exit</p>
@@ -131,7 +126,11 @@ if(isset($_GET['action'])) {
             a traditional activity that involves riders following a scent trail in a group.</p>
         <p> <b>But the most important is to love horses, because you only need to live, love, ride</b></p>
     </div>
-    <!-- Cards -->
+    <hr>
+    <!-- The shop -->
+    <div class="container-fluid bg-3 text-center">
+        <h3 id="shop"><a href="view/shop.php">what to buy?</a> </h3>
+        <!-- Cards -->
     <div id="card-container">
         <div class="card-container">
             <div class="card">
@@ -198,9 +197,6 @@ if(isset($_GET['action'])) {
 
         <br>
     </div>
-    <!-- The shop -->
-    <div class="container-fluid bg-3 text-center">
-        <h3 id="shop"><a href="view/shop.php">what to buy?</a> </h3>
         <div class="row">
             <div class="col-sm-4">
                 <p>For Horses</p>
@@ -238,6 +234,7 @@ if(isset($_GET['action'])) {
         </div>
     </div>
     <br>
+    <hr>
     <!-- App -->
     <div id="appbutton">
         <p>or if you dont know what to buy, check our app</p>

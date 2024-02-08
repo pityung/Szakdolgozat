@@ -18,6 +18,7 @@ session_start();
 <body>
     <main class="main flow">
         <h1 class="main__heading">Login</h1>
+      <a href="../index.php"> <p  class="main__heading">Go Back</p> </a> 
         <div class="main__cards cards">
             <div class="cards__inner">
                 <div class="cards__card card">
@@ -33,9 +34,12 @@ session_start();
                                 if ($result->num_rows > 0) {
                                     if ($row = $result->fetch_assoc()) {
                                         if ($row['user_password'] == hash('sha256', $_POST['password'])) {
-                                            $msg .= "welcome: " . $_POST['username'];
+                                            $msg .= "welcome: " . $row['username'];
                                             $_SESSION["isLoginedIn"] = true;
-                                            $_SESSION["username"] =$_POST['username'];
+                                            $_SESSION["username"] =  $row['username'];
+                                            $_SESSION["name"] =  $row['first_name']." ". $row['last_name'];
+                                            $_SESSION["email"] = $row['email'];
+                                            $_SESSION["phone"] =  $row['phone'];
                         ?>
                                             <script>
                                                 alert("Logined in Successfull now we get you back to the main page.");
