@@ -1,7 +1,9 @@
 <?php
-require "../helpers/mysql.php";
-$db = new DataBase;
 session_start();
+require "../helpers/mysql.php";
+require '../control/database.php';
+$db = new DataBase;
+
 
 ?>
 
@@ -24,36 +26,16 @@ session_start();
                 <div class="cards__card card">
                     <div class="wrap">
                         <?php
-                        $msg = '';
                         if (isset($_POST['password']) and isset($_POST['username'])) {
-                            if (empty($_POST['username'])) $msg .= "there is no username ";
-                            if (empty($_POST['password'])) $msg .= "there is no password ";
-                            if (!$msg) {
-                                $sql = "SELECT * FROM user WHERE username LIKE '" . $_POST['username'] . "';";
-                                $result = DataBase::$conn->query($sql);
-                                if ($result->num_rows > 0) {
-                                    if ($row = $result->fetch_assoc()) {
-                                        if ($row['user_password'] == hash('sha256', $_POST['password'])) {
-                                            $msg .= "welcome: " . $row['username'];
-                                            $_SESSION["isLoginedIn"] = true;
-                                            $_SESSION["username"] =  $row['username'];
-                                            $_SESSION["name"] =  $row['first_name']." ". $row['last_name'];
-                                            $_SESSION["email"] = $row['email'];
-                                            $_SESSION["phone"] =  $row['phone'];
+                            
+                        if (empty($msg)) {
                         ?>
-                                            <script>
-                                                alert("Logined in Successfull now we get you back to the main page.");
-                                                window.location.href = "../index.php";
-                                            </script>
+                            <script>
+                                alert("Logined in Successfull now we get you back to the main page.");
+                                window.location.href = "../index.php";
+                            </script>
                         <?php
-                                        } else {
-                                            $msg .= "Wrong password";
-                                        }
-                                    }
-                                } else {
-                                    $msg .= "Wrong username";
-                                }
-                            }
+                        }
                         }
                         ?>
                         <br>

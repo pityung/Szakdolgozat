@@ -1,7 +1,9 @@
 <?php
+
 session_start();
 require "helpers/mysql.php";
 $db = new DataBase;
+require "model/database.php";
 if(isset($_GET['action'])) {
     if($_GET['action'] == 'logout') {
         session_unset(); 
