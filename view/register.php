@@ -19,22 +19,24 @@ $db = new DataBase;
 <body>
     <main class="main flow">
         <h1 class="main__heading">Register</h1>
-        <a href="../index.php"> <p  class="main__heading">Go Back</p> </a> 
+        <a href="../index.php">
+            <p class="main__heading">Go Back</p>
+        </a>
         <div class="main__cards cards">
             <div class="cards__inner">
                 <div class="cards__card card">
                     <div class="wrap">
-                        <?php
+                        <?php  
                         if (isset($_POST['password']) and isset($_POST['username']) and isset($_POST['first_name']) and isset($_POST['last_name']) and isset($_POST['email']) and isset($_POST['phone'])) {
                             if (empty($msg)) {
-                                ?>
+                        ?>
                                 <script>
                                     alert("Registered in Successfull Please login in.");
-                                        window.location.href = "login.php";
+                                //    window.location.href = "login.php";
                                 </script>
-                            <?php
+                        <?php
                             }
-                        }else{
+                        } else {
                             $msg .= "fill all the boxes!";
                         }
                         ?>
@@ -63,8 +65,20 @@ $db = new DataBase;
         </div>
     </main>
     <script src="../scripts/cards.js"></script>
+
     <?php
     echo $msg;
+
+    if(!empty($msg)){
+    ?>
+    <script>
+        var msg = "<?php print($msg) ?>";
+    
+        alert(msg);
+    </script>
+
+<?php
+    }
     ?>
 </body>
 

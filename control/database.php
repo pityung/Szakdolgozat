@@ -5,12 +5,14 @@ require "../model/database.php";
 require "../helpers/stringHelper.php";
 
 $user_table = new userTable();  
+$StringHelper = new StringHelper();
 
 $msg = '';
 if (isset($_POST['password']) and isset($_POST['username']) and isset($_POST['first_name']) and isset($_POST['last_name']) and isset($_POST['email']) and isset($_POST['phone'])) {
 
-    $nev = StringHelper::safe_input($_POST['username']);
-    $msg = StringHelper::checkName($nev, $msg);
+    //$nev = StringHelper::safe_input($_POST['username']);
+    $msg = $StringHelper->checkName($msg);
+
     $msg = $user_table->checkUsers($msg);
 
     if ($msg == '') {
