@@ -3,7 +3,6 @@
 
 class DataBase
 {
-
     private $servername = "localhost";
     private $username = "Nick";
     private $password = "(jtc-t1@]g41Kq77";

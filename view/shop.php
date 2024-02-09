@@ -121,17 +121,13 @@
         <a href="javascript:void(0)" class="w3-bar-item w3-button w3-padding-24 w3-right" onclick="w3_open()"><i
                 class="fa fa-bars"></i></a>
     </header>
-
     <!-- Overlay effect when opening sidebar on small screens -->
     <div class="w3-overlay w3-hide-large" onclick="w3_close()" style="cursor:pointer" title="close side menu"
         id="myOverlay"></div>
-
     <!-- Jeans CONTENT! -->
     <div class="w3-main" style="margin-left:250px">
-
         <!-- Push down content on small screens -->
         <div class="w3-hide-large" style="margin-top:83px"></div>
-
         <!-- Top header -->
         <header class="w3-container w3-xlarge">
             <p class="w3-left">Jeans</p>
@@ -141,12 +137,9 @@
             </p>
         </header>
         <!-- Image header -->
-
-
         <div class="w3-container w3-text-grey">
             <p>8 items</p>
         </div>
-
         <!-- Product grid -->
         <div class="w3-row w3-grayscale">
             <div class="w3-col l3 s6">
@@ -159,7 +152,6 @@
                     <p>Mega Ripped Jeans<br><b>$19.99</b></p>
                 </div>
             </div>
-
             <div class="w3-col l3 s6">
                 <div class="w3-container">
                     <div class="w3-display-container">
@@ -176,7 +168,6 @@
                     <p>Washed Skinny Jeans<br><b>$20.50</b></p>
                 </div>
             </div>
-
             <div class="w3-col l3 s6">
                 <div class="w3-container">
                     <img src="/w3images/jeans3.jpg" alt="jeans" style="width:100%">
@@ -193,7 +184,6 @@
                     <p>Vintage Skinny Jeans<br><b class="w3-text-red">$14.99</b></p>
                 </div>
             </div>
-
             <div class="w3-col l3 s6">
                 <div class="w3-container">
                     <img src="/w3images/jeans4.jpg" alt="jeans" style="width:100%">
@@ -206,24 +196,18 @@
             </div>
         </div>
     </div>
-
     <!-- jacket CONTENT! -->
     <div class="w3-main" style="margin-left:250px">
-
         <!-- Push down content on small screens -->
         <div class="w3-hide-large" style="margin-top:83px"></div>
-
         <!-- Top header -->
         <header class="w3-container w3-xlarge">
             <p class="w3-left">Jacket</p>
         </header>
         <!-- Image header -->
-
-
         <div class="w3-container w3-text-grey" id="jacket">
             <p>8 items</p>
         </div>
-
         <!-- Product grid -->
         <div class="w3-row w3-grayscale">
             <div class="w3-col l3 s6">
@@ -236,7 +220,6 @@
                     <p>Mega Ripped Jeans<br><b>$19.99</b></p>
                 </div>
             </div>
-
             <div class="w3-col l3 s6">
                 <div class="w3-container">
                     <div class="w3-display-container">
@@ -253,7 +236,6 @@
                     <p>Washed Skinny Jeans<br><b>$20.50</b></p>
                 </div>
             </div>
-
             <div class="w3-col l3 s6">
                 <div class="w3-container">
                     <img src="/w3images/jeans3.jpg" alt="jeans" style="width:100%">
@@ -270,7 +252,6 @@
                     <p>Vintage Skinny Jeans<br><b class="w3-text-red">$14.99</b></p>
                 </div>
             </div>
-
             <div class="w3-col l3 s6">
                 <div class="w3-container">
                     <img src="/w3images/jeans4.jpg" alt="jeans" style="width:100%">

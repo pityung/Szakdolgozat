@@ -1,8 +1,9 @@
 <?php
 session_start();
 require "../helpers/mysql.php";
-$db = new DataBase;
 require "../control/database.php";
+$db = new DataBase;
+
 ?>
 
 <!DOCTYPE html>
@@ -24,8 +25,17 @@ require "../control/database.php";
                 <div class="cards__card card">
                     <div class="wrap">
                         <?php
-                        if (isset($_POST['password']) and isset($_POST['username'])) {
-
+                        if (isset($_POST['password']) and isset($_POST['username']) and isset($_POST['first_name']) and isset($_POST['last_name']) and isset($_POST['email']) and isset($_POST['phone'])) {
+                            if (empty($msg)) {
+                                ?>
+                                <script>
+                                    alert("Registered in Successfull Please login in.");
+                                        window.location.href = "login.php";
+                                </script>
+                            <?php
+                            }
+                        }else{
+                            $msg .= "fill all the boxes!";
                         }
                         ?>
                         <form method="post">

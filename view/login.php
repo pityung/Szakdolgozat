@@ -20,7 +20,7 @@ $db = new DataBase;
 <body>
     <main class="main flow">
         <h1 class="main__heading">Login</h1>
-      <a href="../index.php"> <p  class="main__heading">Go Back</p> </a> 
+        <a href="../index.php"> <p  class="main__heading">Go Back</p> </a> 
         <div class="main__cards cards">
             <div class="cards__inner">
                 <div class="cards__card card">
