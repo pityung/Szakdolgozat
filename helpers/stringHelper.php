@@ -60,6 +60,10 @@ class StringHelper
         if (!preg_match('`[0-9]`', $formattedPhonenumber)) {
             $msg .= "not a correct form at phonen umber! the phone number only contains numbers! ";
         }
+        if (!preg_match('`[@.]`', $_POST['email'])) {
+            $msg .= "the email should contain a '@' and a '.' ";
+        }
+
         return $msg;
     }
 }

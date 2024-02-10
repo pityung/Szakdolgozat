@@ -26,38 +26,41 @@ $db = new DataBase;
             <div class="cards__inner">
                 <div class="cards__card card">
                     <div class="wrap">
-                        <?php  
+                        <?php
                         if (isset($_POST['password']) and isset($_POST['username']) and isset($_POST['first_name']) and isset($_POST['last_name']) and isset($_POST['email']) and isset($_POST['phone'])) {
                             if (empty($msg)) {
                         ?>
                                 <script>
-                                    alert("Registered in Successfull Please login in.");
-                                //    window.location.href = "login.php";
+                                    alert("Registered and logined in Successfull.");
+                                    
+                                    localStorage.clear();
+                                    window.location.href = "../index.php";
                                 </script>
                         <?php
                             }
-                        } else {
+                        } elseif (isset($_POST['submitbtn'])) {
                             $msg .= "fill all the boxes!";
                         }
                         ?>
                         <form method="post">
-                            <input type="text" name="username" value="" placeholder="Username" required>
+                            <input type="text" name="username" value="" placeholder="Username" id="username" required>
                             <br>
-                            <input type="text" name="first_name" value="" placeholder="First Name" required>
+                            <input type="text" name="first_name" value="" placeholder="First Name" id="first_name" required>
                             <br>
-                            <input type="text" name="last_name" value="" placeholder="Last Name" required>
+                            <input type="text" name="last_name" value="" placeholder="Last Name" id="last_name" required>
                             <br>
                             <input type="password" name="password" value="" placeholder="Password" required>
                             <br>
                             <input type="password" name="password_again" value="" placeholder="Password Again" required>
                             <br>
-                            <input type="phone" name="phone" value="" placeholder="Phone Number" required>
+                            <input type="phone" name="phone" value="" placeholder="Phone Number" id="phone" required>
                             <br>
-                            <input type="email" name="email" value="" placeholder="Email" required>
+                            <input type="email" name="email" value="" placeholder="Email" id="email" required>
                             <br>
-                            <input type="submit" value="submit" class="submit-btn">
+                            <input type="submit" name="submitbtn" value="submit" id="submit" class="submit-btn">
                         </form>
-                        <a href="../view/login.php" class="shuffle"><input type="submit" value="Login" class="submit-btn"></a>
+                        <Script src="../scripts/register.js"></Script>
+                        <a href="../view/login.php" class="shuffle"><input type="button" value="Login" class="submit-btn"></a>
                     </div>
                 </div>
             </div>
@@ -69,15 +72,15 @@ $db = new DataBase;
     <?php
     echo $msg;
 
-    if(!empty($msg)){
+    if (!empty($msg)) {
     ?>
-    <script>
-        var msg = "<?php print($msg) ?>";
-    
-        alert(msg);
-    </script>
+        <script>
+            var msg = "<?php print($msg) ?>";
 
-<?php
+            alert(msg);
+        </script>
+
+    <?php
     }
     ?>
 </body>

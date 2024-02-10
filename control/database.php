@@ -17,6 +17,7 @@ if (isset($_POST['password']) and isset($_POST['username']) and isset($_POST['fi
 
     if ($msg == '') {
         $msg = $user_table->registerUser();
+        $msg = $user_table->checkLogin($msg);
     }
 }else
 if(isset($_POST['username']) and isset($_POST['password'])) {
