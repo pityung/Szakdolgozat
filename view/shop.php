@@ -22,51 +22,41 @@
 
 // Check if image file is a actual image or fake image
 if (isset($_POST["submit"])) {
+    $uploadOk = 0;
+    $maxFileSize = 0.5;
     $target_dir = "../uploads/";
-    $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
-    $uploadOk = 1;
-    $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+    $imgExts = array('.jpg', '.jpeg', '.png', '.gif');
+    $maxFileSize = $maxFileSize * 1024 * 1024;
+    $fileName = basename($_FILES["fileToUpload"]["name"]);
+
+    $fileNameArray = preg_split("/\./", $fileName);
+    //$_POST['id'].".".
+    $fileName = "asd" . "." . $fileNameArray[1];
+
+    $target_file = $target_dir . $fileName;
+
     $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
     if ($check !== false) {
-        echo "File is an image - " . $check["mime"] . ".";
         $uploadOk = 1;
     } else {
-        echo "File is not an image.";
+        $msg .= "A feltöltött " . $_FILES["fileToUpload"]["name"] . " fájl nem kép.";
         $uploadOk = 0;
     }
 
-
-    // Check if file already exists
-    if (file_exists($target_file)) {
-        echo "Sorry, file already exists.";
+    if ($_FILES["fileToUpload"]["size"] > ($maxFileSize)) {
+        echo "A feltöltött fájl túl nagy méretű";
         $uploadOk = 0;
     }
 
-    // Check file size
-    if ($_FILES["fileToUpload"]["size"] > 500000) {
-        echo "Sorry, your file is too large.";
-        $uploadOk = 0;
-    }
-
-    // Allow certain file formats
-    if (
-        $imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
-        && $imageFileType != "gif"
-    ) {
-        echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
-        $uploadOk = 0;
-    }
-
-    // Check if $uploadOk is set to 0 by an error
-    if ($uploadOk == 0) {
-        echo "Sorry, your file was not uploaded.";
-        // if everything is ok, try to upload file
-    } else {
-        if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
-            echo "The file " . htmlspecialchars(basename($_FILES["fileToUpload"]["name"])) . " has been uploaded.";
-        } else {
-            echo "Sorry, there was an error uploading your file.";
+    if ($uploadOk == 1) {
+        foreach ($imgExts as $ext) {
+            //$imgFile = $target_dir.$_POST['id'].$ext;
+            $imgFile = $target_dir . "asd" . $ext;
+            if (file_exists($imgFile)) {
+                unlink($imgFile);
+            }
         }
+        move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file);
     }
 }
 ?>
@@ -194,9 +184,13 @@ if (isset($_POST["submit"])) {
             <div class="card">
                 <div class="front">
                     <form action="shop.php" method="post" enctype="multipart/form-data">
-                        <input type="file" name="fileToUpload" id="fileToUpload">
-                        <button type="submit" value="Upload Image" name="submit" class="glyphicon glyphicon-plus"></button>
-                    </form>
+                        <div class="popup" onclick="popupFunction()">Click me to uppload images!
+                            <span class="popuptext" id="myPopup">
+                            <input type="file" name="fileToUpload" id="fileToUpload">
+                        <button type="submit" value="Upload Image" name="submit">Uppload</button>
+                            </span>
+                        </div>
+                        </form>
                 </div>
             </div>
         </div>
