@@ -13,9 +13,9 @@ class Filemanager {
         $maxFileSize = $maxFileSize * 1024 * 1024;
         $fileName = basename($_FILES["fileToUpload"]["name"]);
         $fileNameArray = preg_split("/\./",$fileName);
-        $fileName = $_SESSION['id'].".".$fileNameArray[1];
+        $fileName = $_POST['productName']."_".$_SESSION['id'].".".$fileNameArray[1];
         $target_file = TARGET_DIR . $fileName;
-    
+        
         $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
         if($check !== false) {
             $uploadOk = 1;
@@ -39,6 +39,7 @@ class Filemanager {
             }
             move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file);
         }
+        
         return $msg;
     }
 }

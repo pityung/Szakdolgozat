@@ -1,4 +1,4 @@
-<?php 
+<?php
 session_start();
 require "../helpers/mysql.php";
 require "../control/database.php";
@@ -124,14 +124,17 @@ $db = new DataBase;
         <div class="card-container">
 
             <?php
-            for ($i = 0; $i < 1; $i++) {
+            $dir    = '../uploads';
+            $files1 = scandir($dir);
+            for ($i = 2; $i < count($files1); $i++) {
                 echo '
-                <div class="card">
+    <div class="card">
                 <div class="front">
-                    <img src="../images/equestrianBoots.jpg" alt="equestrianBoots">
-                </div>
+                <img src="../uploads/' . $files1[$i] . '" alt="equestrianBoots">
+                
+                    </div>
             </div>
-                ';
+    ';
             }
             ?>
 
@@ -149,7 +152,7 @@ $db = new DataBase;
                                     <input type="file" name="fileToUpload" id="fileToUpload" required>
                                 </div>
                                 <br>
-                                <input type="text" name="name" placeholder="name" required>
+                                <input type="text" name="productName" placeholder="name" required>
                                 <br>
                                 <input type="text" name="description" placeholder="description" required>
                                 <br>
