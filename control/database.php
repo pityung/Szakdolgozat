@@ -3,6 +3,7 @@
 
 require "../model/database.php";
 require "../helpers/stringHelper.php";
+require "../model/files.php";
 
 $user_table = new userTable();  
 $StringHelper = new StringHelper();
@@ -34,6 +35,11 @@ if($msg ==''){
 
 }
 
+}
+else if(!empty($_FILES["fileToUpload"])) {
+
+    $filemanager = new Filemanager;
+    $msg = $filemanager->fileUpload($msg);
 }
 
 ?>

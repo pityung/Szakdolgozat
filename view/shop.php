@@ -1,5 +1,8 @@
 <?php 
 session_start();
+require "../helpers/mysql.php";
+require "../control/database.php";
+$db = new DataBase;
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -16,56 +19,6 @@ session_start();
     <script src="../scripts/shopScript.js"></script>
     <link rel="stylesheet" href="../styles/shop.css">
 </head>
-
-
-
-
-<?php
-
-
-// Check if image file is a actual image or fake image
-if (isset($_POST["submit"])) {
-    $uploadOk = 0;
-    $maxFileSize = 0.5;
-    $target_dir = "../uploads/";
-    $imgExts = array('.jpg', '.jpeg', '.png', '.gif');
-    $maxFileSize = $maxFileSize * 1024 * 1024;
-    $fileName = basename($_FILES["fileToUpload"]["name"]);
-
-    $fileNameArray = preg_split("/\./", $fileName);
-    //$_POST['id'].".".
-    $fileName = "asd" . "." . $fileNameArray[1];
-
-    $target_file = $target_dir . $fileName;
-
-    $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
-    if ($check !== false) {
-        $uploadOk = 1;
-    } else {
-        $msg .= "A feltöltött " . $_FILES["fileToUpload"]["name"] . " fájl nem kép.";
-        $uploadOk = 0;
-    }
-
-    if ($_FILES["fileToUpload"]["size"] > ($maxFileSize)) {
-        echo "A feltöltött fájl túl nagy méretű";
-        $uploadOk = 0;
-    }
-
-    if ($uploadOk == 1) {
-        foreach ($imgExts as $ext) {
-            //$imgFile = $target_dir.$_POST['id'].$ext;
-            $imgFile = $target_dir . "asd" . $ext;
-            if (file_exists($imgFile)) {
-                unlink($imgFile);
-            }
-        }
-        move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file);
-    }
-}
-?>
-
-
-
 <!-- Sidebar/menu -->
 <nav class="w3-sidebar w3-bar-block w3-white w3-collapse w3-top" style="z-index:3;width:250px" id="mySidebar">
     <div class="w3-container w3-display-container w3-padding-16">
