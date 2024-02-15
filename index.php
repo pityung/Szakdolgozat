@@ -4,9 +4,9 @@ session_start();
 require "helpers/mysql.php";
 $db = new DataBase;
 require "model/database.php";
-if(isset($_GET['action'])) {
-    if($_GET['action'] == 'logout') {
-        session_unset(); 
+if (isset($_GET['action'])) {
+    if ($_GET['action'] == 'logout') {
+        session_unset();
     }
 }
 ?>
@@ -46,27 +46,37 @@ if(isset($_GET['action'])) {
                     <li><a href="#cardheader">STYLES</a></li>
                     <li><a href="#shop">SHOP</a></li>
                     <li><a href="#app">APP</a></li>
+
                     <?php
-                    if (!empty($_SESSION["isLoginedIn"]) && $_SESSION["isLoginedIn"] = true ) {
+                    if (!empty($_SESSION["isLoginedIn"]) && $_SESSION["isLoginedIn"] = true) {
                         print '
                         <li ><a  onclick=toggleMenu()> <span class="glyphicon glyphicon-user" class="user-pic" id="user" ></span> </a></li>
                         <div class="sub-menu-wrap" id="subMenu">
                             <div class="sub-menu">
                                 <div class="user-info">
-                                    <h2>'.$_SESSION["username"].'</h2>
+                                    <h2>' . $_SESSION["username"] . '</h2>
                                     
                                 </div>
                                 <a href="index.php?action=logout" class="sub-menu-link">
                                     <p>Exit</p>
                                     <span>></span>
-                                </a>
-                                <hr>
+                                </a>';
+                        if ($_SESSION['addressOk'] == false) {
+                            echo '   </a>
+                                        <a href="view/userAddress.php" class="sub-menu-link">
+                                        <p> Finish your profile</p>
+                                        <span>></span>
+                                        </a>';
+                        } else {
+                            echo ' <p>Your profile is complete</p>';
+                        }
+                        echo '<hr>
                                 <a  class="sub-menu-link">
-                                    <p>'.$_SESSION["name"].'</p>
+                                    <p>' . $_SESSION["name"] . '</p>
                                     
                                 </a>
                                 <a  class="sub-menu-link">
-                                    <p>'.$_SESSION["phone"].'</p>
+                                    <p>' . $_SESSION["phone"] . '</p>
                                 </a>
                                 
                             </div>
@@ -135,72 +145,72 @@ if(isset($_GET['action'])) {
     <div class="container-fluid bg-3 text-center">
         <h3 id="shop"><a href="view/shop.php">what to buy?</a> </h3>
         <!-- Cards -->
-    <div id="card-container">
-        <div class="card-container">
-            <div class="card">
-                <div class="front">
-                    <img src="images/equestrianHelmet.jpg" alt="equestrianBlazer">
+        <div id="card-container">
+            <div class="card-container">
+                <div class="card">
+                    <div class="front">
+                        <img src="images/equestrianHelmet.jpg" alt="equestrianBlazer">
+                    </div>
+                    <div class="back">
+                        <div class="details">
+                            <div class="caption">
+                                " Lorem ipsum dolor sit amet, consectetur adipisicing elit. Natus
+                                quisquam iure in! Corporis expedita consequatur tenetur rem
+                                ratione saepe, perferendis ipsam alias quam. Libero illum maxime,
+                                unde itaque ratione "
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="back">
-                    <div class="details">
-                        <div class="caption">
-                            " Lorem ipsum dolor sit amet, consectetur adipisicing elit. Natus
-                            quisquam iure in! Corporis expedita consequatur tenetur rem
-                            ratione saepe, perferendis ipsam alias quam. Libero illum maxime,
-                            unde itaque ratione "
+                <div class="card">
+                    <div class="front">
+                        <img src="images/equestrianBlazer.jpg" alt="horse">
+                    </div>
+                    <div class="back">
+                        <div class="details">
+                            <div class="caption">
+                                " Lorem ipsum dolor sit amet, consectetur adipisicing elit. Natus
+                                quisquam iure in! Corporis expedita consequatur tenetur rem
+                                ratione saepe, perferendis ipsam alias quam. Libero illum maxime,
+                                unde itaque ratione "
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="front">
+                        <img src="images/equestrianTrouser.jpg" alt="horse">
+                    </div>
+                    <div class="back">
+                        <div class="details">
+                            <div class="caption">
+                                " Lorem ipsum dolor sit amet, consectetur adipisicing elit. Natus
+                                quisquam iure in! Corporis expedita consequatur tenetur rem
+                                ratione saepe, perferendis ipsam alias quam. Libero illum maxime,
+                                unde itaque ratione "
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="front">
+                        <img src="images/equestrianBoots.jpg" alt="equestrianBoots">
+                    </div>
+                    <div class="back">
+                        <div class="details">
+                            <div class="caption">
+                                " Lorem ipsum dolor sit amet, consectetur adipisicing elit. Natus
+                                quisquam iure in! Corporis expedita consequatur tenetur rem
+                                ratione saepe, perferendis ipsam alias quam. Libero illum maxime,
+                                unde itaque ratione "
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="card">
-                <div class="front">
-                    <img src="images/equestrianBlazer.jpg" alt="horse">
-                </div>
-                <div class="back">
-                    <div class="details">
-                        <div class="caption">
-                            " Lorem ipsum dolor sit amet, consectetur adipisicing elit. Natus
-                            quisquam iure in! Corporis expedita consequatur tenetur rem
-                            ratione saepe, perferendis ipsam alias quam. Libero illum maxime,
-                            unde itaque ratione "
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="card">
-                <div class="front">
-                    <img src="images/equestrianTrouser.jpg" alt="horse">
-                </div>
-                <div class="back">
-                    <div class="details">
-                        <div class="caption">
-                            " Lorem ipsum dolor sit amet, consectetur adipisicing elit. Natus
-                            quisquam iure in! Corporis expedita consequatur tenetur rem
-                            ratione saepe, perferendis ipsam alias quam. Libero illum maxime,
-                            unde itaque ratione "
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="card">
-                <div class="front">
-                    <img src="images/equestrianBoots.jpg" alt="equestrianBoots">
-                </div>
-                <div class="back">
-                    <div class="details">
-                        <div class="caption">
-                            " Lorem ipsum dolor sit amet, consectetur adipisicing elit. Natus
-                            quisquam iure in! Corporis expedita consequatur tenetur rem
-                            ratione saepe, perferendis ipsam alias quam. Libero illum maxime,
-                            unde itaque ratione "
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
 
-        <br>
-    </div>
+            <br>
+        </div>
         <div class="row">
             <div class="col-sm-4">
                 <p>For Horses</p>

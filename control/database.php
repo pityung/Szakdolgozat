@@ -26,6 +26,14 @@ if(isset($_POST['username']) and isset($_POST['password'])) {
     if(!$msg) {
         $msg = $user_table->checkLogin($msg);
     }
+}else
+
+if(isset($_POST['address_line']) and isset($_POST['city']) and isset($_POST['postal_code']) and isset($_POST['country']) ){
+if($msg ==''){
+    $msg= $user_table->registerUserAddress();
+
+}
+
 }
 
 ?>

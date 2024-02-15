@@ -1,3 +1,6 @@
+<?php 
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -145,8 +148,6 @@ if (isset($_POST["submit"])) {
 <!-- Overlay effect when opening sidebar on small screens -->
 <div class="w3-overlay w3-hide-large" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
 
-<!-- Jeans CONTENT!-->
-
 <!-- jacket CONTENT! -->
 <div class="w3-main" style="margin-left:250px">
 
@@ -184,24 +185,28 @@ if (isset($_POST["submit"])) {
             <div class="card" id="plus">
                 <div class="front">
                     <form action="shop.php" method="post" enctype="multipart/form-data">
-                    <input type="checkbox" id="show">
-                    <label for="show" class="show-btn"><span class="glyphicon glyphicon-plus"> </span></label>
+                        <input type="checkbox" id="show">
+                        <label for="show" class="show-btn"><span class="glyphicon glyphicon-plus"> </span></label>
                         <div class="container">
                             <label for="show" class="glyphicon glyphicon-remove" title="close"></label>
                             <div class="text">
                             </div>
                             <form action="#">
                                 <div>
-                                <input type="file" name="fileToUpload" id="fileToUpload">
+                                    <input type="file" name="fileToUpload" id="fileToUpload" required>
                                 </div>
-                <br>
+                                <br>
+                                <input type="text" name="name" placeholder="name" required>
+                                <br>
+                                <input type="text" name="description" placeholder="description" required>
+                                <br>
+                                <input type="number" name="quantity" placeholder="quantity" required>
+                                <br>
                                 <div>
-                                <button type="submit" value="Upload Image" name="submit">Uppload</button>
+                                    <button type="submit" value="Upload Image" name="submit">Uppload</button>
                                 </div>
-                                
                             </form>
                         </div>
-                        
                     </form>
                 </div>
             </div>

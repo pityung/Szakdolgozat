@@ -11,7 +11,7 @@ class userTable
     }
     function checkLogin($msg)
     {
-        $sql = "SELECT username, user_password, first_name, last_name, email, phone FROM user WHERE username = ?";
+        $sql = "SELECT id, username, user_password, first_name, last_name, email, phone FROM user WHERE username = ?";
         $stmt = DataBase::$conn->prepare($sql);
         $stmt->bind_param("s", $_POST['username']);
         $stmt->execute();
@@ -19,7 +19,9 @@ class userTable
         if ($result->num_rows > 0) {
             if ($row = $result->fetch_assoc()) {
                 if ($row['user_password'] == hash('sha256', $_POST['password'])) {
+
                     $_SESSION["isLoginedIn"] = true;
+                    $_SESSION['id'] = $row['id'];
                     $_SESSION["username"] = $_POST['username'];
                     $_SESSION["name"] =  $row['first_name'] . " " . $row['last_name'];
                     $_SESSION["email"] = $row['email'];
@@ -37,6 +39,13 @@ class userTable
     {
         $sql = "INSERT INTO `user` ( `username`, `user_password`, `first_name`, `last_name`, `phone`, `email`) VALUES ('" . $_POST['username'] . "','" . hash('sha256', $_POST['password']) . "','" . $_POST['first_name'] . "','" . $_POST['last_name'] . "','" . $_POST['phone'] . "','" . $_POST['email'] . "');";
         DataBase::$conn->query($sql);
+        $_SESSION['addressOk'] = false;
+    }
+    function registerUserAddress(){
+
+        $sql = "INSERT INTO `user_address`( `user_id`, `address_line`, `city`, `postal_code`, `country`) VALUES ('".$_SESSION['id']."','".$_POST['address_line']."','".$_POST['city']."','".$_POST['postal_code']."','".$_POST['country']."');";
+        DataBase::$conn->query($sql);
+        $_SESSION['addressOk'] = true;
     }
     function checkUsers($msg){
         $sql = "SELECT username, user_password, first_name, last_name, email, phone FROM user WHERE username = ?";
