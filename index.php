@@ -54,7 +54,12 @@ if(isset($_GET['action'])) {
                             <div class="sub-menu">
                                 <div class="user-info">
                                     <h2>'.$_SESSION["username"].'</h2>
+                                    
                                 </div>
+                                <a href="index.php?action=logout" class="sub-menu-link">
+                                    <p>Exit</p>
+                                    <span>></span>
+                                </a>
                                 <hr>
                                 <a  class="sub-menu-link">
                                     <p>'.$_SESSION["name"].'</p>
@@ -63,10 +68,7 @@ if(isset($_GET['action'])) {
                                 <a  class="sub-menu-link">
                                     <p>'.$_SESSION["phone"].'</p>
                                 </a>
-                                <a href="index.php?action=logout" class="sub-menu-link">
-                                    <p>Exit</p>
-                                    <span>></span>
-                                </a>
+                                
                             </div>
                         </div>
                         ';

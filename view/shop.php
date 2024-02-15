@@ -181,16 +181,28 @@ if (isset($_POST["submit"])) {
             }
             ?>
 
-            <div class="card">
+            <div class="card" id="plus">
                 <div class="front">
                     <form action="shop.php" method="post" enctype="multipart/form-data">
-                        <div class="popup" onclick="popupFunction()">Click me to uppload images!
-                            <span class="popuptext" id="myPopup">
-                            <input type="file" name="fileToUpload" id="fileToUpload">
-                        <button type="submit" value="Upload Image" name="submit">Uppload</button>
-                            </span>
+                    <input type="checkbox" id="show">
+                    <label for="show" class="show-btn"><span class="glyphicon glyphicon-plus"> </span></label>
+                        <div class="container">
+                            <label for="show" class="glyphicon glyphicon-remove" title="close"></label>
+                            <div class="text">
+                            </div>
+                            <form action="#">
+                                <div>
+                                <input type="file" name="fileToUpload" id="fileToUpload">
+                                </div>
+                <br>
+                                <div>
+                                <button type="submit" value="Upload Image" name="submit">Uppload</button>
+                                </div>
+                                
+                            </form>
                         </div>
-                        </form>
+                        
+                    </form>
                 </div>
             </div>
         </div>
