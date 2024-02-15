@@ -130,14 +130,15 @@ $db = new DataBase;
                 echo '
     <div class="card">
                 <div class="front">
-                <img src="../uploads/' . $files1[$i] . '" alt="equestrianBoots">
+                <img src="../uploads/' . $files1[$i] . '" alt="image">
                 
                     </div>
             </div>
     ';
             }
-            ?>
 
+            if(isset($_SESSION['isLoginedIn'])){
+            ?>
             <div class="card" id="plus">
                 <div class="front">
                     <form action="shop.php" method="post" enctype="multipart/form-data">
@@ -166,6 +167,7 @@ $db = new DataBase;
                     </form>
                 </div>
             </div>
+            <?php }?>
         </div>
     </div>
     </body>

@@ -19,13 +19,12 @@ class userTable
         if ($result->num_rows > 0) {
             if ($row = $result->fetch_assoc()) {
                 if ($row['user_password'] == hash('sha256', $_POST['password'])) {
-
-                    $_SESSION["isLoginedIn"] = true;
                     $_SESSION['id'] = $row['id'];
                     $_SESSION["username"] = $_POST['username'];
                     $_SESSION["name"] =  $row['first_name'] . " " . $row['last_name'];
                     $_SESSION["email"] = $row['email'];
                     $_SESSION["phone"] =  $row['phone'];
+                    $_SESSION["isLoginedIn"] = true;
                 } else {
                     $msg .= "Wrong password. ";
                 }
@@ -35,19 +34,32 @@ class userTable
         }
         return $msg;
     }
+    function addressIsSet(){
+        $sql = "SELECT `user_id` FROM `user_address` WHERE `user_id` LIKE ".$_SESSION['id']."";
+        if(!empty($sql)){
+        $result = DataBase::$conn->query($sql);
+        if ($result->num_rows > 0) {
+        $_SESSION['addressOk'] = true;
+        }else{
+        $_SESSION['addressOk'] = false;
+        }
+    }
+    }
     function registerUser()
     {
         $sql = "INSERT INTO `user` ( `username`, `user_password`, `first_name`, `last_name`, `phone`, `email`) VALUES ('" . $_POST['username'] . "','" . hash('sha256', $_POST['password']) . "','" . $_POST['first_name'] . "','" . $_POST['last_name'] . "','" . $_POST['phone'] . "','" . $_POST['email'] . "');";
         DataBase::$conn->query($sql);
         $_SESSION['addressOk'] = false;
     }
-    function registerUserAddress(){
+    function registerUserAddress()
+    {
 
-        $sql = "INSERT INTO `user_address`( `user_id`, `address_line`, `city`, `postal_code`, `country`) VALUES ('".$_SESSION['id']."','".$_POST['address_line']."','".$_POST['city']."','".$_POST['postal_code']."','".$_POST['country']."');";
+        $sql = "INSERT INTO `user_address`( `user_id`, `address_line`, `city`, `postal_code`, `country`) VALUES ('" . $_SESSION['id'] . "','" . $_POST['address_line'] . "','" . $_POST['city'] . "','" . $_POST['postal_code'] . "','" . $_POST['country'] . "');";
         DataBase::$conn->query($sql);
         $_SESSION['addressOk'] = true;
     }
-    function checkUsers($msg){
+    function checkUsers($msg)
+    {
         $sql = "SELECT username, user_password, first_name, last_name, email, phone FROM user WHERE username = ?";
         $stmt = DataBase::$conn->prepare($sql);
         $stmt->bind_param("s", $_POST['username']);
