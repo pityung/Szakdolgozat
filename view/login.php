@@ -32,7 +32,7 @@ $db = new DataBase;
                         ?>
                             <script>
                                 alert("Logined in Successfull now we get you back to the main page.");
-                                window.location.href = "../index.php";
+                               window.location.href = "../index.php";
                             </script>
                         <?php
                         }

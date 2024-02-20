@@ -141,7 +141,7 @@ echo '<p>'.(count($files1)-2).' items</p>';
     ';
             }
 
-            if(isset($_SESSION['isLoginedIn'])){
+            if(isset($_SESSION['isLoginedIn'])and $_SESSION['isAdmin'] == 1){
             ?>
             <div class="card" id="plus">
                 <div class="front">
