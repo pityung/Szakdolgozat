@@ -140,12 +140,8 @@ if (isset($_GET['action'])) {
             a traditional activity that involves riders following a scent trail in a group.</p>
         <p> <b>But the most important is to love horses, because you only need to live, love, ride</b></p>
     </div>
-    <hr>
-    <!-- The shop -->
-    <div class="container-fluid bg-3 text-center">
-        <h3 id="shop"><a href="view/shop.php">what to buy?</a> </h3>
-        <!-- Cards -->
-        <div id="card-container">
+            <!-- Cards -->
+            <div id="card-container">
             <div class="card-container">
                 <div class="card">
                     <div class="front">
@@ -208,9 +204,13 @@ if (isset($_GET['action'])) {
                     </div>
                 </div>
             </div>
-
             <br>
         </div>
+    <hr>
+    <!-- The shop -->
+    <div class="container-fluid bg-3 text-center">
+        <h3 id="shop"><a href="view/shop.php">what to buy?</a> </h3>
+
         <div class="row">
             <div class="col-sm-4">
                 <p>For Horses</p>

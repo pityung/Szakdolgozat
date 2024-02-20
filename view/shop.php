@@ -114,7 +114,13 @@ $db = new DataBase;
 
     <!-- Image header -->
     <div class="w3-container w3-text-grey" id="jacket">
-        <p>8 items</p>
+<?php 
+ $dir    = '../uploads';
+ $files1 = scandir($dir);
+echo '<p>'.(count($files1)-2).' items</p>';
+?>    
+    
+    
     </div>
 
     <!-- Product grid -->
@@ -124,8 +130,6 @@ $db = new DataBase;
         <div class="card-container">
 
             <?php
-            $dir    = '../uploads';
-            $files1 = scandir($dir);
             for ($i = 2; $i < count($files1); $i++) {
                 echo '
     <div class="card">

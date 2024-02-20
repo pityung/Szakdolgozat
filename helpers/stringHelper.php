@@ -36,7 +36,7 @@ class StringHelper
         if (mb_strlen($_POST['password']) < 12) {
             $msg .= "the password must contain 12 characters! ";
         }
-        if (!preg_match('`[\$\*\.,+\-=@_;!%/()]`', $_POST['password'])) {
+        if (!preg_match('`[!"#$%&\'()*+,-./:;<=>?@\^_]`', $_POST['password'])) {
             $msg .= "the password must contain one special character! ";
         }
         if (!preg_match('`[0-9]`', $_POST['password'])) {
