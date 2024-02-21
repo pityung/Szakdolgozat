@@ -27,8 +27,8 @@ $db = new DataBase;
         <a href="../index.php"> <img src="../images/logo.jpg" alt="LOGO" id="logo"></a>
     </div>
     <div class="w3-padding-64 w3-large w3-text-grey" style="font-weight:bold">
-        <a onclick="shirtFunc()" href="javascript:void(0)" class="w3-button w3-block w3-white w3-left-align">
-            Shirts <i class="fa fa-caret-down"></i>
+        <a onclick="bootsFunc()" href="javascript:void(0)" class="w3-button w3-block w3-white w3-left-align">
+            Boots <i class="fa fa-caret-down"></i>
         </a>
         <div id="shirt" class="w3-bar-block w3-hide w3-padding-large w3-medium">
             <a href="#" class="w3-bar-item w3-button w3-light-grey"><i class="fa fa-caret-right w3-margin-right"></i>Skinny</a>
@@ -57,7 +57,7 @@ $db = new DataBase;
 <div class="w3-overlay w3-hide-large" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
 
 <?php
- if (isset($_SESSION['isLoginedIn']) and $_SESSION['isAdmin'] == 1) {
+    if (isset($_SESSION['isLoginedIn']) and $_SESSION['isAdmin'] == 1) {
 echo '
             <div class="w3-main" style="margin-left:250px">
                 <!-- Push down content on small screens -->
