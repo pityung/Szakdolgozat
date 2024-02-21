@@ -62,18 +62,14 @@ $db = new DataBase;
         </div>
     </main>
     <script src="../scripts/cards.js"></script>
-
     <?php
     echo $msg;
-
     if (!empty($msg)) {
     ?>
         <script>
             var msg = "<?php print($msg) ?>";
-
             alert(msg);
         </script>
-
     <?php
     }
     ?>

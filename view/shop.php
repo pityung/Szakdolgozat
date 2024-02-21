@@ -3,6 +3,7 @@ session_start();
 require "../helpers/mysql.php";
 require "../control/database.php";
 $db = new DataBase;
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -44,51 +45,6 @@ $db = new DataBase;
             <a href="#" class="w3-bar-item w3-button w3-light-grey"><i class="fa fa-caret-right w3-margin-right"></i>Bootcut</a>
             <a href="#" class="w3-bar-item w3-button w3-light-grey"><i class="fa fa-caret-right w3-margin-right"></i>Straight</a>
         </div>
-        <a onclick="jeansFunc()" href="javascript:void(0)" class="w3-button w3-block w3-white w3-left-align">
-            Jeans <i class="fa fa-caret-down"></i>
-        </a>
-        <div id="jeans" class="w3-bar-block w3-hide w3-padding-large w3-medium">
-            <a href="#" class="w3-bar-item w3-button w3-light-grey"><i class="fa fa-caret-right w3-margin-right"></i>Skinny</a>
-            <a href="#" class="w3-bar-item w3-button w3-light-grey"><i class="fa fa-caret-right w3-margin-right"></i>Relaxed</a>
-            <a href="#" class="w3-bar-item w3-button w3-light-grey"><i class="fa fa-caret-right w3-margin-right"></i>Bootcut</a>
-            <a href="#" class="w3-bar-item w3-button w3-light-grey"><i class="fa fa-caret-right w3-margin-right"></i>Straight</a>
-        </div>
-        <a onclick="jacketFunc()" href="javascript:void(0)" class="w3-button w3-block w3-white w3-left-align">
-            Jackets <i class="fa fa-caret-down"></i>
-        </a>
-        <div id="jackets" class="w3-bar-block w3-hide w3-padding-large w3-medium">
-            <a href="#" class="w3-bar-item w3-button w3-light-grey"><i class="fa fa-caret-right w3-margin-right"></i>Skinny</a>
-            <a href="#" class="w3-bar-item w3-button w3-light-grey"><i class="fa fa-caret-right w3-margin-right"></i>Relaxed</a>
-            <a href="#" class="w3-bar-item w3-button w3-light-grey"><i class="fa fa-caret-right w3-margin-right"></i>Bootcut</a>
-            <a href="#" class="w3-bar-item w3-button w3-light-grey"><i class="fa fa-caret-right w3-margin-right"></i>Straight</a>
-        </div>
-        <a onclick="gymWearFunc()" href="javascript:void(0)" class="w3-button w3-block w3-white w3-left-align">
-            Gymwear <i class="fa fa-caret-down"></i>
-        </a>
-        <div id="gymWear" class="w3-bar-block w3-hide w3-padding-large w3-medium">
-            <a href="#" class="w3-bar-item w3-button w3-light-grey"><i class="fa fa-caret-right w3-margin-right"></i>Skinny</a>
-            <a href="#" class="w3-bar-item w3-button w3-light-grey"><i class="fa fa-caret-right w3-margin-right"></i>Relaxed</a>
-            <a href="#" class="w3-bar-item w3-button w3-light-grey"><i class="fa fa-caret-right w3-margin-right"></i>Bootcut</a>
-            <a href="#" class="w3-bar-item w3-button w3-light-grey"><i class="fa fa-caret-right w3-margin-right"></i>Straight</a>
-        </div>
-        <a onclick="blazerFunc()" href="javascript:void(0)" class="w3-button w3-block w3-white w3-left-align">
-            Blazers <i class="fa fa-caret-down"></i>
-        </a>
-        <div id="blazer" class="w3-bar-block w3-hide w3-padding-large w3-medium">
-            <a href="#" class="w3-bar-item w3-button w3-light-grey"><i class="fa fa-caret-right w3-margin-right"></i>Skinny</a>
-            <a href="#" class="w3-bar-item w3-button w3-light-grey"><i class="fa fa-caret-right w3-margin-right"></i>Relaxed</a>
-            <a href="#" class="w3-bar-item w3-button w3-light-grey"><i class="fa fa-caret-right w3-margin-right"></i>Bootcut</a>
-            <a href="#" class="w3-bar-item w3-button w3-light-grey"><i class="fa fa-caret-right w3-margin-right"></i>Straight</a>
-        </div>
-        <a onclick="shoesFunc()" href="javascript:void(0)" class="w3-button w3-block w3-white w3-left-align">
-            shoes <i class="fa fa-caret-down"></i>
-        </a>
-        <div id="shoes" class="w3-bar-block w3-hide w3-padding-large w3-medium">
-            <a href="#" class="w3-bar-item w3-button w3-light-grey"><i class="fa fa-caret-right w3-margin-right"></i>Skinny</a>
-            <a href="#" class="w3-bar-item w3-button w3-light-grey"><i class="fa fa-caret-right w3-margin-right"></i>Relaxed</a>
-            <a href="#" class="w3-bar-item w3-button w3-light-grey"><i class="fa fa-caret-right w3-margin-right"></i>Bootcut</a>
-            <a href="#" class="w3-bar-item w3-button w3-light-grey"><i class="fa fa-caret-right w3-margin-right"></i>Straight</a>
-        </div>
     </div>
 </nav>
 
@@ -97,40 +53,93 @@ $db = new DataBase;
     <div class="w3-bar-item w3-padding-24 w3-wide">Shop</div>
     <a href="javascript:void(0)" class="w3-bar-item w3-button w3-padding-24 w3-right" onclick="w3_open()"><i class="fa fa-bars"></i></a>
 </header>
-
 <!-- Overlay effect when opening sidebar on small screens -->
 <div class="w3-overlay w3-hide-large" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
 
-<!-- jacket CONTENT! -->
+<?php
+ if (isset($_SESSION['isLoginedIn']) and $_SESSION['isAdmin'] == 1) {
+echo '
+            <div class="w3-main" style="margin-left:250px">
+                <!-- Push down content on small screens -->
+                <div class="w3-hide-large" style="margin-top:83px"></div>
+                <!-- Top header -->
+                <header class="w3-container w3-xlarge">
+                    <p class="w3-left">Add Items</p>
+                </header>
+                <!-- Image header -->
+                <div class="w3-container w3-text-grey">
+                
+<!-- plus grid -->
+<p>Add an item</p>
+<div id="card-container">
+    <div class="card-container">';
+    
+            echo '<div class="card" id="plus">
+            <div class="front">
+                <form action="shop.php" method="post" enctype="multipart/form-data">
+                    <input type="checkbox" id="show">
+                    <a href="plus">
+                    <label for="show" class="show-btn"><span class="glyphicon glyphicon-plus"> </span></label>
+                    </a>
+                    <div class="container">
+                        <label for="show" class="glyphicon glyphicon-remove" title="close"></label>
+                        <div class="text">
+                        </div>
+                        <form action="#">
+                            <div>
+                                <input type="file" name="fileToUpload" id="fileToUpload" required>
+                            </div>
+                            <br>
+                            <input type="text" name="productName" placeholder="name" required>
+                            <br>
+                            <input type="text" name="description" placeholder="description" required>
+                            <br>
+                            <input type="number" name="quantity" placeholder="quantity" required>
+                            <br>
+                            <div>
+                                <button type="submit" value="Upload Image" name="submit">Uppload</button>
+                            </div>
+                        </form>
+                    </div>
+                </form>
+            </div>
+        </div>';
+        }
+        ?>
+    </div>
+</div>
+</div>
+</div>
+<?php
+//<!-- jacket CONTENT! -->
+echo '
 <div class="w3-main" style="margin-left:250px">
-
     <!-- Push down content on small screens -->
     <div class="w3-hide-large" style="margin-top:83px"></div>
-
     <!-- Top header -->
     <header class="w3-container w3-xlarge">
-        <p class="w3-left">Jacket</p>
+        <p class="w3-left">Boots</p>
     </header>
-
     <!-- Image header -->
-    <div class="w3-container w3-text-grey" id="jacket">
-<?php 
- $dir    = '../uploads';
- $files1 = scandir($dir);
-echo '<p>'.(count($files1)-2).' items</p>';
-?>    
-    
-    
-    </div>
-
-    <!-- Product grid -->
-
-
-    <div id="card-container">
-        <div class="card-container">
-
-            <?php
-            for ($i = 2; $i < count($files1); $i++) {
+    <div class="w3-container w3-text-grey">
+    ';
+$dir    = '../uploads';
+$files1 = scandir($dir);
+$itemcount = 0;
+for ($i = 2; $i < count($files1); $i++) {
+    if (str_contains($files1[$i], 'Boots')) {
+        $itemcount++;
+    }
+}
+echo '<p>' . ($itemcount) . ' items</p>';
+?>
+</div>
+<!-- Product grid -->
+<div id="card-container">
+    <div class="card-container">
+        <?php
+        for ($i = 2; $i < count($files1); $i++) {
+            if (str_contains($files1[$i], 'Boot')) {
                 echo '
     <div class="card">
                 <div class="front">
@@ -138,42 +147,53 @@ echo '<p>'.(count($files1)-2).' items</p>';
                 
                     </div>
             </div>
-    ';
+            ';
             }
-
-            if(isset($_SESSION['isLoginedIn'])and $_SESSION['isAdmin'] == 1){
-            ?>
-            <div class="card" id="plus">
-                <div class="front">
-                    <form action="shop.php" method="post" enctype="multipart/form-data">
-                        <input type="checkbox" id="show">
-                        <label for="show" class="show-btn"><span class="glyphicon glyphicon-plus"> </span></label>
-                        <div class="container">
-                            <label for="show" class="glyphicon glyphicon-remove" title="close"></label>
-                            <div class="text">
-                            </div>
-                            <form action="#">
-                                <div>
-                                    <input type="file" name="fileToUpload" id="fileToUpload" required>
-                                </div>
-                                <br>
-                                <input type="text" name="productName" placeholder="name" required>
-                                <br>
-                                <input type="text" name="description" placeholder="description" required>
-                                <br>
-                                <input type="number" name="quantity" placeholder="quantity" required>
-                                <br>
-                                <div>
-                                    <button type="submit" value="Upload Image" name="submit">Uppload</button>
-                                </div>
-                            </form>
-                        </div>
-                    </form>
-                </div>
-            </div>
-            <?php }?>
-        </div>
+        }
+?>
     </div>
-    </body>
+</div>
+<?php
+echo ' </div>
+            </div>';
+echo '
+            <div class="w3-main" style="margin-left:250px">
+                <!-- Push down content on small screens -->
+                <div class="w3-hide-large" style="margin-top:83px"></div>
+                <!-- Top header -->
+                <header class="w3-container w3-xlarge">
+                    <p class="w3-left">Jeans</p>
+                </header>
+                <!-- Image header -->
+                <div class="w3-container w3-text-grey">';
+$itemcount = 0;
+for ($i = 2; $i < count($files1); $i++) {
+    if (str_contains($files1[$i], 'Trouser')) {
+        $itemcount++;
+    }
+}
+echo '<p>' . ($itemcount) . ' items</p>';
+?>
+</div>
+<!-- Product grid -->
+<div id="card-container">
+    <div class="card-container">
+        <?php
+        for ($i = 2; $i < count($files1); $i++) {
+            if (str_contains($files1[$i], 'Trouser')) {
+                echo '
+                    <div class="card">
+                                <div class="front">
+                                <img src="../uploads/' . $files1[$i] . '" alt="image">
+                                
+                                    </div>
+                            </div>
+                            ';
+            }
+        }
+        ?>
+    </div>
+</div>
+</body>
 
 </html>

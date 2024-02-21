@@ -46,7 +46,7 @@ if (isset($_GET['action'])) {
                     <li><a href="#cardheader">STYLES</a></li>
                     <li><a href="#shop">SHOP</a></li>
                     <li><a href="#app">APP</a></li>
-
+<!--User/login Menu-->
                     <?php
                     if (!empty($_SESSION["isLoginedIn"]) && $_SESSION["isLoginedIn"] = true) {
                         print '
@@ -210,7 +210,6 @@ if (isset($_GET['action'])) {
     <!-- The shop -->
     <div class="container-fluid bg-3 text-center">
         <h3 id="shop"><a href="view/shop.php">what to buy?</a> </h3>
-
         <div class="row">
             <div class="col-sm-4">
                 <p>For Horses</p>
