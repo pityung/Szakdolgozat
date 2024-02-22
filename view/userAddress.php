@@ -19,8 +19,9 @@ $db = new DataBase;
 <body>
     <main class="main flow">
         <h1 class="main__heading">Address</h1>
+        <br>
         <a href="../index.php">
-            <p class="main__heading">Go Back</p>
+            <input type="button" value="Go Back" id ="goback-btn">
         </a>
         <div class="main__cards cards">
             <div class="cards__inner">
@@ -32,7 +33,7 @@ $db = new DataBase;
                         ?>
                                 <script>
                                     alert("Your Profile is now complete!");
-                                    
+
                                     localStorage.clear();
                                     window.location.href = "../index.php";
                                 </script>
@@ -43,18 +44,17 @@ $db = new DataBase;
                         }
                         ?>
                         <form method="post">
-                            <input type="text" name="address_line"  placeholder="address Line" required>
+                            <input type="text" name="address_line" placeholder="address Line" required>
                             <br>
-                            <input type="text" name="city"  placeholder="City" required>
+                            <input type="text" name="city" placeholder="City" required>
                             <br>
-                            <input type="text" name="postal_code"  placeholder="postal Code" required>
+                            <input type="text" name="postal_code" placeholder="postal Code" required>
                             <br>
                             <input type="text" name="country" placeholder="Country" required>
                             <br>
                             <input type="submit" name="submitbtn" value="submit" id="submit" class="submit-btn">
                         </form>
                         <Script src="../scripts/register.js"></Script>
-                        <a href="../view/login.php" class="shuffle"><input type="button" value="Login" class="submit-btn"></a>
                     </div>
                 </div>
             </div>

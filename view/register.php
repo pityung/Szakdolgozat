@@ -19,8 +19,9 @@ $db = new DataBase;
 <body>
     <main class="main flow">
         <h1 class="main__heading">Register</h1>
+        <br>
         <a href="../index.php">
-            <p class="main__heading">Go Back</p>
+            <input type="button" value="Go Back" id="goback-btn">
         </a>
         <div class="main__cards cards">
             <div class="cards__inner">
@@ -32,7 +33,7 @@ $db = new DataBase;
                         ?>
                                 <script>
                                     alert("Registered and logined in Successfull.");
-                                    
+
                                     localStorage.clear();
                                     window.location.href = "../index.php";
                                 </script>
@@ -57,10 +58,10 @@ $db = new DataBase;
                             <br>
                             <input type="email" name="email" value="" placeholder="Email" id="email" required>
                             <br>
-                            <input type="submit" name="submitbtn" value="submit" id="submit" class="submit-btn">
+                            <input type="submit" name="submitbtn" value="Register In" id="submit" class="submit-btn">
+                            <a href="../view/login.php" class="shuffle"><input type="button" value="To Login" class="submit-btn"></a>
                         </form>
                         <Script src="../scripts/register.js"></Script>
-                        <a href="../view/login.php" class="shuffle"><input type="button" value="Login" class="submit-btn"></a>
                     </div>
                 </div>
             </div>

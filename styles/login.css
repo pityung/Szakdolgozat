@@ -23,8 +23,6 @@ body {
   color: #ddd;
 }
 
-
-
 .main__heading {
   text-align: center;
   color: #eceff1;
@@ -35,10 +33,11 @@ body {
 }
 
 .card {
-
   --hsl: var(--hue), var(--saturation), var(--lightness);
   padding: 1.5em 2em;
   display: grid;
+  grid-auto-columns: auto;
+  width: 300px;
   grid-template-rows: auto auto auto 1fr;
   align-items: start;
   gap: 1.25em;
@@ -79,33 +78,30 @@ body {
 input {
   border: none;
   border-bottom: solid rgb(143, 143, 143) 1px;
-
   margin-bottom: 30px;
-
   background: none;
   color: rgba(255, 255, 255, 0.555);
-
   height: 35px;
-  width: 300px;
+  width: 100%;
 }
+#goback-btn{
+  height: 100%;
+  width: 100%;
+}
+
 
 .submit-btn {
   cursor: pointer;
-
   border: none;
   border-radius: 8px;
-
   box-shadow: 2px 2px 7px white;
   color: rgb(161, 153, 153);
-
   width: 80px;
-
   transition: all 1s;
 }
 
 .submit-btn:hover {
   color: rgb(255, 255, 255);
-
   box-shadow: none;
 }
 

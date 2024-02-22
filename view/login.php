@@ -20,8 +20,9 @@ $db = new DataBase;
 <body>
     <main class="main flow">
         <h1 class="main__heading">Login</h1>
+        <br>
         <a href="../index.php">
-            <p class="main__heading">Go Back</p>
+            <input type="button" value="Go Back" id ="goback-btn">
         </a>
         <div class="main__cards cards">
             <div class="cards__inner">
@@ -39,15 +40,13 @@ $db = new DataBase;
                             }
                         }
                         ?>
-                        <br>
-                        <br>
                         <form method="post">
                             <input type="text" name="username" placeholder="Username">
                             <br>
                             <input type="password" name="password" placeholder="Password">
                             <br>
-                            <input type="submit" value="submit" class="submit-btn">
-                            <a href="../view/register.php" class="shuffle"><input type="button" value="register" class="submit-btn"></a>
+                            <input type="submit" value="Login In" class="submit-btn">
+                            <a href="../view/register.php" class="shuffle"><input type="button" value=" To Register" class="submit-btn"></a>
                         </form>
                     </div>
                 </div>
