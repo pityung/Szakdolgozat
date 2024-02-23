@@ -1,0 +1,1 @@
+ALTER TABLE `nckp1tyung_product_category` DROP `description`;

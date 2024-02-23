@@ -3,7 +3,6 @@ session_start();
 require "../helpers/mysql.php";
 require "../control/database.php";
 $db = new DataBase;
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -21,32 +20,43 @@ $db = new DataBase;
     <link rel="stylesheet" href="../styles/shop.css">
 </head>
 <!-- Sidebar/menu -->
+
+
 <nav class="w3-sidebar w3-bar-block w3-white w3-collapse w3-top" style="z-index:3;width:250px" id="mySidebar">
     <div class="w3-container w3-display-container w3-padding-16">
         <i onclick="w3_close()" class="fa fa-remove w3-hide-large w3-button w3-display-topright"></i>
         <a href="../index.php"> <img src="../images/logo.jpg" alt="LOGO" id="logo"></a>
     </div>
     <div class="w3-padding-64 w3-large w3-text-grey" style="font-weight:bold">
-        <a onclick="bootsFunc()" href="javascript:void(0)" class="w3-button w3-block w3-white w3-left-align">
-            Boots <i class="fa fa-caret-down"></i>
+        <?php
+        for ($i = 1; $i < count($categories); $i++) {
+            echo '     <a onclick="' . "menu" . $i . 'Func()" href="javascript:void(0)" class="w3-button w3-block w3-white w3-left-align">
+            ' . $categories[$i] . ' <i class="fa fa-caret-down"></i>
         </a>
-        <div id="shirt" class="w3-bar-block w3-hide w3-padding-large w3-medium">
+        <div id="' . $categories[$i] . '" class="w3-bar-block w3-hide w3-padding-large w3-medium">
             <a href="#" class="w3-bar-item w3-button w3-light-grey"><i class="fa fa-caret-right w3-margin-right"></i>Skinny</a>
             <a href="#" class="w3-bar-item w3-button w3-light-grey"><i class="fa fa-caret-right w3-margin-right"></i>Relaxed</a>
             <a href="#" class="w3-bar-item w3-button w3-light-grey"><i class="fa fa-caret-right w3-margin-right"></i>Bootcut</a>
             <a href="#" class="w3-bar-item w3-button w3-light-grey"><i class="fa fa-caret-right w3-margin-right"></i>Straight</a>
         </div>
-        <a onclick="dressFunc()" href="javascript:void(0)" class="w3-button w3-block w3-white w3-left-align">
-            Dresses <i class="fa fa-caret-down"></i>
-        </a>
-        <div id="dress" class="w3-bar-block w3-hide w3-padding-large w3-medium">
-            <a href="#" class="w3-bar-item w3-button w3-light-grey"><i class="fa fa-caret-right w3-margin-right"></i>Skinny</a>
-            <a href="#" class="w3-bar-item w3-button w3-light-grey"><i class="fa fa-caret-right w3-margin-right"></i>Relaxed</a>
-            <a href="#" class="w3-bar-item w3-button w3-light-grey"><i class="fa fa-caret-right w3-margin-right"></i>Bootcut</a>
-            <a href="#" class="w3-bar-item w3-button w3-light-grey"><i class="fa fa-caret-right w3-margin-right"></i>Straight</a>
-        </div>
+        <script>
+            
+function ' . "menu" . $i . 'Func() {
+    var x = document.getElementById("' . $categories[$i] . '");
+    if (x.className.indexOf("w3-show") == -1) {
+    x.className += " w3-show";
+    } else {
+    x.className = x.className.replace(" w3-show", "");
+    }
+}
+</script>
+        ';
+        }
+        ?>
     </div>
 </nav>
+
+</script>
 
 <!-- Top menu on small screens -->
 <header class="w3-bar w3-top w3-hide-large w3-black w3-xlarge">
@@ -57,8 +67,8 @@ $db = new DataBase;
 <div class="w3-overlay w3-hide-large" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
 
 <?php
-    if (isset($_SESSION['isLoginedIn']) and $_SESSION['isAdmin'] == 1) {
-echo '
+if (isset($_SESSION['isLoginedIn']) and $_SESSION['isAdmin'] == 1) {
+    echo '
             <div class="w3-main" style="margin-left:250px">
                 <!-- Push down content on small screens -->
                 <div class="w3-hide-large" style="margin-top:83px"></div>
@@ -73,8 +83,8 @@ echo '
 <p>Add an item</p>
 <div id="card-container">
     <div class="card-container">';
-    
-            echo '<div class="card" id="plus">
+
+    echo '<div class="card" id="plus">
             <div class="front">
                 <form action="shop.php" method="post" enctype="multipart/form-data">
                     <input type="checkbox" id="show">
@@ -104,9 +114,9 @@ echo '
                 </form>
             </div>
         </div>';
-        }
-        ?>
-    </div>
+}
+?>
+</div>
 </div>
 </div>
 </div>
@@ -150,7 +160,7 @@ echo '<p>' . ($itemcount) . ' items</p>';
             ';
             }
         }
-?>
+        ?>
     </div>
 </div>
 <?php
