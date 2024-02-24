@@ -29,6 +29,7 @@ $db = new DataBase;
     </div>
     <div class="w3-padding-64 w3-large w3-text-grey" style="font-weight:bold">
         <?php
+
         for ($i = 1; $i < count($categories); $i++) {
             echo '     <a onclick="' . "menu" . $i . 'Func()" href="javascript:void(0)" class="w3-button w3-block w3-white w3-left-align">
             ' . $categories[$i] . ' <i class="fa fa-caret-down"></i>
@@ -88,9 +89,7 @@ if (isset($_SESSION['isLoginedIn']) and $_SESSION['isAdmin'] == 1) {
             <div class="front">
                 <form action="shop.php" method="post" enctype="multipart/form-data">
                     <input type="checkbox" id="show">
-                    <a href="plus">
                     <label for="show" class="show-btn"><span class="glyphicon glyphicon-plus"> </span></label>
-                    </a>
                     <div class="container">
                         <label for="show" class="glyphicon glyphicon-remove" title="close"></label>
                         <div class="text">
