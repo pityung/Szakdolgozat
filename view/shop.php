@@ -30,20 +30,25 @@ $db = new DataBase;
     <div class="w3-padding-64 w3-large w3-text-grey" style="font-weight:bold">
         <?php
 
-        for ($i = 1; $i < count($categories); $i++) {
+        for ($i = 1; $i < count($majorCategorie); $i++) {
             echo '     <a onclick="' . "menu" . $i . 'Func()" href="javascript:void(0)" class="w3-button w3-block w3-white w3-left-align">
-            ' . $categories[$i] . ' <i class="fa fa-caret-down"></i>
+            ' . $majorCategorie[$i] . ' <i class="fa fa-caret-down"></i>
         </a>
-        <div id="' . $categories[$i] . '" class="w3-bar-block w3-hide w3-padding-large w3-medium">
-            <a href="#" class="w3-bar-item w3-button w3-light-grey"><i class="fa fa-caret-right w3-margin-right"></i>Skinny</a>
-            <a href="#" class="w3-bar-item w3-button w3-light-grey"><i class="fa fa-caret-right w3-margin-right"></i>Relaxed</a>
-            <a href="#" class="w3-bar-item w3-button w3-light-grey"><i class="fa fa-caret-right w3-margin-right"></i>Bootcut</a>
-            <a href="#" class="w3-bar-item w3-button w3-light-grey"><i class="fa fa-caret-right w3-margin-right"></i>Straight</a>
-        </div>
+        <div id="' . $majorCategorie[$i] . '" class="w3-bar-block w3-hide w3-padding-large w3-medium">
+        ';
+        for ($j=1; $j < count( $subCategories); $j++) { 
+            if(str_contains( $subCategories[$j], $majorCategorie[$i])){
+                
+        echo'    
+            <a href="#" class="w3-bar-item w3-button w3-light-grey"><i class="fa fa-caret-right w3-margin-right"></i>'.str_replace($majorCategorie[$i], "",$subCategories[$j]).'</a>';
+    }
+}
+        echo'
+            </div>
         <script>
             
 function ' . "menu" . $i . 'Func() {
-    var x = document.getElementById("' . $categories[$i] . '");
+    var x = document.getElementById("' . $majorCategorie[$i] . '");
     if (x.className.indexOf("w3-show") == -1) {
     x.className += " w3-show";
     } else {
@@ -133,26 +138,26 @@ echo '
     <div class="w3-container w3-text-grey">
     ';
 $dir    = '../uploads';
-$files1 = scandir($dir);
-$itemcount = 0;
-for ($i = 2; $i < count($files1); $i++) {
-    if (str_contains($files1[$i], 'Boots')) {
-        $itemcount++;
+$uploadFiles = scandir($dir);
+$shopItemCount = 0;
+for ($i = 2; $i < count($uploadFiles); $i++) {
+    if (str_contains($uploadFiles[$i], 'Boots')) {
+        $shopItemCount++;
     }
 }
-echo '<p>' . ($itemcount) . ' items</p>';
+echo '<p>' . ($shopItemCount) . ' items</p>';
 ?>
 </div>
 <!-- Product grid -->
 <div id="card-container">
     <div class="card-container">
         <?php
-        for ($i = 2; $i < count($files1); $i++) {
-            if (str_contains($files1[$i], 'Boot')) {
+        for ($i = 2; $i < count($uploadFiles); $i++) {
+            if (str_contains($uploadFiles[$i], 'Boot')) {
                 echo '
     <div class="card">
                 <div class="front">
-                <img src="../uploads/' . $files1[$i] . '" alt="image">
+                <img src="../uploads/' . $uploadFiles[$i] . '" alt="image">
                 
                     </div>
             </div>
@@ -175,25 +180,25 @@ echo '
                 </header>
                 <!-- Image header -->
                 <div class="w3-container w3-text-grey">';
-$itemcount = 0;
-for ($i = 2; $i < count($files1); $i++) {
-    if (str_contains($files1[$i], 'Trouser')) {
-        $itemcount++;
+$shopItemCount = 0;
+for ($i = 2; $i < count($uploadFiles); $i++) {
+    if (str_contains($uploadFiles[$i], 'Trouser')) {
+        $shopItemCount++;
     }
 }
-echo '<p>' . ($itemcount) . ' items</p>';
+echo '<p>' . ($shopItemCount) . ' items</p>';
 ?>
 </div>
 <!-- Product grid -->
 <div id="card-container">
     <div class="card-container">
         <?php
-        for ($i = 2; $i < count($files1); $i++) {
-            if (str_contains($files1[$i], 'Trouser')) {
+        for ($i = 2; $i < count($uploadFiles); $i++) {
+            if (str_contains($uploadFiles[$i], 'Trouser')) {
                 echo '
                     <div class="card">
                                 <div class="front">
-                                <img src="../uploads/' . $files1[$i] . '" alt="image">
+                                <img src="../uploads/' . $uploadFiles[$i] . '" alt="image">
                                 
                                     </div>
                             </div>

@@ -75,15 +75,27 @@ class userTable
     function getMajorCategories(){
         $sql = " SELECT DISTINCT `major_category` FROM `nckp1tyung_product_category`; ";
         $result = DataBase::$conn->query($sql);
-        $categories[0] = "";
+        $majorCategorie[0] = "";
         if ($result->num_rows > 0) {
             for ($i=0; $i < $result->num_rows; $i++) { 
             if ($row = $result->fetch_assoc()) {
-                array_push($categories, $row['major_category']);
+                array_push($majorCategorie, $row['major_category']);
         }
     }
         }
-        return $categories;
+        return $majorCategorie;
     }
-
+    function getSubCategories(){
+        $sql = " SELECT `major_category`,`name` FROM `nckp1tyung_product_category`;  ";
+        $result = DataBase::$conn->query($sql);
+        $subCategories[0] = "";
+        if ($result->num_rows > 0) {
+            for ($i=0; $i < $result->num_rows; $i++) { 
+            if ($row = $result->fetch_assoc()) {
+                array_push($subCategories, $row['major_category'].$row['name']);
+        }
+    }
+        }
+        return $subCategories;
+    }
 }

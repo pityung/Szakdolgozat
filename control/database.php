@@ -42,7 +42,7 @@ else if(!empty($_FILES["fileToUpload"])) {
     $filemanager = new Filemanager;
     $msg = $filemanager->fileUpload($msg);
 }
-    $categories = $user_table->getMajorCategories();
-
+    $majorCategorie = $user_table->getMajorCategories();
+    $subCategories = $user_table->getSubCategories();
 
 ?>
