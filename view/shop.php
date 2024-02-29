@@ -36,11 +36,10 @@ $db = new DataBase;
         </a>
         <div id="' . $majorCategorie[$i] . '" class="w3-bar-block w3-hide w3-padding-large w3-medium">
         ';
-        for ($j=1; $j < count( $subCategories); $j++) { 
-            if(str_contains( $subCategories[$j], $majorCategorie[$i])){
-                
+        for ($j=1; $j < count( $Categories_SubCategories); $j++) { 
+            if(str_contains( $Categories_SubCategories[$j], $majorCategorie[$i])){
         echo'    
-            <a href="#" class="w3-bar-item w3-button w3-light-grey"><i class="fa fa-caret-right w3-margin-right"></i>'.str_replace($majorCategorie[$i], "",$subCategories[$j]).'</a>';
+            <a href="#" class="w3-bar-item w3-button w3-light-grey"><i class="fa fa-caret-right w3-margin-right"></i>'.str_replace($majorCategorie[$i], "",$Categories_SubCategories[$j]).'</a>';
     }
 }
         echo'
@@ -125,88 +124,50 @@ if (isset($_SESSION['isLoginedIn']) and $_SESSION['isAdmin'] == 1) {
 </div>
 </div>
 <?php
-//<!-- jacket CONTENT! -->
-echo '
-<div class="w3-main" style="margin-left:250px">
-    <!-- Push down content on small screens -->
-    <div class="w3-hide-large" style="margin-top:83px"></div>
-    <!-- Top header -->
-    <header class="w3-container w3-xlarge">
-        <p class="w3-left">Boots</p>
-    </header>
-    <!-- Image header -->
-    <div class="w3-container w3-text-grey">
-    ';
 $dir    = '../uploads';
 $uploadFiles = scandir($dir);
-$shopItemCount = 0;
-for ($i = 2; $i < count($uploadFiles); $i++) {
-    if (str_contains($uploadFiles[$i], 'Boots')) {
-        $shopItemCount++;
-    }
-}
-echo '<p>' . ($shopItemCount) . ' items</p>';
-?>
-</div>
-<!-- Product grid -->
-<div id="card-container">
-    <div class="card-container">
-        <?php
-        for ($i = 2; $i < count($uploadFiles); $i++) {
-            if (str_contains($uploadFiles[$i], 'Boot')) {
-                echo '
-    <div class="card">
-                <div class="front">
-                <img src="../uploads/' . $uploadFiles[$i] . '" alt="image">
-                
-                    </div>
-            </div>
-            ';
+
+for ($i=1; $i < count($Categories_SubCategories); $i++) { 
+    $shopItemCount = 0;
+    echo '
+    <div class="w3-main" style="margin-left:250px">
+        <!-- Push down content on small screens -->
+        <div class="w3-hide-large" style="margin-top:83px"></div>
+        <!-- Top header -->
+        <header class="w3-container w3-xlarge">
+        <p class="w3-left">'.$SubCategories[$i].'</p>
+        </header>
+        <!-- Image header -->
+        <div class="w3-container w3-text-grey">';
+        for ($j = 2; $j < count($uploadFiles); $j++) {
+            if (str_contains($uploadFiles[$j], $SubCategories[$i])) {
+                $shopItemCount++;
             }
         }
-        ?>
-    </div>
-</div>
-<?php
-echo ' </div>
-            </div>';
-echo '
-            <div class="w3-main" style="margin-left:250px">
-                <!-- Push down content on small screens -->
-                <div class="w3-hide-large" style="margin-top:83px"></div>
-                <!-- Top header -->
-                <header class="w3-container w3-xlarge">
-                    <p class="w3-left">Jeans</p>
-                </header>
-                <!-- Image header -->
-                <div class="w3-container w3-text-grey">';
-$shopItemCount = 0;
-for ($i = 2; $i < count($uploadFiles); $i++) {
-    if (str_contains($uploadFiles[$i], 'Trouser')) {
-        $shopItemCount++;
-    }
-}
-echo '<p>' . ($shopItemCount) . ' items</p>';
-?>
-</div>
-<!-- Product grid -->
-<div id="card-container">
-    <div class="card-container">
-        <?php
-        for ($i = 2; $i < count($uploadFiles); $i++) {
-            if (str_contains($uploadFiles[$i], 'Trouser')) {
-                echo '
-                    <div class="card">
-                                <div class="front">
-                                <img src="../uploads/' . $uploadFiles[$i] . '" alt="image">
-                                
-                                    </div>
-                            </div>
-                            ';
+        echo '<p>' . ($shopItemCount) . ' items</p>';
+        echo '</div>';
+        echo '<div id="card-container">
+            <div class="card-container">';
+            for ($k = 2; $k < count($uploadFiles); $k++) {
+                if (str_contains($uploadFiles[$k], $SubCategories[$i])) {
+                    echo '
+        <div class="card">
+                    <div class="front">
+                    <img src="../uploads/' . $uploadFiles[$k] . '" alt="image">
+                    
+                        </div>
+                </div>
+                ';
+                }
             }
-        }
-        ?>
-    </div>
+        echo' </div>
+        </div>';
+        echo'
+        </div>
+        </div>
+        ';
+}
+?>
 </div>
 </body>
 

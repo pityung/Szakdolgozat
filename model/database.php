@@ -1,7 +1,7 @@
 <?php
 
 $db = new DataBase;
-define('DB_PREFIX',"nckP1tyung_");
+define('DB_PREFIX',"nckp1tyung_");
 class userTable
 {
     function getClass()
@@ -49,7 +49,7 @@ class userTable
     }
     function registerUser()
     {
-        $sql = "INSERT INTO `".DB_PREFIX."user` ( `username`, `user_password`, `first_name`, `last_name`, `phone`, `email`) VALUES ('" . $_POST['username'] . "','" . hash('sha256', $_POST['password']) . "','" . $_POST['first_name'] . "','" . $_POST['last_name'] . "','" . $_POST['phone'] . "','" . $_POST['email'] . "');";
+        $sql = "INSERT INTO `".DB_PREFIX."user` ( `username`, `user_password`, `first_name`, `last_name`, `phone`, `email`, admin) VALUES ('" . $_POST['username'] . "','" . hash('sha256', $_POST['password']) . "','" . $_POST['first_name'] . "','" . $_POST['last_name'] . "','" . $_POST['phone'] . "','" . $_POST['email'] . "', 0);";
         DataBase::$conn->query($sql);
         $_SESSION['addressOk'] = false;
     }
@@ -85,17 +85,30 @@ class userTable
         }
         return $majorCategorie;
     }
-    function getSubCategories(){
+    function getCategories_SubCategories(){
         $sql = " SELECT `major_category`,`name` FROM `nckp1tyung_product_category`;  ";
         $result = DataBase::$conn->query($sql);
-        $subCategories[0] = "";
+        $Categories_SubCategories[0] = "";
         if ($result->num_rows > 0) {
             for ($i=0; $i < $result->num_rows; $i++) { 
             if ($row = $result->fetch_assoc()) {
-                array_push($subCategories, $row['major_category'].$row['name']);
+                array_push($Categories_SubCategories, $row['major_category'].$row['name']);
         }
     }
         }
-        return $subCategories;
+        return $Categories_SubCategories;
+    }
+    function getSubCategories(){
+        $sql = " SELECT `name` FROM `nckp1tyung_product_category`;  ";
+        $result = DataBase::$conn->query($sql);
+        $SubCategories[0] = "";
+        if ($result->num_rows > 0) {
+            for ($i=0; $i < $result->num_rows; $i++) { 
+            if ($row = $result->fetch_assoc()) {
+                array_push($SubCategories, $row['name']);
+        }
+    }
+        }
+        return $SubCategories;
     }
 }

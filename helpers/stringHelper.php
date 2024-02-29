@@ -61,7 +61,7 @@ class StringHelper
             $msg .= "not a correct form at phonen umber! the phone number only contains numbers! ";
         }
         if (mb_strlen($_POST['phone']) != 12) {
-            $msg .= "the phone number is 12 character long! including the '+' character ";
+            $msg .= "the phone number is 12 character long! including the '+' character Like: +06203893109";
         }
         if (!preg_match('`[@.]`', $_POST['email'])) {
             $msg .= "the email should contain a '@' and a '.' ";

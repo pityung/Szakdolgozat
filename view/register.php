@@ -54,7 +54,7 @@ $db = new DataBase;
                             <br>
                             <input type="password" name="password_again" value="" placeholder="Password Again" required>
                             <br>
-                            <input type="phone" name="phone" value="" placeholder="Phone Number" id="phone" required>
+                            <input type="phone" name="phone" value="" placeholder="+36203893109 " id="phone" required>
                             <br>
                             <input type="email" name="email" value="" placeholder="Email" id="email" required>
                             <br>
