@@ -13,7 +13,8 @@ class Filemanager {
         $maxFileSize = $maxFileSize * 1024 * 1024;
         $fileName = basename($_FILES["fileToUpload"]["name"]);
         $fileNameArray = preg_split("/\./",$fileName);
-        $fileName = $_POST['productName']."_".$_SESSION['id'].".".$fileNameArray[1];
+        $selectOption = $_POST['product_category_menu'];
+        $fileName = $selectOption."_".$_POST['productName']."_".$_SESSION['id'].".".$fileNameArray[1];
         $target_file = TARGET_DIR . $fileName;
         
         $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);

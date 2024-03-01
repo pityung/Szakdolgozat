@@ -46,7 +46,7 @@ if (isset($_GET['action'])) {
                     <li><a href="#cardheader">STYLES</a></li>
                     <li><a href="#shop">SHOP</a></li>
                     <li><a href="#app">APP</a></li>
-<!--User/login Menu-->
+                    <!--User/login Menu-->
                     <?php
                     if (!empty($_SESSION["isLoginedIn"]) && $_SESSION["isLoginedIn"] = true) {
                         print '

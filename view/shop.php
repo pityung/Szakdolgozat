@@ -36,13 +36,13 @@ $db = new DataBase;
         </a>
         <div id="' . $majorCategorie[$i] . '" class="w3-bar-block w3-hide w3-padding-large w3-medium">
         ';
-        for ($j=1; $j < count( $Categories_SubCategories); $j++) { 
-            if(str_contains( $Categories_SubCategories[$j], $majorCategorie[$i])){
-        echo'    
-            <a href="#" class="w3-bar-item w3-button w3-light-grey"><i class="fa fa-caret-right w3-margin-right"></i>'.str_replace($majorCategorie[$i], "",$Categories_SubCategories[$j]).'</a>';
-    }
-}
-        echo'
+            for ($j = 1; $j < count($Categories_SubCategories); $j++) {
+                if (str_contains($Categories_SubCategories[$j], $majorCategorie[$i])) {
+                    echo '    
+            <a href="' . str_replace(" ", "_", "#" . str_replace($majorCategorie[$i], "", $Categories_SubCategories[$j]) ) . '" class="w3-bar-item w3-button w3-light-grey"><i class="fa fa-caret-right w3-margin-right"></i>' . str_replace($majorCategorie[$i], "", $Categories_SubCategories[$j]) . '</a>';
+                }
+            }
+            echo '
             </div>
         <script>
             
@@ -103,6 +103,18 @@ if (isset($_SESSION['isLoginedIn']) and $_SESSION['isAdmin'] == 1) {
                                 <input type="file" name="fileToUpload" id="fileToUpload" required>
                             </div>
                             <br>
+                            <smal>Select the Product category:</smal>
+                            <select name="product_category_menu">
+                            ';
+                            for ($i=1; $i < count($SubCategories); $i++) { 
+                                echo'
+                            <option value="'. str_replace(" ", "_", $SubCategories[$i]).'">'.$SubCategories[$i].'</option>';
+                            }
+                            
+                            echo'
+                            </select>
+                            <br>
+                            <br>
                             <input type="text" name="productName" placeholder="name" required>
                             <br>
                             <input type="text" name="description" placeholder="description" required>
@@ -116,18 +128,17 @@ if (isset($_SESSION['isLoginedIn']) and $_SESSION['isAdmin'] == 1) {
                     </div>
                 </form>
             </div>
-        </div>';
+        </div>
+        </div>
+</div>
+</div>
+</div>
+        ';
 }
-?>
-</div>
-</div>
-</div>
-</div>
-<?php
 $dir    = '../uploads';
 $uploadFiles = scandir($dir);
 
-for ($i=1; $i < count($Categories_SubCategories); $i++) { 
+for ($i = 1; $i < count($Categories_SubCategories); $i++) {
     $shopItemCount = 0;
     echo '
     <div class="w3-main" style="margin-left:250px">
@@ -135,22 +146,22 @@ for ($i=1; $i < count($Categories_SubCategories); $i++) {
         <div class="w3-hide-large" style="margin-top:83px"></div>
         <!-- Top header -->
         <header class="w3-container w3-xlarge">
-        <p class="w3-left">'.$SubCategories[$i].'</p>
+        <p class="w3-left" id="' . str_replace(" ", "_", $SubCategories[$i]) . '">' . $SubCategories[$i] . '</p>
         </header>
         <!-- Image header -->
         <div class="w3-container w3-text-grey">';
-        for ($j = 2; $j < count($uploadFiles); $j++) {
-            if (str_contains($uploadFiles[$j], $SubCategories[$i])) {
-                $shopItemCount++;
-            }
+    for ($j = 2; $j < count($uploadFiles); $j++) {
+        if (str_contains($uploadFiles[$j], str_replace(" ", "_", $SubCategories[$i]))) {
+            $shopItemCount++;
         }
-        echo '<p>' . ($shopItemCount) . ' items</p>';
-        echo '</div>';
-        echo '<div id="card-container">
+    }
+    echo '<p>' . ($shopItemCount) . ' items</p>';
+    echo '</div>';
+    echo '<div id="card-container">
             <div class="card-container">';
-            for ($k = 2; $k < count($uploadFiles); $k++) {
-                if (str_contains($uploadFiles[$k], $SubCategories[$i])) {
-                    echo '
+    for ($k = 2; $k < count($uploadFiles); $k++) {
+        if (str_contains($uploadFiles[$k],  str_replace(" ", "_", $SubCategories[$i]))) {
+            echo '
         <div class="card">
                     <div class="front">
                     <img src="../uploads/' . $uploadFiles[$k] . '" alt="image">
@@ -158,11 +169,11 @@ for ($i=1; $i < count($Categories_SubCategories); $i++) {
                         </div>
                 </div>
                 ';
-                }
-            }
-        echo' </div>
+        }
+    }
+    echo ' </div>
         </div>';
-        echo'
+    echo '
         </div>
         </div>
         ';
