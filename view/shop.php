@@ -108,7 +108,7 @@ if (isset($_SESSION['isLoginedIn']) and $_SESSION['isAdmin'] == 1) {
                             ';
                             for ($i=1; $i < count($SubCategories); $i++) { 
                                 echo'
-                            <option value="'. str_replace(" ", "_", $SubCategories[$i]).'">'.$SubCategories[$i].'</option>';
+                            <option value="'. str_replace(" ", "_", $SubCategories[$i]).', '.$i.' " >'.$SubCategories[$i].'</option>';
                             }
                             
                             echo'
@@ -120,6 +120,13 @@ if (isset($_SESSION['isLoginedIn']) and $_SESSION['isAdmin'] == 1) {
                             <input type="text" name="description" placeholder="description" required>
                             <br>
                             <input type="number" name="quantity" placeholder="quantity" required>
+                            <br>
+                            <select name="sex">
+                            <option value="Male">Male</option>
+                            <option value="Fe-Male">Fe-Male</option>
+                            <option value="Unisex">Unisex</option>
+                            </select>
+                            <input type="number" name="price" placeholder="price" required>
                             <br>
                             <div>
                                 <button type="submit" value="Upload Image" name="submit">Uppload</button>
@@ -175,7 +182,7 @@ for ($i = 1; $i < count($Categories_SubCategories); $i++) {
                                 echo '
                                 <form method="post">
                                 <br> 
-                                <input type="submit" name="btnDelete'.$k.'" value="Delete Item" class="w3-button w3-black">'; 
+                                <button name="btnDelete'.$k.'" class="w3-button w3-black">Remove <i class="fa fa-window-close"></i> </button>'; 
                                 echo'
                             </form>
                             ';

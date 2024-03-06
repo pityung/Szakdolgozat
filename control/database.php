@@ -36,16 +36,14 @@ if (isset($_POST['address_line']) and isset($_POST['city']) and isset($_POST['po
     if ($msg == '') {
         $msg = $user_table->registerUserAddress();
     }
-} else if (!empty($_FILES["fileToUpload"])) {
+} else if (!empty($_FILES["fileToUpload"]) and isset($_POST['productName']) and isset($_POST['description'])and isset($_POST['description'])) {
     $filemanager = new Filemanager;
     $msg = $filemanager->fileUpload($msg);
+    $msg = $user_table->uploadProduct();
 }
 $majorCategorie = $user_table->getMajorCategories();
 $Categories_SubCategories = $user_table->getCategories_SubCategories();
 $SubCategories = $user_table->getSubCategories();
 
-if(isset($_POST['btnDelete'])){
-    
-}
 
 ?>

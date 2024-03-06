@@ -73,7 +73,7 @@ class userTable
         return $msg;
     }
     function getMajorCategories(){
-        $sql = " SELECT DISTINCT `major_category` FROM `nckp1tyung_product_category`; ";
+        $sql = " SELECT DISTINCT `major_category` FROM `".DB_PREFIX."product_category`; ";
         $result = DataBase::$conn->query($sql);
         $majorCategorie[0] = "";
         if ($result->num_rows > 0) {
@@ -86,7 +86,7 @@ class userTable
         return $majorCategorie;
     }
     function getCategories_SubCategories(){
-        $sql = " SELECT `major_category`,`name` FROM `nckp1tyung_product_category`;  ";
+        $sql = " SELECT `major_category`,`name` FROM `".DB_PREFIX."product_category`;  ";
         $result = DataBase::$conn->query($sql);
         $Categories_SubCategories[0] = "";
         if ($result->num_rows > 0) {
@@ -99,7 +99,7 @@ class userTable
         return $Categories_SubCategories;
     }
     function getSubCategories(){
-        $sql = " SELECT `name` FROM `nckp1tyung_product_category`;  ";
+        $sql = " SELECT `name` FROM `".DB_PREFIX."product_category`;  ";
         $result = DataBase::$conn->query($sql);
         $SubCategories[0] = "";
         if ($result->num_rows > 0) {
@@ -110,5 +110,9 @@ class userTable
     }
         }
         return $SubCategories;
+    }
+    function uploadProduct(){
+        $sql = "INSERT INTO `nckp1tyung_product` ( `name`, `sex`, `description`, `price`, `category_id`, `propertie_id`, `quantity`) VALUES ('".$_POST['productName']."','".$_POST['sex']."','".$_POST['description']."','".$_POST['price']."','".(explode(',', $_POST['product_category_menu'],2))[1]."','1','".$_POST['quantity']."'); ";
+        DataBase::$conn->query($sql);
     }
 }
