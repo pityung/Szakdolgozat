@@ -61,6 +61,10 @@ if (isset($_GET['action'])) {
                                     <p>Exit</p>
                                     <span>></span>
                                 </a>';
+                                echo  '<a href="view/userEdit.php" class="sub-menu-link">
+                                <p> Edit profile</p>
+                                <span>></span>
+                                </a>';
                         if ($_SESSION['addressOk'] == false) {
                             echo '   </a>
                                         <a href="view/userAddress.php" class="sub-menu-link">

@@ -30,8 +30,17 @@ if (isset($_POST['username']) and isset($_POST['password'])) {
     if (!$msg) {
         $msg = $user_table->addressIsSet();
     }
-} else
+} else if(isset($_POST['username_edit']) and isset($_POST['first_name_edit']) and isset($_POST['last_name_edit']) and isset($_POST['phone_edit'])  and isset($_POST['email_edit']) ){
+    $msg = $StringHelper->checkUpdate($msg);
 
+    $msg = $user_table->checkUsers($msg);
+
+    if ($msg == '') {
+        $msg = $user_table->updateUser();
+    }
+}
+
+else
 if (isset($_POST['address_line']) and isset($_POST['city']) and isset($_POST['postal_code']) and isset($_POST['country'])) {
     if ($msg == '') {
         $msg = $user_table->registerUserAddress();

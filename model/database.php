@@ -22,6 +22,8 @@ class userTable
                 if ($row['user_password'] == hash('sha256', $_POST['password'])) {
                     $_SESSION['id'] = $row['id'];
                     $_SESSION["username"] = $_POST['username'];
+                    $_SESSION["first_name"] =  $row['first_name'];
+                    $_SESSION["last_name"] =  $row['last_name'];
                     $_SESSION["name"] =  $row['first_name'] . " " . $row['last_name'];
                     $_SESSION["email"] = $row['email'];
                     $_SESSION["phone"] =  $row['phone'];
@@ -59,6 +61,10 @@ class userTable
         $sql = "INSERT INTO `".DB_PREFIX."user_address`( `user_id`, `address_line`, `city`, `postal_code`, `country`) VALUES ('" . $_SESSION['id'] . "','" . $_POST['address_line'] . "','" . $_POST['city'] . "','" . $_POST['postal_code'] . "','" . $_POST['country'] . "');";
         DataBase::$conn->query($sql);
         $_SESSION['addressOk'] = true;
+    }
+    function updateUser(){
+        $sql = "UPDATE `nckp1tyung_user` SET `username`='".$_POST['username_edit']."',`first_name`='".$_POST['first_name_edit']."',`last_name`='".$_POST['last_name_edit']."',`phone`='".$_POST['phone_edit']."',`email`='".$_POST['email_edit']."' WHERE  `id` = ".$_SESSION['id']."";
+        DataBase::$conn->query($sql);
     }
     function checkUsers($msg)
     {
