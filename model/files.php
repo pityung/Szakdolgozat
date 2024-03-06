@@ -5,12 +5,10 @@ class Filemanager {
     function fileUpload($msg) {
 
         $uploadOk = 0;
-        $maxFileSize = 0.5; // MB-ban adjuk meg 
+        $maxFileSize = 15; // MB-ban adjuk meg 
         define('TARGET_DIR',"../uploads/");
         define('IMG_EXTS', array('.jpg','.jpeg','.png','.gif'));   
-
-        
-        $maxFileSize = $maxFileSize * 1024 * 1024;
+        $maxFileSize = $maxFileSize * 1024 * 1024 ;
         $fileName = basename($_FILES["fileToUpload"]["name"]);
         $fileNameArray = preg_split("/\./",$fileName);
         $selectOption = $_POST['product_category_menu'];
@@ -22,12 +20,12 @@ class Filemanager {
             $uploadOk = 1;
         } 
         else {
-            $msg .= "A feltöltött ".$_FILES["fileToUpload"]["name"]." fájl nem kép.";
+            $msg .= "the uploaded ".$_FILES["fileToUpload"]["name"]." file is not an image.";
             $uploadOk = 0;
         }
     
         if ($_FILES["fileToUpload"]["size"] > ($maxFileSize)) {
-            $msg .=  "A feltöltött fájl túl nagy méretű";
+            $msg .=  "the upploaded picture is too big! ".$maxFileSize ."";
             $uploadOk = 0;
         }
     

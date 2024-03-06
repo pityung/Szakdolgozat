@@ -141,6 +141,8 @@ $uploadFiles = scandir($dir);
 for ($i = 1; $i < count($Categories_SubCategories); $i++) {
     $shopItemCount = 0;
     echo '
+    <br>
+<br>
     <div class="w3-main" style="margin-left:250px">
         <!-- Push down content on small screens -->
         <div class="w3-hide-large" style="margin-top:83px"></div>
@@ -162,11 +164,29 @@ for ($i = 1; $i < count($Categories_SubCategories); $i++) {
     for ($k = 2; $k < count($uploadFiles); $k++) {
         if (str_contains($uploadFiles[$k],  str_replace(" ", "_", $SubCategories[$i]))) {
             echo '
+            <div class="w3-display-container">
         <div class="card">
-                    <div class="front">
-                    <img src="../uploads/' . $uploadFiles[$k] . '" alt="image">
-                    
+                    <div class="front" >
+                    <img src="../uploads/' . $uploadFiles[$k] . '" alt="image" >    
+                        <div class="w3-display-middle w3-display-hover">
+                            <button class="w3-button w3-black">Buy now <i class="fa fa-shopping-cart"></i></button>
+                            ';
+                            if (isset($_SESSION['isLoginedIn']) and $_SESSION['isAdmin'] == 1) {
+                                echo '
+                                <form method="post">
+                                <br> 
+                                <input type="submit" name="btnDelete'.$k.'" value="Delete Item" class="w3-button w3-black">'; 
+                                echo'
+                            </form>
+                            ';
+                            }
+                            echo'
                         </div>
+                    </div>
+                    <span class="w3-tag w3-display-bottomleft">Sale</span>
+                    <div class="w3-display-middle w3-display-hover" >
+                        </div>
+                    </div>
                 </div>
                 ';
         }
@@ -175,9 +195,32 @@ for ($i = 1; $i < count($Categories_SubCategories); $i++) {
         </div>';
     echo '
         </div>
+        
         </div>
         ';
 }
+if(!empty($msg)){
+        ?>
+                <script>
+                    var msg = "<?php print($msg) ?>";
+                    alert(msg);
+                </script>
+        <?php
+}
+
+for ($i=2; $i < count($uploadFiles); $i++) { 
+   if(isset($_POST['btnDelete'.$i])){
+    unlink("../uploads/". $uploadFiles[$i] );
+    unset($_POST['btnDelete'.$i]);
+    ?>
+    <script>
+        alert("item successfully deleted!");
+        window.location.href = "shop.php";
+    </script>
+<?php
+   }
+}
+
 ?>
 </div>
 </body>

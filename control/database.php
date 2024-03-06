@@ -5,7 +5,7 @@ require "../model/database.php";
 require "../helpers/stringHelper.php";
 require "../model/files.php";
 
-$user_table = new userTable();  
+$user_table = new userTable();
 $StringHelper = new StringHelper();
 
 $msg = '';
@@ -20,30 +20,32 @@ if (isset($_POST['password']) and isset($_POST['username']) and isset($_POST['fi
         $msg = $user_table->registerUser();
         $msg = $user_table->checkLogin($msg);
     }
-}else
-if(isset($_POST['username']) and isset($_POST['password'])) {
-    if(empty($_POST['username'])) $msg .= "The username is not set.";
-    if(empty($_POST['password'])) $msg .= "The password is not set. ";
-    if(!$msg) {
+} else
+if (isset($_POST['username']) and isset($_POST['password'])) {
+    if (empty($_POST['username'])) $msg .= "The username is not set.";
+    if (empty($_POST['password'])) $msg .= "The password is not set. ";
+    if (!$msg) {
         $msg = $user_table->checkLogin($msg);
-    }if(!$msg){
+    }
+    if (!$msg) {
         $msg = $user_table->addressIsSet();
     }
-}else
+} else
 
-if(isset($_POST['address_line']) and isset($_POST['city']) and isset($_POST['postal_code']) and isset($_POST['country']) ){
-if($msg ==''){
-    $msg= $user_table->registerUserAddress();
-
-}
-
-}
-else if(!empty($_FILES["fileToUpload"])) {
+if (isset($_POST['address_line']) and isset($_POST['city']) and isset($_POST['postal_code']) and isset($_POST['country'])) {
+    if ($msg == '') {
+        $msg = $user_table->registerUserAddress();
+    }
+} else if (!empty($_FILES["fileToUpload"])) {
     $filemanager = new Filemanager;
     $msg = $filemanager->fileUpload($msg);
 }
-    $majorCategorie = $user_table->getMajorCategories();
-    $Categories_SubCategories = $user_table->getCategories_SubCategories();
-    $SubCategories = $user_table->getSubCategories();
+$majorCategorie = $user_table->getMajorCategories();
+$Categories_SubCategories = $user_table->getCategories_SubCategories();
+$SubCategories = $user_table->getSubCategories();
+
+if(isset($_POST['btnDelete'])){
+    
+}
 
 ?>
