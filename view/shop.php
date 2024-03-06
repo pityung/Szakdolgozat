@@ -72,7 +72,7 @@ function ' . "menu" . $i . 'Func() {
 <div class="w3-overlay w3-hide-large" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
 
 <?php
-if (isset($_SESSION['isLoginedIn']) and $_SESSION['isAdmin'] == 1) {
+if (isset($_SESSION['isLoginedIn']) and $_SESSION['isAdmin'] == 1 ) {
     echo '
             <div class="w3-main" style="margin-left:250px">
                 <!-- Push down content on small screens -->
@@ -174,11 +174,12 @@ for ($i = 1; $i < count($Categories_SubCategories); $i++) {
             <div class="w3-display-container">
         <div class="card">
                     <div class="front" >
-                    <img src="../uploads/' . $uploadFiles[$k] . '" alt="image" >    
+                    <img src="../uploads/' . $uploadFiles[$k] . '" alt="image" >
+                    <p>'.(explode(' ', $productDatas[$k],2))[0].'<br><b>$'.(explode(' ', $productDatas[$k],2))[1].'</b></p>    
                         <div class="w3-display-middle w3-display-hover">
                             <button class="w3-button w3-black">Buy now <i class="fa fa-shopping-cart"></i></button>
                             ';
-                            if (isset($_SESSION['isLoginedIn']) and $_SESSION['isAdmin'] == 1) {
+                            if (isset($_SESSION['isLoginedIn']) and $_SESSION['isAdmin'] == 1 and str_contains($uploadFiles[$k], $_SESSION['id'])) {
                                 echo '
                                 <form method="post">
                                 <br> 
@@ -190,7 +191,6 @@ for ($i = 1; $i < count($Categories_SubCategories); $i++) {
                             echo'
                         </div>
                     </div>
-                    <span class="w3-tag w3-display-bottomleft">Sale</span>
                     <div class="w3-display-middle w3-display-hover" >
                         </div>
                     </div>

@@ -44,6 +44,7 @@ if (isset($_POST['address_line']) and isset($_POST['city']) and isset($_POST['po
 $majorCategorie = $user_table->getMajorCategories();
 $Categories_SubCategories = $user_table->getCategories_SubCategories();
 $SubCategories = $user_table->getSubCategories();
+$productDatas = $user_table->getProductDatas();
 
 
 ?>

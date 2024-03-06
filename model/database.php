@@ -115,4 +115,19 @@ class userTable
         $sql = "INSERT INTO `nckp1tyung_product` ( `name`, `sex`, `description`, `price`, `category_id`, `propertie_id`, `quantity`) VALUES ('".$_POST['productName']."','".$_POST['sex']."','".$_POST['description']."','".$_POST['price']."','".(explode(',', $_POST['product_category_menu'],2))[1]."','1','".$_POST['quantity']."'); ";
         DataBase::$conn->query($sql);
     }
+function getProductDatas(){
+    $sql = "SELECT `name`,`price` FROM `nckp1tyung_product` ";
+    $result = DataBase::$conn->query($sql);
+    $productDatas[0] = "";
+    if ($result->num_rows > 0) {
+        for ($i=0; $i < $result->num_rows; $i++) { 
+        if ($row = $result->fetch_assoc()) {
+            array_push($productDatas, $row['name']." ".$row['price']);
+
+    }
+}
+    }
+    return $productDatas;
+}
+
 }
