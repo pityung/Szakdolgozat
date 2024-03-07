@@ -8,6 +8,12 @@ require "../model/files.php";
 $user_table = new userTable();
 $StringHelper = new StringHelper();
 
+$dir    = '../uploads';
+$uploadFiles = scandir($dir);
+$majorCategorie = $user_table->getMajorCategories();
+$Categories_SubCategories = $user_table->getCategories_SubCategories();
+$SubCategories = $user_table->getSubCategories();
+$productDatas = $user_table->getProductDatas();
 $msg = '';
 if (isset($_POST['password']) and isset($_POST['username']) and isset($_POST['first_name']) and isset($_POST['last_name']) and isset($_POST['email']) and isset($_POST['phone'])) {
 
@@ -36,7 +42,7 @@ if (isset($_POST['username']) and isset($_POST['password'])) {
     $msg = $user_table->checkUsers($msg);
 
     if ($msg == '') {
-        $msg = $user_table->updateUser();
+        $msg = $user_table->updateUser($msg);
     }
 }
 
@@ -49,11 +55,16 @@ if (isset($_POST['address_line']) and isset($_POST['city']) and isset($_POST['po
     $filemanager = new Filemanager;
     $msg = $filemanager->fileUpload($msg);
     $msg = $user_table->uploadProduct();
+
+}else{
+    for($i = 2; $i < count($uploadFiles); $i++){
+       if (isset($_POST['btnDelete' . $i."_".(explode(' ', $productDatas[$i], 3))[2]])) { 
+            $msg = $user_table->deleteProductFromDatabase((explode(' ', $productDatas[$i], 3))[2]);
+
+        }
+    }
 }
-$majorCategorie = $user_table->getMajorCategories();
-$Categories_SubCategories = $user_table->getCategories_SubCategories();
-$SubCategories = $user_table->getSubCategories();
-$productDatas = $user_table->getProductDatas();
+
 
 
 ?>

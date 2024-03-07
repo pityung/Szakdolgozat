@@ -62,9 +62,17 @@ class userTable
         DataBase::$conn->query($sql);
         $_SESSION['addressOk'] = true;
     }
-    function updateUser(){
+    function updateUser($msg){
+        $sql = "SELECT `username` FROM `nckp1tyung_user` WHERE `username` = '".$_POST["username_edit"]."'";
+        $result = DataBase::$conn->query($sql);
+        if ($result->num_rows > 0) {
+            $msg .= "This username already in use!";
+        }else{
         $sql = "UPDATE `nckp1tyung_user` SET `username`='".$_POST['username_edit']."',`first_name`='".$_POST['first_name_edit']."',`last_name`='".$_POST['last_name_edit']."',`phone`='".$_POST['phone_edit']."',`email`='".$_POST['email_edit']."' WHERE  `id` = ".$_SESSION['id']."";
-        DataBase::$conn->query($sql);
+        DataBase::$conn->query($sql);   
+         $msg.= "Succesfully updated profile!";
+        }
+        return $msg;
     }
     function checkUsers($msg)
     {
@@ -118,22 +126,27 @@ class userTable
         return $SubCategories;
     }
     function uploadProduct(){
-        $sql = "INSERT INTO `nckp1tyung_product` ( `name`, `sex`, `description`, `price`, `category_id`, `propertie_id`, `quantity`) VALUES ('".$_POST['productName']."','".$_POST['sex']."','".$_POST['description']."','".$_POST['price']."','".(explode(',', $_POST['product_category_menu'],2))[1]."','1','".$_POST['quantity']."'); ";
+        $sql = "INSERT INTO `".DB_PREFIX."product` ( `name`, `sex`, `description`, `price`, `category_id`, `propertie_id`, `quantity`) VALUES ('". str_replace(" ", "_", $_POST['productName'])."_".$_SESSION['id']."','".$_POST['sex']."','".$_POST['description']."','".$_POST['price']."','".(explode(',', $_POST['product_category_menu'],2))[1]."','1','".$_POST['quantity']."'); ";
         DataBase::$conn->query($sql);
     }
 function getProductDatas(){
-    $sql = "SELECT `name`,`price` FROM `nckp1tyung_product` ";
+    $sql = "SELECT `name`,`price`, `id` FROM `".DB_PREFIX."product` ";
     $result = DataBase::$conn->query($sql);
     $productDatas[0] = "";
+    $productDatas[1] = "";
     if ($result->num_rows > 0) {
         for ($i=0; $i < $result->num_rows; $i++) { 
         if ($row = $result->fetch_assoc()) {
-            array_push($productDatas, $row['name']." ".$row['price']);
-
+            array_push($productDatas, $row['name']." ".$row['price']." ".$row['id']);
     }
 }
     }
     return $productDatas;
+}
+
+function deleteProductFromDatabase($removable){
+$sql = "DELETE FROM `".DB_PREFIX."product` WHERE `id` = '".$removable."'";
+DataBase::$conn->query($sql);
 }
 
 }

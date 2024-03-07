@@ -12,13 +12,13 @@ $db = new DataBase;
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register</title>
+    <title>Update Profile</title>
     <link rel="stylesheet" href="../styles/login.css">
 </head>
 
 <body>
     <main class="main flow">
-        <h1 class="main__heading">Address</h1>
+        <h1 class="main__heading">Update</h1>
         <br>
         <a href="../index.php">
             <input type="button" value="Go Back" id="goback-btn">

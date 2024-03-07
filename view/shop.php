@@ -39,7 +39,7 @@ $db = new DataBase;
             for ($j = 1; $j < count($Categories_SubCategories); $j++) {
                 if (str_contains($Categories_SubCategories[$j], $majorCategorie[$i])) {
                     echo '    
-            <a href="' . str_replace(" ", "_", "#" . str_replace($majorCategorie[$i], "", $Categories_SubCategories[$j]) ) . '" class="w3-bar-item w3-button w3-light-grey"><i class="fa fa-caret-right w3-margin-right"></i>' . str_replace($majorCategorie[$i], "", $Categories_SubCategories[$j]) . '</a>';
+            <a href="' . str_replace(" ", "_", "#" . str_replace($majorCategorie[$i], "", $Categories_SubCategories[$j])) . '" class="w3-bar-item w3-button w3-light-grey"><i class="fa fa-caret-right w3-margin-right"></i>' . str_replace($majorCategorie[$i], "", $Categories_SubCategories[$j]) . '</a>';
                 }
             }
             echo '
@@ -72,7 +72,7 @@ function ' . "menu" . $i . 'Func() {
 <div class="w3-overlay w3-hide-large" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
 
 <?php
-if (isset($_SESSION['isLoginedIn']) and $_SESSION['isAdmin'] == 1 ) {
+if (isset($_SESSION['isLoginedIn']) and $_SESSION['isAdmin'] == 1) {
     echo '
             <div class="w3-main" style="margin-left:250px">
                 <!-- Push down content on small screens -->
@@ -106,12 +106,12 @@ if (isset($_SESSION['isLoginedIn']) and $_SESSION['isAdmin'] == 1 ) {
                             <smal>Select the Product category:</smal>
                             <select name="product_category_menu">
                             ';
-                            for ($i=1; $i < count($SubCategories); $i++) { 
-                                echo'
-                            <option value="'. str_replace(" ", "_", $SubCategories[$i]).', '.$i.' " >'.$SubCategories[$i].'</option>';
-                            }
-                            
-                            echo'
+    for ($i = 1; $i < count($SubCategories); $i++) {
+        echo '
+                            <option value="' . str_replace(" ", "_", $SubCategories[$i]) . ', ' . $i . ' " >' . $SubCategories[$i] . '</option>';
+    }
+
+    echo '
                             </select>
                             <br>
                             <br>
@@ -173,27 +173,39 @@ for ($i = 1; $i < count($Categories_SubCategories); $i++) {
             echo '
             <div class="w3-display-container">
         <div class="card">
-                    <div class="front" >
-                    <img src="../uploads/' . $uploadFiles[$k] . '" alt="image" >
-                    <p>'.(explode(' ', $productDatas[$k],2))[0].'<br><b>$'.(explode(' ', $productDatas[$k],2))[1].'</b></p>    
-                        <div class="w3-display-middle w3-display-hover">
+                    <div class="front" >';
+
+            echo '<img src="../uploads/' . $uploadFiles[$k] . '" alt="image" >';
+
+            for ($l = 0; $l < count($uploadFiles); $l++) {
+                if (str_contains($uploadFiles[$l], (explode(' ', $productDatas[$k], 3))[0])) {
+                    echo '<p>' . (explode(' ', $productDatas[$l], 3))[0] . '<br><b>$' . (explode(' ', $productDatas[$l], 3))[1] . '</b></p>  ';
+                }
+            }
+            echo '<div class="w3-display-middle w3-display-hover">
                             <button class="w3-button w3-black">Buy now <i class="fa fa-shopping-cart"></i></button>
                             ';
-                            if (isset($_SESSION['isLoginedIn']) and $_SESSION['isAdmin'] == 1 and str_contains($uploadFiles[$k], $_SESSION['id'])) {
-                                echo '
+            if (isset($_SESSION['isLoginedIn']) and $_SESSION['isAdmin'] == 1) {
+                echo '
                                 <form method="post">
-                                <br> 
-                                <button name="btnDelete'.$k.'" class="w3-button w3-black">Remove <i class="fa fa-window-close"></i> </button>'; 
-                                echo'
+                                <br> ';
+                                for ($l = 0; $l < count($uploadFiles); $l++) {
+                                    if (str_contains($uploadFiles[$l], (explode(' ', $productDatas[$k], 3))[0])) {
+                                        echo'<button name="btnDelete' . $k ."_".(explode(' ', $productDatas[$k], 3))[2].'" class="w3-button w3-black">Remove <i class="fa fa-window-close"></i> </button>';
+                                    }
+                                }
+                                echo '
                             </form>
                             ';
-                            }
-                            echo'
+            }
+            echo '
                         </div>
                     </div>
+                        
                     <div class="w3-display-middle w3-display-hover" >
                         </div>
                     </div>
+                    <br><br>
                 </div>
                 ';
         }
@@ -206,26 +218,36 @@ for ($i = 1; $i < count($Categories_SubCategories); $i++) {
         </div>
         ';
 }
-if(!empty($msg)){
-        ?>
-                <script>
-                    var msg = "<?php print($msg) ?>";
-                    alert(msg);
-                </script>
-        <?php
+if (!empty($msg)) {
+?>
+    <script>
+        var msg = "<?php print($msg) ?>";
+        alert(msg);
+    </script>
+    <?php
 }
-
-for ($i=2; $i < count($uploadFiles); $i++) { 
-   if(isset($_POST['btnDelete'.$i])){
-    unlink("../uploads/". $uploadFiles[$i] );
-    unset($_POST['btnDelete'.$i]);
+if(isset($_POST['submit'])){
     ?>
     <script>
-        alert("item successfully deleted!");
+        alert("item successfully uploaded!");
         window.location.href = "shop.php";
+        location.reload();
     </script>
 <?php
-   }
+}
+
+for ($i = 2; $i < count($uploadFiles); $i++) {
+    if (isset($_POST['btnDelete' . $i."_".(explode(' ', $productDatas[$i], 3))[2]])) {
+        unlink("../uploads/" . $uploadFiles[$i]);
+        unset($_POST['btnDelete' . $i]);
+    ?>
+        <script>
+            alert("item successfully deleted!");
+            window.location.href = "shop.php";
+            location.reload();
+        </script>
+<?php
+    }
 }
 
 ?>
