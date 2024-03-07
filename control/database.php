@@ -36,7 +36,7 @@ if (isset($_POST['username']) and isset($_POST['password'])) {
     if (!$msg) {
         $msg = $user_table->addressIsSet();
     }
-} else if(isset($_POST['username_edit']) and isset($_POST['first_name_edit']) and isset($_POST['last_name_edit']) and isset($_POST['phone_edit'])  and isset($_POST['email_edit']) ){
+} else if (isset($_POST['username_edit']) and isset($_POST['first_name_edit']) and isset($_POST['last_name_edit']) and isset($_POST['phone_edit'])  and isset($_POST['email_edit'])) {
     $msg = $StringHelper->checkUpdate($msg);
 
     $msg = $user_table->checkUsers($msg);
@@ -44,25 +44,23 @@ if (isset($_POST['username']) and isset($_POST['password'])) {
     if ($msg == '') {
         $msg = $user_table->updateUser($msg);
     }
-}
-
-else
+} else
 if (isset($_POST['address_line']) and isset($_POST['city']) and isset($_POST['postal_code']) and isset($_POST['country'])) {
     if ($msg == '') {
         $msg = $user_table->registerUserAddress();
     }
-} else if (!empty($_FILES["fileToUpload"]) and isset($_POST['productName']) and isset($_POST['description'])and isset($_POST['description'])) {
+} else if (!empty($_FILES["fileToUpload"]) and isset($_POST['productName']) and isset($_POST['description']) and isset($_POST['description'])) {
     $filemanager = new Filemanager;
     $msg = $filemanager->fileUpload($msg);
     $msg = $user_table->uploadProduct();
-
-}else{
-    for($i = 2; $i < count($uploadFiles); $i++){
-       if (isset($_POST['btnDelete' . $i."_".(explode(' ', $productDatas[$i], 3))[2]])) { 
-            $msg = $user_table->deleteProductFromDatabase((explode(' ', $productDatas[$i], 3))[2]);
-
+} else {
+    for ($i=2; $i <  count($uploadFiles); $i++) { 
+        if (isset($_POST['btnDelete' ."_".(explode(' ', $productDatas[$i], 3))[2]])) {
+            $msg = $user_table->deleteProductFromDatabase(explode(' ', $productDatas[$i], 3)[2]);
         }
-    }
+    } 
+        
+    
 }
 
 
