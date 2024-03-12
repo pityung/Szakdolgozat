@@ -54,14 +54,13 @@ if (isset($_POST['address_line']) and isset($_POST['city']) and isset($_POST['po
     $msg = $filemanager->fileUpload($msg);
     $msg = $user_table->uploadProduct();
 } else {
-    for ($i=2; $i <  count($uploadFiles); $i++) { 
-        if (isset($_POST['btnDelete' ."_".(explode(' ', $productDatas[$i], 3))[2]])) {
-            $msg = $user_table->deleteProductFromDatabase(explode(' ', $productDatas[$i], 3)[2]);
+    for ($i = 2; $i <  count($uploadFiles); $i++) {
+        if (isset($_POST["btnDelete" . "_" . $i])) {
+            $msg = $user_table->deleteProductFromDatabase($_POST["btnDelete" . "_" . $i]);
         }
-    } 
-        
-    
+    }
 }
+
 
 
 

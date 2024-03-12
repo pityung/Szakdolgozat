@@ -176,10 +176,11 @@ for ($i = 1; $i < count($Categories_SubCategories); $i++) {
                     <div class="front" >';
 
             echo '<img src="../uploads/' . $uploadFiles[$k] . '" alt="image" >';
-
+            $productId = 0;
             for ($l = 2; $l < count($uploadFiles); $l++) {
-                if (str_contains($uploadFiles[$l], (explode(' ', $productDatas[$k], 3))[0])) {
-                    echo '<p>'. (explode(' ', $productDatas[$l], 3))[2]. (explode(' ', $productDatas[$l], 3))[0] . '<br><b>$' . (explode(' ', $productDatas[$l], 3))[1] . '</b></p>  ';
+                if (str_contains($uploadFiles[$l], str_replace(" ", "_", $SubCategories[$i]) . "_" . (explode(' ', $productDatas[$k], 3))[0])) {
+                    echo '<p>' . (explode(' ', $productDatas[$l], 3))[2] . (explode(' ', $productDatas[$l], 3))[0] . '<br><b>$' . (explode(' ', $productDatas[$l], 3))[1] . '</b></p>  ';
+                    $productId = explode(' ', $productDatas[$l], 3)[2];
                 }
             }
             echo '<div class="w3-display-middle w3-display-hover">
@@ -189,12 +190,12 @@ for ($i = 1; $i < count($Categories_SubCategories); $i++) {
                 echo '
                                 <form method="post">
                                 <br> ';
-                                for ($l = 2; $l < count($uploadFiles); $l++) {
-                                    if (str_contains($uploadFiles[$l], (explode(' ', $productDatas[$k], 3))[0])) {
-                                        echo'<button name="btnDelete' ."_".(explode(' ', $productDatas[$l], 3))[2].'" class="w3-button w3-black">Remove <i class="fa fa-window-close"></i> </button>';
-                                    }
-                                }
-                                echo '
+                for ($l = 2; $l < count($uploadFiles); $l++) {
+                    if (str_contains($uploadFiles[$l], $uploadFiles[$k])) {
+                        echo '<button name="btnDelete' . "_" . ($l) . '" value="'.$productId.'" class="w3-button w3-black">Remove <i class="fa fa-window-close"></i> </button>';
+                    }
+                }
+                echo '
                             </form>
                             ';
             }
@@ -210,7 +211,7 @@ for ($i = 1; $i < count($Categories_SubCategories); $i++) {
                 ';
         }
     }
-    
+
     echo ' </div>
         </div>';
     echo '
@@ -225,34 +226,28 @@ if (!empty($msg)) {
         var msg = "<?php print($msg) ?>";
         alert(msg);
     </script>
-    <?php
+<?php
 }
-if(isset($_POST['submit'])){
-    ?>
+if (isset($_POST['submit'])) {
+?>
     <script>
         alert("item successfully uploaded!");
         window.location.href = "shop.php";
         location.reload();
     </script>
-<?php
+    <?php
 }
-
 for ($i = 2; $i < count($uploadFiles); $i++) {
-    if (isset($_POST['btnDelete' ."_".(explode(' ', $productDatas[$i], 3))[2]])) {
-        for($j = 2; $j < count($uploadFiles); $j++){
-        if(str_contains($uploadFiles[$i], explode(' ', $productDatas[$j], 3)[0])){
-        unlink("../uploads/" . $uploadFiles[$j]);
+    if (isset($_POST["btnDelete" . "_" . $i])) {
+        unlink("../uploads/" . $uploadFiles[$i]);
     ?>
         <script>
-            alert("item successfully deleted!");
+            alert("<?php echo $uploadFiles[$i]."deleted!"; ?>");
             window.location.href = "shop.php";
         </script>
 <?php
-        }
-    }
     }
 }
-
 ?>
 </div>
 </body>
