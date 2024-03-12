@@ -125,8 +125,34 @@ class userTable
         }
         return $SubCategories;
     }
+    function getPropertie(){
+        $sql = "SELECT `riding_style` FROM `".DB_PREFIX."properties`";
+        $result = DataBase::$conn->query($sql);
+        $properties[0] = "";
+        if ($result->num_rows > 0) {
+            for ($i=0; $i < $result->num_rows; $i++) { 
+            if ($row = $result->fetch_assoc()) {
+                array_push($properties, $row['riding_style']);
+        }
+    }
+        }
+        return $properties;
+    }
+    function checkUploadedProducts(){
+        $sql = "SELECT * FROM `nckp1tyung_product` WHERE `name` LIKE '". str_replace(" ", "_", $_POST['productName'])."_".$_SESSION['id']."' AND `category_id` = ".(explode(',', $_POST['product_category_menu'],2))[1]."";
+        $result = DataBase::$conn->query($sql);
+        if ($result->num_rows == 0) {
+            return ;
+        }else{
+            return "there is a product!";
+        }
+    }
+    function updateProduct(){
+        $sql = "UPDATE `nckp1tyung_product` SET `sex`='".$_POST['sex']."',`description`='".$_POST['description']."',`price`='".$_POST['price']."',`propertie_id`='".(explode(',', $_POST['Riding_style_menu'],2))[1]."',`quantity`='".$_POST['quantity']."',`color`='".$_POST['color']."'WHERE `name` LIKE '". str_replace(" ", "_", $_POST['productName'])."_".$_SESSION['id']."' AND `category_id` = ".(explode(',', $_POST['product_category_menu'],2))[1]."";
+        DataBase::$conn->query($sql);
+    }
     function uploadProduct(){
-        $sql = "INSERT INTO `".DB_PREFIX."product` ( `name`, `sex`, `description`, `price`, `category_id`, `propertie_id`, `quantity`) VALUES ('". str_replace(" ", "_", $_POST['productName'])."_".$_SESSION['id']."','".$_POST['sex']."','".$_POST['description']."','".$_POST['price']."','".(explode(',', $_POST['product_category_menu'],2))[1]."','1','".$_POST['quantity']."'); ";
+        $sql = "INSERT INTO `".DB_PREFIX."product` ( `name`, `sex`, `description`, `price`, `category_id`, `propertie_id`, `quantity` , `color`) VALUES ('". str_replace(" ", "_", $_POST['productName'])."_".$_SESSION['id']."','".$_POST['sex']."','".$_POST['description']."','".$_POST['price']."','".(explode(',', $_POST['product_category_menu'],2))[1]."','".(explode(',', $_POST['Riding_style_menu'],2))[1]."','".$_POST['quantity']."', '".$_POST['color']."'); ";
         DataBase::$conn->query($sql);
     }
 function getProductDatas(){

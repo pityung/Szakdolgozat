@@ -14,6 +14,7 @@ $majorCategorie = $user_table->getMajorCategories();
 $Categories_SubCategories = $user_table->getCategories_SubCategories();
 $SubCategories = $user_table->getSubCategories();
 $productDatas = $user_table->getProductDatas();
+$properties = $user_table->getPropertie();
 $msg = '';
 if (isset($_POST['password']) and isset($_POST['username']) and isset($_POST['first_name']) and isset($_POST['last_name']) and isset($_POST['email']) and isset($_POST['phone'])) {
 
@@ -52,7 +53,12 @@ if (isset($_POST['address_line']) and isset($_POST['city']) and isset($_POST['po
 } else if (!empty($_FILES["fileToUpload"]) and isset($_POST['productName']) and isset($_POST['description']) and isset($_POST['description'])) {
     $filemanager = new Filemanager;
     $msg = $filemanager->fileUpload($msg);
+    $msg = $user_table->checkUploadedProducts();
+    if($msg==''){
     $msg = $user_table->uploadProduct();
+    }else{
+        $msg = $user_table->updateProduct();
+    }
 } else {
     for ($i = 2; $i <  count($uploadFiles); $i++) {
         if (isset($_POST["btnDelete" . "_" . $i])) {

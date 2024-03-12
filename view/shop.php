@@ -121,12 +121,27 @@ if (isset($_SESSION['isLoginedIn']) and $_SESSION['isAdmin'] == 1) {
                             <br>
                             <input type="number" name="quantity" placeholder="quantity" required>
                             <br>
+                            <smal>Select Sex:</smal>
+                            <br>
                             <select name="sex">
                             <option value="Male">Male</option>
                             <option value="Fe-Male">Fe-Male</option>
                             <option value="Unisex">Unisex</option>
                             </select>
+                            <br>
+                            <smal>Select the Riding Style:</smal>
+                            <select name="Riding_style_menu">
+                            ';
+    for ($i = 1; $i < count($properties); $i++) {
+        echo '
+                            <option value="' . str_replace(" ", "_", $properties[$i]) . ', ' . $i . ' " >' . $properties[$i] . '</option>';
+    }
+
+    echo '
+                            </select>
                             <input type="number" name="price" placeholder="price" required>
+                            <br>
+                            <input type="text" name="color" placeholder="color" required>
                             <br>
                             <div>
                                 <button type="submit" value="Upload Image" name="submit">Uppload</button>
@@ -192,7 +207,7 @@ for ($i = 1; $i < count($Categories_SubCategories); $i++) {
                                 <br> ';
                 for ($l = 2; $l < count($uploadFiles); $l++) {
                     if (str_contains($uploadFiles[$l], $uploadFiles[$k])) {
-                        echo '<button name="btnDelete' . "_" . ($l) . '" value="'.$productId.'" class="w3-button w3-black">Remove <i class="fa fa-window-close"></i> </button>';
+                        echo '<button name="btnDelete' . "_" . ($l) . '" value="' . $productId . '" class="w3-button w3-black">Remove <i class="fa fa-window-close"></i> </button>';
                     }
                 }
                 echo '
@@ -242,7 +257,7 @@ for ($i = 2; $i < count($uploadFiles); $i++) {
         unlink("../uploads/" . $uploadFiles[$i]);
     ?>
         <script>
-            alert("<?php echo $uploadFiles[$i]."deleted!"; ?>");
+            alert("<?php echo $uploadFiles[$i] . "deleted!"; ?>");
             window.location.href = "shop.php";
         </script>
 <?php
