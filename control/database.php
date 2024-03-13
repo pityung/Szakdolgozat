@@ -25,8 +25,11 @@ if (isset($_POST['password']) and isset($_POST['username']) and isset($_POST['fi
 
     if ($msg == '') {
         $msg = $user_table->registerUser();
+        $msg = $user_table->registerShoppingSession();
         $msg = $user_table->checkLogin($msg);
-    }
+        
+    
+}
 } else
 if (isset($_POST['username']) and isset($_POST['password'])) {
     if (empty($_POST['username'])) $msg .= "The username is not set.";

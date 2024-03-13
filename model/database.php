@@ -138,13 +138,23 @@ class userTable
         }
         return $properties;
     }
+    function registerShoppingSession(){
+        $sql = "SELECT id FROM ".DB_PREFIX."user WHERE username = '".$_POST['username']."'";
+        $result = DataBase::$conn->query($sql);
+        if ($result->num_rows > 0) {
+            if ($row = $result->fetch_assoc()) {
+                $sql ="INSERT INTO `nckp1tyung_shopping_session`(`user_id`) VALUES ('".$row['id']."')";
+                $result = DataBase::$conn->query($sql);
+            }
+        }
+    }
     function checkUploadedProducts(){
         $sql = "SELECT * FROM `nckp1tyung_product` WHERE `name` LIKE '". str_replace(" ", "_", $_POST['productName'])."_".$_SESSION['id']."' AND `category_id` = ".(explode(',', $_POST['product_category_menu'],2))[1]."";
         $result = DataBase::$conn->query($sql);
         if ($result->num_rows == 0) {
             return ;
         }else{
-            return "there is a product!";
+            return "product updated!";
         }
     }
     function updateProduct(){
