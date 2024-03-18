@@ -277,6 +277,17 @@ if (isset($_GET['action'])) {
             <span class="glyphicon glyphicon-chevron-up"></span>
         </a>
     </footer>
+                <?php
+    if (!empty($msg)) {
+?>
+    <script>
+        var msg = "<?php print($msg) ?>";
+        alert(msg);
+    </script>
+    
+<?php
+}
+?>
 </body>
 
 </html>

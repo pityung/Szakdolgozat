@@ -20,8 +20,6 @@ $db = new DataBase;
     <link rel="stylesheet" href="../styles/shop.css">
 </head>
 <!-- Sidebar/menu -->
-
-
 <nav class="w3-sidebar w3-bar-block w3-white w3-collapse w3-top" style="z-index:3;width:250px" id="mySidebar">
     <div class="w3-container w3-display-container w3-padding-16">
         <i onclick="w3_close()" class="fa fa-remove w3-hide-large w3-button w3-display-topright"></i>
@@ -29,7 +27,6 @@ $db = new DataBase;
     </div>
     <div class="w3-padding-64 w3-large w3-text-grey" style="font-weight:bold">
         <?php
-
         for ($i = 1; $i < count($majorCategorie); $i++) {
             echo '     <a onclick="' . "menu" . $i . 'Func()" href="javascript:void(0)" class="w3-button w3-block w3-white w3-left-align">
             ' . $majorCategorie[$i] . ' <i class="fa fa-caret-down"></i>
@@ -60,9 +57,7 @@ function ' . "menu" . $i . 'Func() {
         ?>
     </div>
 </nav>
-
 </script>
-
 <!-- Top menu on small screens -->
 <header class="w3-bar w3-top w3-hide-large w3-black w3-xlarge">
     <div class="w3-bar-item w3-padding-24 w3-wide">Shop</div>
@@ -70,7 +65,6 @@ function ' . "menu" . $i . 'Func() {
 </header>
 <!-- Overlay effect when opening sidebar on small screens -->
 <div class="w3-overlay w3-hide-large" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
-
 <?php
 if (isset($_SESSION['isLoginedIn']) and $_SESSION['isAdmin'] == 1) {
     echo '
@@ -88,7 +82,6 @@ if (isset($_SESSION['isLoginedIn']) and $_SESSION['isAdmin'] == 1) {
 <p>Add an item</p>
 <div id="card-container">
     <div class="card-container">';
-
     echo '<div class="card" id="plus">
             <div class="front">
                 <form action="shop.php" method="post" enctype="multipart/form-data">
@@ -110,7 +103,6 @@ if (isset($_SESSION['isLoginedIn']) and $_SESSION['isAdmin'] == 1) {
         echo '
                             <option value="' . str_replace(" ", "_", $SubCategories[$i]) . ', ' . $i . ' " >' . $SubCategories[$i] . '</option>';
     }
-
     echo '
                             </select>
                             <br>
@@ -136,7 +128,6 @@ if (isset($_SESSION['isLoginedIn']) and $_SESSION['isAdmin'] == 1) {
         echo '
                             <option value="' . str_replace(" ", "_", $properties[$i]) . ', ' . $i . ' " >' . $properties[$i] . '</option>';
     }
-
     echo '
                             </select>
                             <input type="number" name="price" placeholder="price" required>
@@ -159,7 +150,6 @@ if (isset($_SESSION['isLoginedIn']) and $_SESSION['isAdmin'] == 1) {
 }
 $dir    = '../uploads';
 $uploadFiles = scandir($dir);
-
 for ($i = 1; $i < count($Categories_SubCategories); $i++) {
     $shopItemCount = 0;
     echo '
@@ -189,31 +179,40 @@ for ($i = 1; $i < count($Categories_SubCategories); $i++) {
             <div class="w3-display-container">
                 <div class="card">
                     <div class="front" >';
-
             echo '<img src="../uploads/' . $uploadFiles[$k] . '" alt="image" >';
             $productId = 0;
             for ($l = 2; $l < count($uploadFiles); $l++) {
                 if (str_contains($uploadFiles[$l], str_replace(" ", "_", $SubCategories[$i]) . "_" . (explode(' ', $productDatas[$k], 3))[0])) {
-                    echo '<p>'. (explode(' ', $productDatas[$l], 3))[0] . '<br><b>$' . (explode(' ', $productDatas[$l], 3))[1] . '</b></p>  ';
+                    echo '<p>' . (explode(' ', $productDatas[$l], 3))[0] . '<br><b>$' . (explode(' ', $productDatas[$l], 3))[1] . '</b></p>  ';
                     $productId = explode(' ', $productDatas[$l], 3)[2];
                 }
             }
-            echo '<div class="w3-display-middle w3-display-hover">
-                            <button class="w3-button w3-black">Buy now <i class="fa fa-shopping-cart"></i></button>
-                            ';
+            echo '<div class="w3-display-middle w3-display-hover">';
+            echo '
+            <form method="post">
+            <br> ';
+            for ($l = 2; $l < count($uploadFiles); $l++) {
+                if (str_contains($uploadFiles[$l], $uploadFiles[$k]) and isset($_SESSION["isLoginedIn"])) {
+                    echo '<button  name="btnBuy' . "_" . ($l) . '" value="' . $productId . '" class="w3-button w3-black">Buy now <i class="fa fa-shopping-cart"></i></button>';
+                } else {
+                    if (!isset($_SESSION["isLoginedIn"])) {
+                        echo ' <button name="unsignedBuy' . "_" . ($l) . '" value="' . $productId . '"  class="w3-button w3-black" > Sign In to Buy</button>  ';
+                    }
+                }
+            }
             if (isset($_SESSION['isLoginedIn']) and $_SESSION['isAdmin'] == 1) {
-                echo '
-                                <form method="post">
-                                <br> ';
+                echo '<br>';
+                echo '<br>';
                 for ($l = 2; $l < count($uploadFiles); $l++) {
                     if (str_contains($uploadFiles[$l], $uploadFiles[$k])) {
                         echo '<button name="btnDelete' . "_" . ($l) . '" value="' . $productId . '" class="w3-button w3-black">Remove <i class="fa fa-window-close"></i> </button>';
                     }
                 }
-                echo '
+            }
+            echo '
                             </form>
                             ';
-            }
+
             echo '
                         </div>
                     </div>
@@ -226,7 +225,6 @@ for ($i = 1; $i < count($Categories_SubCategories); $i++) {
                 ';
         }
     }
-
     echo ' </div>
         </div>';
     echo '
@@ -259,6 +257,18 @@ for ($i = 2; $i < count($uploadFiles); $i++) {
         <script>
             alert("<?php echo $uploadFiles[$i] . "deleted!"; ?>");
             window.location.href = "shop.php";
+        </script>
+<?php
+    }
+}
+
+for ($i = 2; $i < count($uploadFiles); $i++) {
+    if (isset($_POST["unsignedBuy" . "_" . $i])) {
+        $_SESSION['unsignedProduct'] = $_POST["unsignedBuy" . "_" . $i];
+        ?>
+        <script>
+            alert("We get you to the login page");
+            window.location.href = "login.php";
         </script>
 <?php
     }

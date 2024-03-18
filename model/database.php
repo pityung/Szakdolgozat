@@ -1,5 +1,4 @@
 <?php
-
 $db = new DataBase;
 define('DB_PREFIX',"nckp1tyung_");
 class userTable
@@ -10,6 +9,7 @@ class userTable
         $result = DataBase::$conn->query($sql);
         return $result;
     }
+
     function checkLogin($msg)
     {
         $sql = "SELECT id, username, user_password, first_name, last_name, email, phone, admin FROM ".DB_PREFIX."user WHERE username = ?";
@@ -57,7 +57,6 @@ class userTable
     }
     function registerUserAddress()
     {
-
         $sql = "INSERT INTO `".DB_PREFIX."user_address`( `user_id`, `address_line`, `city`, `postal_code`, `country`) VALUES ('" . $_SESSION['id'] . "','" . $_POST['address_line'] . "','" . $_POST['city'] . "','" . $_POST['postal_code'] . "','" . $_POST['country'] . "');";
         DataBase::$conn->query($sql);
         $_SESSION['addressOk'] = true;
@@ -70,7 +69,7 @@ class userTable
         }else{
         $sql = "UPDATE `nckp1tyung_user` SET `username`='".$_POST['username_edit']."',`first_name`='".$_POST['first_name_edit']."',`last_name`='".$_POST['last_name_edit']."',`phone`='".$_POST['phone_edit']."',`email`='".$_POST['email_edit']."' WHERE  `id` = ".$_SESSION['id']."";
         DataBase::$conn->query($sql);   
-         $msg.= "Succesfully updated profile!";
+        $msg.= "Succesfully updated profile!";
         }
         return $msg;
     }
@@ -143,13 +142,13 @@ class userTable
         $result = DataBase::$conn->query($sql);
         if ($result->num_rows > 0) {
             if ($row = $result->fetch_assoc()) {
-                $sql ="INSERT INTO `nckp1tyung_shopping_session`(`user_id`) VALUES ('".$row['id']."')";
+                $sql ="INSERT INTO `".DB_PREFIX."shopping_session`(`user_id`) VALUES ('".$row['id']."')";
                 $result = DataBase::$conn->query($sql);
             }
         }
     }
     function checkUploadedProducts(){
-        $sql = "SELECT * FROM `nckp1tyung_product` WHERE `name` LIKE '". str_replace(" ", "_", $_POST['productName'])."_".$_SESSION['id']."' AND `category_id` = ".(explode(',', $_POST['product_category_menu'],2))[1]."";
+        $sql = "SELECT * FROM `".DB_PREFIX."product` WHERE `name` LIKE '". str_replace(" ", "_", $_POST['productName'])."_".$_SESSION['id']."' AND `category_id` = ".(explode(',', $_POST['product_category_menu'],2))[1]."";
         $result = DataBase::$conn->query($sql);
         if ($result->num_rows == 0) {
             return ;
@@ -158,7 +157,7 @@ class userTable
         }
     }
     function updateProduct(){
-        $sql = "UPDATE `nckp1tyung_product` SET `sex`='".$_POST['sex']."',`description`='".$_POST['description']."',`price`='".$_POST['price']."',`propertie_id`='".(explode(',', $_POST['Riding_style_menu'],2))[1]."',`quantity`='".$_POST['quantity']."',`color`='".$_POST['color']."'WHERE `name` LIKE '". str_replace(" ", "_", $_POST['productName'])."_".$_SESSION['id']."' AND `category_id` = ".(explode(',', $_POST['product_category_menu'],2))[1]."";
+        $sql = "UPDATE `".DB_PREFIX."product` SET `sex`='".$_POST['sex']."',`description`='".$_POST['description']."',`price`='".$_POST['price']."',`propertie_id`='".(explode(',', $_POST['Riding_style_menu'],2))[1]."',`quantity`='".$_POST['quantity']."',`color`='".$_POST['color']."'WHERE `name` LIKE '". str_replace(" ", "_", $_POST['productName'])."_".$_SESSION['id']."' AND `category_id` = ".(explode(',', $_POST['product_category_menu'],2))[1]."";
         DataBase::$conn->query($sql);
     }
     function uploadProduct(){
@@ -179,10 +178,30 @@ function getProductDatas(){
     }
     return $productDatas;
 }
-
 function deleteProductFromDatabase($removable){
-$sql = "DELETE FROM `".DB_PREFIX."product` WHERE `id` = '".$removable."'";
+$sql = "DELETE FROM `nckp1tyung_product` WHERE `id` = '".$removable."'";
 DataBase::$conn->query($sql);
 }
+function removeDeletedProductFromAllCart($removable){
+    $sql = "DELETE FROM `nckp1tyung_cart_item` WHERE `product_id`='".$removable."'";
+    DataBase::$conn->query($sql);
+}
+
+function getSessionId(){
+    $sql = "SELECT `id`FROM `".DB_PREFIX."shopping_session` WHERE `user_id` =   $_SESSION[id] ";
+    $result = DataBase::$conn->query($sql);
+    if ($result->num_rows > 0) {
+        if ($row = $result->fetch_assoc()) {
+            return $row['id'];
+        }
+    }else{
+        return "there is an error!";
+    }
+}
+function moveProductToCart($productId , $sessionId){
+    $sql = "INSERT INTO `nckp1tyung_cart_item`( `product_id`, `quantity`, `session_id`) VALUES ('".$productId."','1','".$sessionId."');";
+    DataBase::$conn->query($sql);
+}
 
 }
+?>
