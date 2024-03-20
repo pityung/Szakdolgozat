@@ -16,6 +16,8 @@ $properties = $user_table->getPropertie();
 
 if(isset( $_SESSION["isLoginedIn"])){
 $sessionId = $user_table->getSessionId();
+$userCartItemes = $user_table->getUserCartItems($sessionId);
+$userCartItemesPrices = $user_table->getUserCartItemsPirces($sessionId);
 }
 if (isset($_POST['password']) and isset($_POST['username']) and isset($_POST['first_name']) and isset($_POST['last_name']) and isset($_POST['email']) and isset($_POST['phone'])) {
     //$nev = StringHelper::safe_input($_POST['username']);

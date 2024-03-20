@@ -25,6 +25,7 @@
                 </button>
                 <img src="../images/logo.jpg" alt="LOGO" id="darkmode" onclick="Darkmode()">
             </div>
+
             <div class="collapse navbar-collapse" id="myNavbar">
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href="../index.php">HOME</a></li>

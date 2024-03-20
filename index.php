@@ -43,9 +43,14 @@ if (isset($_GET['action'])) {
             <div class="collapse navbar-collapse" id="myNavbar">
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href="#myPage">HOME</a></li>
+<?php 
+if(!empty($_SESSION["isLoginedIn"])){
+echo ' <li><a href="view/cart.php">CART</a></li>';
+}
+?>
                     <li><a href="#cardheader">STYLES</a></li>
                     <li><a href="#shop">SHOP</a></li>
-                    <li><a href="#app">APP</a></li>
+                    <li><a href="view/app.php">APP</a></li>
                     <!--User/login Menu-->
                     <?php
                     if (!empty($_SESSION["isLoginedIn"]) && $_SESSION["isLoginedIn"] = true) {
