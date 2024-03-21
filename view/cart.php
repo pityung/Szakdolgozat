@@ -84,12 +84,7 @@ for ($i = 2; $i <  count($userCartItemes); $i++) {
     echo '
             <form method="post">
             <br> ';
-
-    for ($j = 2; $j < count($uploadFiles); $j++) {
-        if (str_contains($uploadFiles[$j],  $userCartItemes[$i])) {
-        //    echo '<button name="btnRemoveFromCart' . "_" . ($j) . '" value="' . $productId . '" class="w3-button w3-black">Remove <i class="fa fa-window-close"></i> </button>';
-        }
-    }
+            echo '<button name="btnRemoveFromCart' . "_" . ($i) . '" value="' . $userCartitmesId[$i] . '" class="w3-button w3-black">Remove <i class="fa fa-window-close"></i> </button>';
     echo '
                             </form>
                             
@@ -97,7 +92,7 @@ for ($i = 2; $i <  count($userCartItemes); $i++) {
     echo '
                         </div>
                         <div class="w3-display-bottomleft w3-display-hover">
-                                   <b>$' . $userCartItemesPrices[$i]. '</b>
+                                <b>$' . $userCartItemesPrices[$i]. '</b>
                             </div>
                     </div>
                         
@@ -125,7 +120,16 @@ if (!empty($msg)) {
     </script>
 <?php
 }
-
+for ($i = 2; $i <  count($userCartItemes); $i++) { 
+    if(isset($_POST["btnRemoveFromCart" . "_" . $i])){
+    ?>
+        <script>
+            alert("The Product is Deleted from your cart!");
+            window.location.href = "cart.php";
+        </script>
+    <?php
+    }
+}
 
 
 ?>

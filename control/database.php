@@ -18,6 +18,7 @@ if(isset( $_SESSION["isLoginedIn"])){
 $sessionId = $user_table->getSessionId();
 $userCartItemes = $user_table->getUserCartItems($sessionId);
 $userCartItemesPrices = $user_table->getUserCartItemsPirces($sessionId);
+$userCartitmesId = $user_table->getuserCartitmesId($sessionId);
 }
 if (isset($_POST['password']) and isset($_POST['username']) and isset($_POST['first_name']) and isset($_POST['last_name']) and isset($_POST['email']) and isset($_POST['phone'])) {
     //$nev = StringHelper::safe_input($_POST['username']);
@@ -82,4 +83,11 @@ if(isset($_SESSION['unsignedProduct'])){
         $msg = $user_table->moveProductToCart($_SESSION['unsignedProduct'],$sessionId);
         unset($_SESSION['unsignedProduct']);
     }
+}
+if(isset($userCartItemes)){
+for ($i = 2; $i <  count($userCartItemes); $i++) { 
+    if(isset($_POST["btnRemoveFromCart" . "_" . $i])){
+        $msg = $user_table->removeFromCart($_POST["btnRemoveFromCart" . "_" . $i]);
+    }
+}
 }

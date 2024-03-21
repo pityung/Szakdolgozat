@@ -238,6 +238,7 @@ class userTable
         $userCartItemesPrices[0] = "";
         $userCartItemesPrices[1] = "";
         if ($result->num_rows > 0) {
+
             for ($i = 0; $i < $result->num_rows; $i++) {
                 if ($row = $result->fetch_assoc()) {
                     array_push($userCartItemesPrices, $row['price']);
@@ -245,5 +246,25 @@ class userTable
             }
         }
         return $userCartItemesPrices;
+    }
+
+    function getuserCartitmesId($sessionId){
+        $sql = 'SELECT `nckp1tyung_cart_item`.`id`, `nckp1tyung_cart_item`.`session_id` FROM `nckp1tyung_cart_item` WHERE  `session_id` ='.$sessionId.'; ';
+        $result = DataBase::$conn->query($sql);
+        $userCartitmesId[0] = "";
+        $userCartitmesId[1] = "";
+        if ($result->num_rows > 0) {
+
+            for ($i = 0; $i < $result->num_rows; $i++) {
+                if ($row = $result->fetch_assoc()) {
+                    array_push($userCartitmesId, $row['id']);
+                }
+            }
+        }
+        return $userCartitmesId;
+    }
+    function removeFromCart($removableCartProduct){
+$sql = 'DELETE FROM `nckp1tyung_cart_item` WHERE `id` ="'.$removableCartProduct.'" ';
+DataBase::$conn->query($sql);
     }
 }
