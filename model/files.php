@@ -12,7 +12,7 @@ class Filemanager {
         $fileName = basename($_FILES["fileToUpload"]["name"]);
         $fileNameArray = preg_split("/\./",$fileName);
         $selectOption =(explode(',', $_POST['product_category_menu'],2))[0];
-        $fileName = $selectOption."_".$_POST['productName']."_".$_SESSION['id'].".".$fileNameArray[1];
+        $fileName = $selectOption."_".str_replace(" ", "", $_POST['productName'])."_".$_SESSION['id'].".".$fileNameArray[1];
         $target_file = TARGET_DIR . $fileName;
         
         $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);

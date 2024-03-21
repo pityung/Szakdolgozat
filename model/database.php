@@ -156,7 +156,7 @@ class userTable
     }
     function checkUploadedProducts()
     {
-        $sql = "SELECT * FROM `" . DB_PREFIX . "product` WHERE `name` LIKE '" . str_replace(" ", "_", $_POST['productName']) . "_" . $_SESSION['id'] . "' AND `category_id` = " . (explode(',', $_POST['product_category_menu'], 2))[1] . "";
+        $sql = "SELECT * FROM `" . DB_PREFIX . "product` WHERE `name` LIKE '" . str_replace(" ", "", $_POST['productName']) . "_" . $_SESSION['id'] . "' AND `category_id` = " . (explode(',', $_POST['product_category_menu'], 2))[1] . "";
         $result = DataBase::$conn->query($sql);
         if ($result->num_rows == 0) {
             return;
@@ -166,12 +166,12 @@ class userTable
     }
     function updateProduct()
     {
-        $sql = "UPDATE `" . DB_PREFIX . "product` SET `sex`='" . $_POST['sex'] . "',`description`='" . $_POST['description'] . "',`price`='" . $_POST['price'] . "',`propertie_id`='" . (explode(',', $_POST['Riding_style_menu'], 2))[1] . "',`quantity`='" . $_POST['quantity'] . "',`color`='" . $_POST['color'] . "'WHERE `name` LIKE '" . str_replace(" ", "_", $_POST['productName']) . "_" . $_SESSION['id'] . "' AND `category_id` = " . (explode(',', $_POST['product_category_menu'], 2))[1] . "";
+        $sql = "UPDATE `" . DB_PREFIX . "product` SET `sex`='" . $_POST['sex'] . "',`description`='" . $_POST['description'] . "',`price`='" . $_POST['price'] . "',`propertie_id`='" . (explode(',', $_POST['Riding_style_menu'], 2))[1] . "',`quantity`='" . $_POST['quantity'] . "',`color`='" . $_POST['color'] . "'WHERE `name` LIKE '" . str_replace(" ", "", $_POST['productName']) . "_" . $_SESSION['id'] . "' AND `category_id` = " . (explode(',', $_POST['product_category_menu'], 2))[1] . "";
         DataBase::$conn->query($sql);
     }
     function uploadProduct()
     {
-        $sql = "INSERT INTO `" . DB_PREFIX . "product` ( `name`, `sex`, `description`, `price`, `category_id`, `propertie_id`, `quantity` , `color`) VALUES ('" . str_replace(" ", "_", $_POST['productName']) . "_" . $_SESSION['id'] . "','" . $_POST['sex'] . "','" . $_POST['description'] . "','" . $_POST['price'] . "','" . (explode(',', $_POST['product_category_menu'], 2))[1] . "','" . (explode(',', $_POST['Riding_style_menu'], 2))[1] . "','" . $_POST['quantity'] . "', '" . $_POST['color'] . "'); ";
+        $sql = "INSERT INTO `" . DB_PREFIX . "product` ( `name`, `sex`, `description`, `price`, `category_id`, `propertie_id`, `quantity` , `color`) VALUES ('" . str_replace(" ", "", $_POST['productName']) . "_" . $_SESSION['id'] . "','" . $_POST['sex'] . "','" . $_POST['description'] . "','" . $_POST['price'] . "','" . (explode(',', $_POST['product_category_menu'], 2))[1] . "','" . (explode(',', $_POST['Riding_style_menu'], 2))[1] . "','" . $_POST['quantity'] . "', '" . $_POST['color'] . "'); ";
         DataBase::$conn->query($sql);
     }
     function getProductDatas()

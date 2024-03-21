@@ -30,7 +30,9 @@ $db = new DataBase;
         echo "<h1>your Total: </h1>";
         $totalPayment = 0;
         for ($i = 2; $i <  count($userCartItemes); $i++) {
-        $totalPayment = $totalPayment+$userCartItemesPrices[$i]; 
+            if(isset($userCartItemesPrices[$i])){
+        $totalPayment += $userCartItemesPrices[$i]; 
+            }
         }
         echo "<p>".$totalPayment."$</p>";
         echo "buy Button";
@@ -76,7 +78,7 @@ for ($i = 2; $i <  count($userCartItemes); $i++) {
             echo '<img src="../uploads/' . $uploadFiles[$j] . '" alt="image" >';
         }
     }
-    echo '<p>' . $userCartItemes[$i] . '<br><b>$' . $userCartItemesPrices[$i]. '</b></p>  ';
+    echo '<p >' .preg_replace('/[0-9]+/', '', str_replace("_", " " , $userCartItemes[$i])) . '</p> ';
     echo '
     <div class="w3-display-middle w3-display-hover">';
     echo '
@@ -90,9 +92,13 @@ for ($i = 2; $i <  count($userCartItemes); $i++) {
     }
     echo '
                             </form>
+                            
                             ';
     echo '
                         </div>
+                        <div class="w3-display-bottomleft w3-display-hover">
+                                   <b>$' . $userCartItemesPrices[$i]. '</b>
+                            </div>
                     </div>
                         
                     <div class="w3-display-middle w3-display-hover" >

@@ -183,7 +183,7 @@ for ($i = 1; $i < count($Categories_SubCategories); $i++) {
             $productId = 0;
             for ($l = 2; $l < count($uploadFiles); $l++) {
                 if (str_contains($uploadFiles[$l], str_replace(" ", "_", $SubCategories[$i]) . "_" . (explode(' ', $productDatas[$k], 3))[0])) {
-                    echo '<p>' . (explode(' ', $productDatas[$l], 3))[0] . '<br><b>$' . (explode(' ', $productDatas[$l], 3))[1] . '</b></p>  ';
+                    echo '<p>' .preg_replace('/[0-9]+/', '', str_replace("_", " " , (explode(' ', $productDatas[$l], 3))[0])). '<br><b>$' . (explode(' ', $productDatas[$l], 3))[1] . '</b></p>  ';
                     $productId = explode(' ', $productDatas[$l], 3)[2];
                 }
             }

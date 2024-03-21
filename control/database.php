@@ -37,7 +37,9 @@ if (isset($_POST['username']) and isset($_POST['password'])) {
     if (empty($_POST['password'])) $msg .= "The password is not set. ";
     if (!$msg) {
         $msg = $user_table->checkLogin($msg);
+        if(!$msg){
         $sessionId = $user_table->getSessionId();
+        }
     }
     if (!$msg) {
         $msg = $user_table->addressIsSet();
