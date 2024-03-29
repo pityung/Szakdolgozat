@@ -16,9 +16,11 @@ $properties = $user_table->getPropertie();
 
 if(isset( $_SESSION["isLoginedIn"])){
 $sessionId = $user_table->getSessionId();
+$isCartEmpty = $user_table->cartIsEmpty($sessionId);
 $userCartItemes = $user_table->getUserCartItems($sessionId);
 $userCartItemesPrices = $user_table->getUserCartItemsPirces($sessionId);
 $userCartitmesId = $user_table->getuserCartitmesId($sessionId);
+$userCartProductId = $user_table->getuserCartProductId($sessionId);
 }
 if (isset($_POST['password']) and isset($_POST['username']) and isset($_POST['first_name']) and isset($_POST['last_name']) and isset($_POST['email']) and isset($_POST['phone'])) {
     //$nev = StringHelper::safe_input($_POST['username']);
@@ -90,4 +92,18 @@ for ($i = 2; $i <  count($userCartItemes); $i++) {
         $msg = $user_table->removeFromCart($_POST["btnRemoveFromCart" . "_" . $i]);
     }
 }
+}
+if(isset($_POST['buyCartProducts'])){
+    $isCartEmpty = $user_table->cartIsEmpty($sessionId);
+    if (!$isCartEmpty){
+$user_table->createOrderSession();
+for ($i=2; $i < count($userCartProductId); $i++) { 
+    $msg .= $user_table->createOrder($userCartProductId[$i], $sessionId);
+}
+$user_table->deletEverythingFromCart($sessionId);
+}else{
+    $msg .= "Your cart is Empty!";
+}
+
+
 }

@@ -263,8 +263,53 @@ class userTable
         }
         return $userCartitmesId;
     }
+
+    function getuserCartProductId($sessionId){
+        $sql = 'SELECT `nckp1tyung_cart_item`.`product_id`, `nckp1tyung_cart_item`.`session_id` FROM `nckp1tyung_cart_item` WHERE  `session_id` ='.$sessionId.'; ';
+        $result = DataBase::$conn->query($sql);
+        $userCartitmesId[0] = "";
+        $userCartitmesId[1] = "";
+        if ($result->num_rows > 0) {
+
+            for ($i = 0; $i < $result->num_rows; $i++) {
+                if ($row = $result->fetch_assoc()) {
+                    array_push($userCartitmesId, $row['product_id']);
+                }
+            }
+        }
+        return $userCartitmesId;
+    }
     function removeFromCart($removableCartProduct){
 $sql = 'DELETE FROM `nckp1tyung_cart_item` WHERE `id` ="'.$removableCartProduct.'" ';
 DataBase::$conn->query($sql);
     }
+    function cartIsEmpty($sessionId){
+        $sql = "SELECT * FROM `nckp1tyung_cart_item` WHERE `session_id` =".$sessionId."";
+        $result = DataBase::$conn->query($sql);
+        if ($result->num_rows > 0) {
+            return false;
+        }
+        return true;
+    }
+    function createOrderSession(){
+        $sql = "INSERT INTO `nckp1tyung_order_details`( `user_id`) VALUES ('".$_SESSION['id']."')"; 
+        DataBase::$conn->query($sql);
+    }
+    function createOrder($productId ){
+        $sql = "SELECT  * FROM `nckp1tyung_order_details` WHERE `user_id` = ".$_SESSION['id']." 
+        ORDER BY `id` desc  LIMIT 1 ;";
+        $result = DataBase::$conn->query($sql);
+        if ($result->num_rows > 0) {
+            if ($row = $result->fetch_assoc()) {
+                $OrderSessionId = $row['id'];
+            }
+        }
+        $sql = "INSERT INTO `nckp1tyung_order_items`( `order_details_id`, `product_id`, `quantity`, `total_per_unit`) VALUES ('".$OrderSessionId ."','".$productId."','4','4')";
+        DataBase::$conn->query($sql);
+    }
+    function deletEverythingFromCart($sessionId){
+        $sql = "DELETE FROM `nckp1tyung_cart_item` WHERE `session_id`=".$sessionId. "";
+        DataBase::$conn->query($sql);
+    }
 }
+

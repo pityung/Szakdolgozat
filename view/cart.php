@@ -35,7 +35,8 @@ $db = new DataBase;
             }
         }
         echo "<p>".$totalPayment."$</p>";
-        echo "buy Button";
+        
+        echo ' <form method="post"> <input type="submit" name="buyCartProducts" value="Buy The Products" class="w3-button w3-black"> </form>';
         ?>
     </div>
 </nav>
@@ -131,7 +132,15 @@ for ($i = 2; $i <  count($userCartItemes); $i++) {
     }
 }
 
-
+if(isset($_POST['buyCartProducts'])){
+    ?>
+    <script>
+        alert("This function is unavailable at the moment! but we got your order!");
+        window.location.href = "cart.php";
+        location.reload();
+    </script>
+<?php
+}
 ?>
 </div>
 </body>
