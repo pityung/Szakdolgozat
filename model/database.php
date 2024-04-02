@@ -295,7 +295,7 @@ DataBase::$conn->query($sql);
         $sql = "INSERT INTO `nckp1tyung_order_details`( `user_id`) VALUES ('".$_SESSION['id']."')"; 
         DataBase::$conn->query($sql);
     }
-    function createOrder($productId ){
+    function createOrder($productId , $price){
         $sql = "SELECT  * FROM `nckp1tyung_order_details` WHERE `user_id` = ".$_SESSION['id']." 
         ORDER BY `id` desc  LIMIT 1 ;";
         $result = DataBase::$conn->query($sql);
@@ -304,8 +304,22 @@ DataBase::$conn->query($sql);
                 $OrderSessionId = $row['id'];
             }
         }
-        $sql = "INSERT INTO `nckp1tyung_order_items`( `order_details_id`, `product_id`, `quantity`, `total_per_unit`) VALUES ('".$OrderSessionId ."','".$productId."','4','4')";
+        $sql = "INSERT INTO `nckp1tyung_order_items`( `order_details_id`, `product_id`, `quantity`, `total_per_unit`) VALUES ('".$OrderSessionId ."','".$productId."','1','".$price."')";
         DataBase::$conn->query($sql);
+    }
+    function decreaseProductQuantity($productId, $currentProductQuantity){
+$sql = "UPDATE `nckp1tyung_product` SET `quantity`='".($currentProductQuantity-1)."' WHERE `id` = ".$productId."";
+$result = DataBase::$conn->query($sql);
+    }
+    function getProductQuantity($productId){
+        $sql = "SELECT `quantity` FROM `nckp1tyung_product` WHERE `id` = ".$productId."";
+        $result = DataBase::$conn->query($sql);
+        if ($result->num_rows > 0) {
+            if ($row = $result->fetch_assoc()) {
+                $productQuantity = $row['quantity'];
+            }
+        }
+        return $productQuantity;
     }
     function deletEverythingFromCart($sessionId){
         $sql = "DELETE FROM `nckp1tyung_cart_item` WHERE `session_id`=".$sessionId. "";

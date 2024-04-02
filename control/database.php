@@ -98,7 +98,9 @@ if(isset($_POST['buyCartProducts'])){
     if (!$isCartEmpty){
 $user_table->createOrderSession();
 for ($i=2; $i < count($userCartProductId); $i++) { 
-    $msg .= $user_table->createOrder($userCartProductId[$i], $sessionId);
+    $msg .= $user_table->createOrder($userCartProductId[$i],$userCartItemesPrices[$i]);
+    $ProductQuantity = $user_table->getProductQuantity($userCartProductId[$i]);
+    $msg .= $user_table->decreaseProductQuantity($userCartProductId[$i], $ProductQuantity);
 }
 $user_table->deletEverythingFromCart($sessionId);
 }else{
