@@ -12,6 +12,7 @@ $Categories_SubCategories = $user_table->getCategories_SubCategories();
 $SubCategories = $user_table->getSubCategories();
 $productDatas = $user_table->getProductDatas();
 $properties = $user_table->getPropertie();
+$productQuantities = $user_table->getProductQuantities();
 
 
 if(isset( $_SESSION["isLoginedIn"])){
@@ -99,8 +100,8 @@ if(isset($_POST['buyCartProducts'])){
 $user_table->createOrderSession();
 for ($i=2; $i < count($userCartProductId); $i++) { 
     $msg .= $user_table->createOrder($userCartProductId[$i],$userCartItemesPrices[$i]);
-    $ProductQuantity = $user_table->getProductQuantity($userCartProductId[$i]);
-    $msg .= $user_table->decreaseProductQuantity($userCartProductId[$i], $ProductQuantity);
+    $deceasableProductQuantity = $user_table->getDecreasableProductQuantity($userCartProductId[$i]);
+    $msg .= $user_table->decreaseProductQuantity($userCartProductId[$i], $deceasableProductQuantity);
 }
 $user_table->deletEverythingFromCart($sessionId);
 }else{

@@ -183,8 +183,12 @@ for ($i = 1; $i < count($Categories_SubCategories); $i++) {
             $productId = 0;
             for ($l = 2; $l < count($uploadFiles); $l++) {
                 if (str_contains($uploadFiles[$l], str_replace(" ", "_", $SubCategories[$i]) . "_" . (explode(' ', $productDatas[$k], 3))[0])) {
+                    if((explode(' ', $productQuantities[$l], 2))[1] > 0){
                     echo '<p>' .preg_replace('/[0-9]+/', '', str_replace("_", " " , (explode(' ', $productDatas[$l], 3))[0])). '<br><b>$' . (explode(' ', $productDatas[$l], 3))[1] . '</b></p>  ';
                     $productId = explode(' ', $productDatas[$l], 3)[2];
+                    }else{
+                        echo '<p>' .preg_replace('/[0-9]+/', '', str_replace("_", " " , (explode(' ', $productDatas[$l], 3))[0])). '<br><b>Out of Stock</b></p>  '; 
+                    }
                 }
             }
             echo '<div class="w3-display-middle w3-display-hover">';
@@ -192,11 +196,15 @@ for ($i = 1; $i < count($Categories_SubCategories); $i++) {
             <form method="post">
             <br> ';
             for ($l = 2; $l < count($uploadFiles); $l++) {
-                if (str_contains($uploadFiles[$l], $uploadFiles[$k]) and isset($_SESSION["isLoginedIn"])) {
-                    echo '<button  name="btnBuy' . "_" . ($l) . '" value="' . $productId . '" class="w3-button w3-black">Buy now <i class="fa fa-shopping-cart"></i></button>';
+                    if (str_contains($uploadFiles[$l], str_replace(" ", "_", $SubCategories[$i]) . "_" . (explode(' ', $productDatas[$k], 3))[0]) and isset($_SESSION["isLoginedIn"])) {
+                        if((explode(' ', $productQuantities[$l], 2))[1] > 0){
+                            echo '<button  name="btnBuy' . "_" . ($l) . '" value="' . $productId . '" class="w3-button w3-black">Buy now <i class="fa fa-shopping-cart"></i></button> ';
+                        }
                 } else {
-                    if (!isset($_SESSION["isLoginedIn"])) {
+                    if (str_contains($uploadFiles[$l], str_replace(" ", "_", $SubCategories[$i]) . "_" . (explode(' ', $productDatas[$k], 3))[0]) and !isset($_SESSION["isLoginedIn"])) {
+                        if((explode(' ', $productQuantities[$l], 2))[1] > 0){
                         echo ' <button name="unsignedBuy' . "_" . ($l) . '" value="' . $productId . '"  class="w3-button w3-black" > Sign In to Buy</button>  ';
+                        }
                     }
                 }
             }
@@ -204,7 +212,7 @@ for ($i = 1; $i < count($Categories_SubCategories); $i++) {
                 echo '<br>';
                 echo '<br>';
                 for ($l = 2; $l < count($uploadFiles); $l++) {
-                    if (str_contains($uploadFiles[$l], $uploadFiles[$k])) {
+                    if (str_contains($uploadFiles[$l], str_replace(" ", "_", $SubCategories[$i]) . "_" . (explode(' ', $productDatas[$k], 3))[0])) {
                         echo '<button name="btnDelete' . "_" . ($l) . '" value="' . $productId . '" class="w3-button w3-black">Remove <i class="fa fa-window-close"></i> </button>';
                     }
                 }
@@ -214,8 +222,15 @@ for ($i = 1; $i < count($Categories_SubCategories); $i++) {
                             ';
 
             echo '
-                        </div>
-                    </div>
+                        </div>';
+                        for ($l = 2; $l < count($uploadFiles); $l++) {
+                            if (str_contains($uploadFiles[$l], str_replace(" ", "_", $SubCategories[$i]) . "_" . (explode(' ', $productDatas[$k], 3))[0]) and isset($_SESSION["isLoginedIn"])) {
+                                if((explode(' ', $productQuantities[$l], 2))[1] > 0){
+                                echo'  <span class="w3-tag w3-display-bottomleft">In Stock: '.(explode(' ', $productQuantities[$l], 2))[1].'</span>';
+                                }
+                            }
+                        }
+                echo'</div>
                         
                     <div class="w3-display-middle w3-display-hover" >
                         </div>

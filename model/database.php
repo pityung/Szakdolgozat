@@ -311,7 +311,7 @@ DataBase::$conn->query($sql);
 $sql = "UPDATE `nckp1tyung_product` SET `quantity`='".($currentProductQuantity-1)."' WHERE `id` = ".$productId."";
 $result = DataBase::$conn->query($sql);
     }
-    function getProductQuantity($productId){
+    function getDecreasableProductQuantity($productId){
         $sql = "SELECT `quantity` FROM `nckp1tyung_product` WHERE `id` = ".$productId."";
         $result = DataBase::$conn->query($sql);
         if ($result->num_rows > 0) {
@@ -320,6 +320,20 @@ $result = DataBase::$conn->query($sql);
             }
         }
         return $productQuantity;
+    }
+    function getProductQuantities(){
+        $sql = "SELECT `name`,`quantity` FROM `" . DB_PREFIX . "product` ";
+        $result = DataBase::$conn->query($sql);
+        $productQuantities[0] = "";
+        $productQuantities[1] = "";
+        if ($result->num_rows > 0) {
+            for ($i = 0; $i < $result->num_rows; $i++) {
+                if ($row = $result->fetch_assoc()) {
+                    array_push($productQuantities, $row['name'] . " " . $row['quantity']);
+                }
+            }
+        }
+        return $productQuantities;
     }
     function deletEverythingFromCart($sessionId){
         $sql = "DELETE FROM `nckp1tyung_cart_item` WHERE `session_id`=".$sessionId. "";
