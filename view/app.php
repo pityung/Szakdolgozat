@@ -1,3 +1,7 @@
+
+<?php 
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -10,7 +14,7 @@
     <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="../styles/style.css">
+    <link rel="stylesheet" href="../styles/appMain.css">
     <script src="../scripts/app.js"></script>
 </head>
 
@@ -29,11 +33,50 @@
             <div class="collapse navbar-collapse" id="myNavbar">
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href="../index.php">HOME</a></li>
-                    <li><a href="../view/login.php"><span class="glyphicon glyphicon-user" id="user"></span></a></li>
-                </ul>
+<?php 
+if (empty($_SESSION["isLoginedIn"])) {
+    echo '<li><a href="../view/login.php"><span class="glyphicon glyphicon-user" id="user"></span></a></li>';
+}
+?>
+                    </ul>
             </div>
         </div>
     </nav>
+<?php 
+if(!isset($_POST['gender'])){
+echo'
+<form method="post">
+<div class="container">
+<h2>Choose a Gender!</h2>
+<div class="gender">
+<input type="radio" name="gender">
+<span>Male</span>
+</div>
+<div class="gender">
+<input type="radio" name="gender" class="radio-btn">
+<span>Female</span>
+</div>
+<input type="submit" value="Send!" class="submit-btn">
+</div>
+</form> ';
+}else{
+    echo'
+<form method="post">
+<div class="container">
+<h2>Choose a Riding Style!</h2>
+<select name="product_category_menu">
+                            ';
+    for ($i = 1; $i < 10; $i++) {
+        echo '
+                            <option value="asd"> asd</option>';
+    }
+    echo '
+                            </select>
+</div>
+</form> ';
+}
+ ?>
+
 </body>
 
 </html>

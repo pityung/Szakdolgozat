@@ -72,9 +72,6 @@ class StringHelper
 
     function checkUpdate($msg)
     {
-        if (preg_match("/^[ ]*$/", $_POST['username_edit']) and !preg_match("/^[a-záéíóöőúüűÁÉÍÓÖŐÚÜŰA-Z]*$/", $_POST['username'])) {
-            $msg .= "The datas cannot contains full spaces! ";
-        }
         if (!preg_match("/^[a-záéíóöőúüűÁÉÍÓÖŐÚÜŰA-Z-' ]*$/", $_POST['last_name_edit'])) {
             $msg .= "The lastname only can contains letters and blank spaces! ";
         }

@@ -5,7 +5,7 @@ class Filemanager {
     function fileUpload($msg) {
 
         $uploadOk = 0;
-        $maxFileSize = 15; // MB-ban adjuk meg 
+        $maxFileSize = 15;
         define('TARGET_DIR',"../uploads/");
         define('IMG_EXTS', array('.jpg','.jpeg','.png','.gif'));   
         $maxFileSize = $maxFileSize * 1024 * 1024 ;

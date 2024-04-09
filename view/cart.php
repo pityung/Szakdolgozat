@@ -1,7 +1,7 @@
 <?php
 session_start();
 require "../helpers/mysql.php";
-require "../control/database.php";
+require "../control/MainController.php";
 $db = new DataBase;
 ?>
 <!DOCTYPE html>

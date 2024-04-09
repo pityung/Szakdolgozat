@@ -1,8 +1,10 @@
 <?php
 session_start();
 require "../helpers/mysql.php";
-require "../control/database.php";
+require "../control/MainController.php";
 $db = new DataBase;
+$dir    = '../uploads';
+$uploadFiles = scandir($dir);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -117,8 +119,7 @@ if (isset($_SESSION['isLoginedIn']) and $_SESSION['isAdmin'] == 1) {
                             <br>
                             <select name="sex">
                             <option value="Male">Male</option>
-                            <option value="Fe-Male">Fe-Male</option>
-                            <option value="Unisex">Unisex</option>
+                            <option value="Fe-Male">FeMale</option>
                             </select>
                             <br>
                             <smal>Select the Riding Style:</smal>
@@ -148,9 +149,8 @@ if (isset($_SESSION['isLoginedIn']) and $_SESSION['isAdmin'] == 1) {
 </div>
         ';
 }
-$dir    = '../uploads';
-$uploadFiles = scandir($dir);
-for ($i = 1; $i < count($Categories_SubCategories); $i++) {
+
+for ($i = 1; $i < count($SubCategories); $i++) {
     $shopItemCount = 0;
     echo '
     <br>
@@ -173,21 +173,20 @@ for ($i = 1; $i < count($Categories_SubCategories); $i++) {
     echo '</div>';
     echo '<div id="card-container">
             <div class="card-container">';
-    for ($k = 2; $k < count($uploadFiles); $k++) {
-        if (str_contains($uploadFiles[$k],  str_replace(" ", "_", $SubCategories[$i]))) {
+    for ($j = 2; $j < count($uploadFiles); $j++) {
+        if (str_contains($uploadFiles[$j],  str_replace(" ", "_", $SubCategories[$i]))) {
             echo '
             <div class="w3-display-container">
                 <div class="card">
                     <div class="front" >';
-            echo '<img src="../uploads/' . $uploadFiles[$k] . '" alt="image" >';
-            $productId = 0;
-            for ($l = 2; $l < count($uploadFiles); $l++) {
-                if (str_contains($uploadFiles[$l], str_replace(" ", "_", $SubCategories[$i]) . "_" . (explode(' ', $productDatas[$k], 3))[0])) {
-                    if((explode(' ', $productQuantities[$l], 2))[1] > 0){
-                    echo '<p>' .preg_replace('/[0-9]+/', '', str_replace("_", " " , (explode(' ', $productDatas[$l], 3))[0])). '<br><b>$' . (explode(' ', $productDatas[$l], 3))[1] . '</b></p>  ';
-                    $productId = explode(' ', $productDatas[$l], 3)[2];
-                    }else{
-                        echo '<p>' .preg_replace('/[0-9]+/', '', str_replace("_", " " , (explode(' ', $productDatas[$l], 3))[0])). '<br><b>Out of Stock</b></p>  '; 
+            echo '<img src="../uploads/' . $uploadFiles[$j] . '" alt="image" >';
+            for ($l = 1; $l < count($allProducts); $l++) {
+                if (str_contains($uploadFiles[$j], $allProducts[$l])) {
+                    
+                    if (str_replace($allProducts[$l] . "_", "", $productQuantities[$l]) > 0) {
+                        echo '<p>' . str_replace($allProducts[$l] . "_", "", $productNames[$l]) . '<br><b>$' . str_replace($allProducts[$l] . "_", "", $productPrices[$l]) . '</b></p>  ';
+                    } else {
+                        echo '<p>' . str_replace($allProducts[$l] . "_", "", $productNames[$l]) . '<br><b>Out of Stock</b></p>  ';
                     }
                 }
             }
@@ -195,25 +194,23 @@ for ($i = 1; $i < count($Categories_SubCategories); $i++) {
             echo '
             <form method="post">
             <br> ';
-            for ($l = 2; $l < count($uploadFiles); $l++) {
-                    if (str_contains($uploadFiles[$l], str_replace(" ", "_", $SubCategories[$i]) . "_" . (explode(' ', $productDatas[$k], 3))[0]) and isset($_SESSION["isLoginedIn"])) {
-                        if((explode(' ', $productQuantities[$l], 2))[1] > 0){
-                            echo '<button  name="btnBuy' . "_" . ($l) . '" value="' . $productId . '" class="w3-button w3-black">Buy now <i class="fa fa-shopping-cart"></i></button> ';
-                        }
-                } else {
-                    if (str_contains($uploadFiles[$l], str_replace(" ", "_", $SubCategories[$i]) . "_" . (explode(' ', $productDatas[$k], 3))[0]) and !isset($_SESSION["isLoginedIn"])) {
-                        if((explode(' ', $productQuantities[$l], 2))[1] > 0){
-                        echo ' <button name="unsignedBuy' . "_" . ($l) . '" value="' . $productId . '"  class="w3-button w3-black" > Sign In to Buy</button>  ';
-                        }
+            for ($l = 1; $l < count($allProducts); $l++) {
+                if (isset($_SESSION["isLoginedIn"])) {
+                    if (str_contains($uploadFiles[$j], $allProducts[$l]) and str_replace($allProducts[$l] . "_", "", $productQuantities[$l]) > 0) {
+                        echo '<button  name="btnBuy' . "_" . ($l) . '" value="' . str_replace($allProducts[$l] . "_", "", $productid[$l]) . '" class="w3-button w3-black">Buy now <i class="fa fa-shopping-cart"></i></button> ';
                     }
+                }else{
+                    if (str_contains($uploadFiles[$j], $allProducts[$l]) and str_replace($allProducts[$l] . "_", "", $productQuantities[$l]) > 0) {
+                        echo ' <button name="unsignedBuy' . "_" . ($l) . '" value="' . str_replace($allProducts[$l] . "_", "", $productid[$l])  . '"  class="w3-button w3-black" > Sign In to Buy</button>  ';
+                        } 
                 }
             }
             if (isset($_SESSION['isLoginedIn']) and $_SESSION['isAdmin'] == 1) {
                 echo '<br>';
                 echo '<br>';
-                for ($l = 2; $l < count($uploadFiles); $l++) {
-                    if (str_contains($uploadFiles[$l], str_replace(" ", "_", $SubCategories[$i]) . "_" . (explode(' ', $productDatas[$k], 3))[0])) {
-                        echo '<button name="btnDelete' . "_" . ($l) . '" value="' . $productId . '" class="w3-button w3-black">Remove <i class="fa fa-window-close"></i> </button>';
+                for ($l = 1; $l < count($allProducts); $l++) {
+                    if (str_contains($uploadFiles[$j], $allProducts[$l])) {
+                        echo '<button name="btnDelete' . "_" . ($l) . '" value="' . $productid[$l]  . '" class="w3-button w3-black">Remove <i class="fa fa-window-close"></i> </button>';
                     }
                 }
             }
@@ -223,14 +220,12 @@ for ($i = 1; $i < count($Categories_SubCategories); $i++) {
 
             echo '
                         </div>';
-                        for ($l = 2; $l < count($uploadFiles); $l++) {
-                            if (str_contains($uploadFiles[$l], str_replace(" ", "_", $SubCategories[$i]) . "_" . (explode(' ', $productDatas[$k], 3))[0]) and isset($_SESSION["isLoginedIn"])) {
-                                if((explode(' ', $productQuantities[$l], 2))[1] > 0){
-                                echo'  <span class="w3-tag w3-display-bottomleft">In Stock: '.(explode(' ', $productQuantities[$l], 2))[1].'</span>';
-                                }
-                            }
-                        }
-                echo'</div>
+            for ($l = 1; $l < count($allProducts); $l++) {
+                if (str_contains($uploadFiles[$j], $allProducts[$l])) {
+                    echo'  <span class="w3-tag w3-display-bottomleft">In Stock: '.str_replace($allProducts[$l] . "_", "", $productQuantities[$l]).'</span>';
+                }
+            }
+            echo '</div>
                         
                     <div class="w3-display-middle w3-display-hover" >
                         </div>
@@ -265,22 +260,29 @@ if (isset($_POST['submit'])) {
     </script>
     <?php
 }
-for ($i = 2; $i < count($uploadFiles); $i++) {
-    if (isset($_POST["btnDelete" . "_" . $i])) {
-        unlink("../uploads/" . $uploadFiles[$i]);
+for ($i = 1; $i < count($allProducts); $i++) {
+    if(isset($_POST["btnDelete". "_" . ($i)])){ 
+        $removable =str_replace( str_replace($allProducts[$i] , "", $productid[$i]), "", $_POST["btnDelete". "_" . ($i)]);   
+        for ($j=0; $j < count($uploadFiles); $j++) { 
+            if(str_contains($uploadFiles[$j], $removable)){
+                unlink("../uploads/" . $uploadFiles[$j]);
+            }
+        
+        
+    }
     ?>
         <script>
-            alert("<?php echo $uploadFiles[$i] . "deleted!"; ?>");
+            alert("<?php echo $removable . " deleted!"; ?>");
             window.location.href = "shop.php";
         </script>
-<?php
+    <?php
     }
 }
 
-for ($i = 2; $i < count($uploadFiles); $i++) {
+for ($i= 1; $i < count($uploadFiles); $i++) {
     if (isset($_POST["unsignedBuy" . "_" . $i])) {
         $_SESSION['unsignedProduct'] = $_POST["unsignedBuy" . "_" . $i];
-        ?>
+    ?>
         <script>
             alert("We get you to the login page");
             window.location.href = "login.php";

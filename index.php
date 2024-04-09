@@ -3,7 +3,7 @@
 session_start();
 require "helpers/mysql.php";
 $db = new DataBase;
-require "model/database.php";
+require "model/user.php";
 if (isset($_GET['action'])) {
     if ($_GET['action'] == 'logout') {
         session_unset();
@@ -53,7 +53,7 @@ echo ' <li><a href="view/cart.php">CART</a></li>';
                     <li><a href="view/app.php">APP</a></li>
                     <!--User/login Menu-->
                     <?php
-                    if (!empty($_SESSION["isLoginedIn"]) && $_SESSION["isLoginedIn"] = true) {
+                    if (!empty($_SESSION["isLoginedIn"]) && $_SESSION["isLoginedIn"] == true) {
                         print '
                         <li ><a  onclick=toggleMenu()> <span class="glyphicon glyphicon-user" class="user-pic" id="user" ></span> </a></li>
                         <div class="sub-menu-wrap" id="subMenu">

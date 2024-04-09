@@ -1,7 +1,7 @@
 <?php
 session_start();
 require "../helpers/mysql.php";
-require "../control/database.php";
+require "../control/MainController.php";
 $db = new DataBase;
 
 ?>
@@ -28,7 +28,7 @@ $db = new DataBase;
                 <div class="cards__card card">
                     <div class="wrap">
                         <?php
-                        if (isset($_POST['username_edit']) and isset($_POST['first_name_edit']) and isset($_POST['last_name_edit']) and isset($_POST['phone_edit'])  and isset($_POST['email_edit']) ) {
+                        if (isset($_POST['first_name_edit']) and isset($_POST['last_name_edit']) and isset($_POST['phone_edit'])  and isset($_POST['email_edit']) ) {
                             if (empty($msg)) {
                         ?>
                                 <script>
@@ -44,8 +44,7 @@ $db = new DataBase;
                         ?>
                         <form method="post">
                             <?php
-                            echo '  <input type="text" name="username_edit" value="'.$_SESSION['username'].'" placeholder="'.$_SESSION['username'].'" id="username" required>
-                            <br>
+                            echo '  
                             <input type="text" name="first_name_edit" value="'.$_SESSION["first_name"].'" placeholder="'.$_SESSION["first_name"].'" id="first_name" required>
                             <br>
                             <input type="text" name="last_name_edit" value="'.$_SESSION["last_name"].'" placeholder="'.$_SESSION["last_name"].'" id="last_name" required>
