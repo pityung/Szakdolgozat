@@ -1,6 +1,8 @@
-
-<?php 
+<?php
 session_start();
+require "../helpers/mysql.php";
+require "../control/MainController.php";
+$db = new DataBase;
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -33,50 +35,83 @@ session_start();
             <div class="collapse navbar-collapse" id="myNavbar">
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href="../index.php">HOME</a></li>
-<?php 
-if (empty($_SESSION["isLoginedIn"])) {
-    echo '<li><a href="../view/login.php"><span class="glyphicon glyphicon-user" id="user"></span></a></li>';
-}
-?>
-                    </ul>
+                    <?php
+                    if (empty($_SESSION["isLoginedIn"])) {
+                        echo '<li><a href="../view/login.php"><span class="glyphicon glyphicon-user" id="user"></span></a></li>';
+                    }
+                    ?>
+                </ul>
             </div>
         </div>
     </nav>
-<?php 
-if(!isset($_POST['gender'])){
-echo'
+    <?php
+    echo '
 <form method="post">
 <div class="container">
 <h2>Choose a Gender!</h2>
 <div class="gender">
-<input type="radio" name="gender">
+<input type="radio" name="gender" value="Male">
 <span>Male</span>
 </div>
 <div class="gender">
-<input type="radio" name="gender" class="radio-btn">
+<input type="radio" name="gender" value="Female" class="radio-btn">
 <span>Female</span>
+</div>
+</div>
+
+<div class="container">
+<h2>Choose a Riding Style!</h2>
+<select name="Riding_style_menu" class="riding-select">';
+    for ($i = 1; $i < count($properties); $i++) {
+        echo '
+<option value="' . str_replace(" ", "_", $properties[$i]) . '" >' . $properties[$i] . '</option>';
+    }
+    echo '
+</select>
+   
+</div>
+
+<div class="container">
+<div class="gender">
+<input type="checkbox" class="checkbox-btn" id="myCheck" onclick="colorFunction()">
+<span>Chose by Color</span>
+</div>
+<div class="gender">
+
+
+
+<select name="color_menu" class="riding-select" style="display:none" id="color">
+<option value="White">White</option>
+<option value="Black">Black</option>
+<option value="Pink">Pink </option>
+<option value="Green">Green</option>
+<option value="Yellow">Yellow</option>
+<option value="Blue">Blue</option>
+<option value="Grey">Grey</option>
+<option value="Red">Red</option>
+</select>
+<script>
+function colorFunction() {
+  var checkBox = document.getElementById("myCheck");
+  var text = document.getElementById("color");
+  if (checkBox.checked == true){
+    text.style.display = "block";
+  } else {
+     text.style.display = "none";
+  }
+}
+</script>
 </div>
 <input type="submit" value="Send!" class="submit-btn">
 </div>
-</form> ';
-}else{
-    echo'
-<form method="post">
-<div class="container">
-<h2>Choose a Riding Style!</h2>
-<select name="product_category_menu">
-                            ';
-    for ($i = 1; $i < 10; $i++) {
-        echo '
-                            <option value="asd"> asd</option>';
-    }
-    echo '
-                            </select>
-</div>
-</form> ';
-}
- ?>
+
+</form>';
+    ?>
 
 </body>
 
 </html>
+
+
+
+

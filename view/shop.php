@@ -133,7 +133,16 @@ if (isset($_SESSION['isLoginedIn']) and $_SESSION['isAdmin'] == 1) {
                             </select>
                             <input type="number" name="price" placeholder="price" required>
                             <br>
-                            <input type="text" name="color" placeholder="color" required>
+                            <select name="color" class="riding-select" id="color">
+                            <option value="White">White</option>
+                            <option value="Black">Black</option>
+                            <option value="Pink">Pink </option>
+                            <option value="Green">Green</option>
+                            <option value="Yellow">Yellow</option>
+                            <option value="Blue">Blue</option>
+                            <option value="Grey">Grey</option>
+                            <option value="Red">Red</option>
+                            </select>
                             <br>
                             <div>
                                 <button type="submit" value="Upload Image" name="submit">Uppload</button>
