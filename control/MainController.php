@@ -119,3 +119,4 @@ if (isset($_POST['buyCartProducts'])) {
         $msg .= "Your cart is Empty!";
     }
 }
+

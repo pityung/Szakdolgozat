@@ -119,7 +119,7 @@ if (isset($_SESSION['isLoginedIn']) and $_SESSION['isAdmin'] == 1) {
                             <br>
                             <select name="sex">
                             <option value="Male">Male</option>
-                            <option value="Fe-Male">FeMale</option>
+                            <option value="FeMale">FeMale</option>
                             </select>
                             <br>
                             <smal>Select the Riding Style:</smal>
@@ -210,7 +210,7 @@ for ($i = 1; $i < count($SubCategories); $i++) {
                     }
                 }else{
                     if (str_contains($uploadFiles[$j], $allProducts[$l]) and str_replace($allProducts[$l] . "_", "", $productQuantities[$l]) > 0) {
-                        echo ' <button name="unsignedBuy' . "_" . ($l) . '" value="' . str_replace($allProducts[$l] . "_", "", $productid[$l])  . '"  class="w3-button w3-black" > Sign In to Buy</button>  ';
+                        echo ' <button name="unsignedBuy' . "_" . ($l) . '" value="' . str_replace($allProducts[$l] . "_", "", $productid[$l])  . '"  class="w3-button w3-black" >Sign In to Buy</button>  ';
                         } 
                 }
             }

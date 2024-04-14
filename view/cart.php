@@ -8,7 +8,7 @@ $db = new DataBase;
 <html lang="en">
 
 <head>
-    <title>Shop</title>
+    <title>Cart</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -49,8 +49,6 @@ $db = new DataBase;
 <!-- Overlay effect when opening sidebar on small screens -->
 <div class="w3-overlay w3-hide-large" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
 <?php
-if (isset($_SESSION['isLoginedIn']) and $_SESSION['isAdmin'] == 1) {
-}
 $dir    = '../uploads';
 $uploadFiles = scandir($dir);
 
