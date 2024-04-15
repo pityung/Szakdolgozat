@@ -68,7 +68,7 @@ class shopProducts
 
     function getProducts()
     {
-        $sql = "SELECT `nckp1tyung_product`.`name`, `nckp1tyung_product_category`.`name`AS 'categoryName' FROM `nckp1tyung_product` INNER JOIN `nckp1tyung_product_category` ON `nckp1tyung_product`.`category_id` = `nckp1tyung_product_category`.`id`;";
+        $sql = "SELECT `nckp1tyung_product`.`name`, `nckp1tyung_product_category`.`name`AS 'categoryName' FROM `" . DB_PREFIX . "product` INNER JOIN `nckp1tyung_product_category` ON `nckp1tyung_product`.`category_id` = `nckp1tyung_product_category`.`id`;";
         $result = DataBase::$conn->query($sql);
         $products[0] = "";
         if ($result->num_rows > 0) {
@@ -84,7 +84,7 @@ class shopProducts
     function getProductNames()
     {
         $sql = "SELECT `nckp1tyung_product`.`name`, `nckp1tyung_product_category`.`name` AS `categoryName`, `nckp1tyung_product`.`name`
-        FROM `nckp1tyung_product` 
+        FROM `" . DB_PREFIX . "product` 
             INNER JOIN `nckp1tyung_product_category` ON `nckp1tyung_product`.`category_id` = `nckp1tyung_product_category`.`id`;";
         $result = DataBase::$conn->query($sql);
         $products[0] = "";
@@ -101,7 +101,7 @@ class shopProducts
     function getProductIds()
     {
         $sql = "SELECT `nckp1tyung_product`.`name`, `nckp1tyung_product_category`.`name` AS `categoryName`, `nckp1tyung_product`.`id`
-        FROM `nckp1tyung_product` 
+        FROM `" . DB_PREFIX . "product` 
             INNER JOIN `nckp1tyung_product_category` ON `nckp1tyung_product`.`category_id` = `nckp1tyung_product_category`.`id`;";
         $result = DataBase::$conn->query($sql);
         $products[0] = "";
@@ -118,7 +118,7 @@ class shopProducts
     function getProductQuantities()
     {
         $sql = "SELECT `nckp1tyung_product`.`name`, `nckp1tyung_product_category`.`name` AS `categoryName`, `nckp1tyung_product`.`quantity`
-        FROM `nckp1tyung_product` 
+        FROM `" . DB_PREFIX . "product` 
             INNER JOIN `nckp1tyung_product_category` ON `nckp1tyung_product`.`category_id` = `nckp1tyung_product_category`.`id`;";
         $result = DataBase::$conn->query($sql);
         $products[0] = "";
@@ -134,7 +134,7 @@ class shopProducts
     function getProductsPrices()
     {
         $sql = "SELECT `nckp1tyung_product`.`name`, `nckp1tyung_product_category`.`name` AS `categoryName`, `nckp1tyung_product`.`price`
-        FROM `nckp1tyung_product` 
+        FROM `" . DB_PREFIX . "product` 
             INNER JOIN `nckp1tyung_product_category` ON `nckp1tyung_product`.`category_id` = `nckp1tyung_product_category`.`id`;";
         $result = DataBase::$conn->query($sql);
         $products[0] = "";
@@ -150,7 +150,7 @@ class shopProducts
 
     function deleteProductFromDatabase($removable)
     {
-        $sql = "DELETE FROM `nckp1tyung_product` WHERE `id` = '" . $removable . "'";
+        $sql = "DELETE FROM `" . DB_PREFIX . "product` WHERE `id` = '" . $removable . "'";
         DataBase::$conn->query($sql);
     }
     function moveProductToCart($productId, $sessionId)
@@ -165,7 +165,7 @@ class shopProducts
     }
     function getDecreasableProductQuantity($productId)
     {
-        $sql = "SELECT `quantity` FROM `nckp1tyung_product` WHERE `id` = " . $productId . "";
+        $sql = "SELECT `quantity` FROM `" . DB_PREFIX . "product` WHERE `id` = " . $productId . "";
         $result = DataBase::$conn->query($sql);
         if ($result->num_rows > 0) {
             if ($row = $result->fetch_assoc()) {

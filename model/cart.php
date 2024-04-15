@@ -1,6 +1,6 @@
 <?php 
 $db = new DataBase;
-define('DB_PREFIX', "nckp1tyung_");
+
 class cart{
     function deletEverythingFromCart($sessionId){
         $sql = "DELETE FROM `nckp1tyung_cart_item` WHERE `session_id`=".$sessionId. "";

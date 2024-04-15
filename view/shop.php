@@ -1,7 +1,7 @@
 <?php
 session_start();
 require "../helpers/mysql.php";
-require "../control/MainController.php";
+require "../control/ShopController.php";
 $db = new DataBase;
 $dir    = '../uploads';
 $uploadFiles = scandir($dir);
@@ -21,7 +21,7 @@ $uploadFiles = scandir($dir);
     <script src="../scripts/shopScript.js"></script>
     <link rel="stylesheet" href="../styles/shop.css">
 </head>
-<!-- Sidebar/menu -->
+<!-- Sidebar/menu --> 
 <nav class="w3-sidebar w3-bar-block w3-white w3-collapse w3-top" style="z-index:3;width:250px" id="mySidebar">
     <div class="w3-container w3-display-container w3-padding-16">
         <i onclick="w3_close()" class="fa fa-remove w3-hide-large w3-button w3-display-topright"></i>
@@ -58,7 +58,7 @@ function ' . "menu" . $i . 'Func() {
         }
         ?>
     </div>
-</nav>
+</nav> 
 </script>
 <!-- Top menu on small screens -->
 <header class="w3-bar w3-top w3-hide-large w3-black w3-xlarge">

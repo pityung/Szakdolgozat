@@ -1,9 +1,13 @@
 <?php
+$db = new DataBase;
 class appProducts{
+    
+
+    
     function getselectedCartItemByColor($gender, $style, $color)
     {
         $sql = 'SELECT `nckp1tyung_product`.*, `nckp1tyung_product_category`.`name` AS "category_name", `nckp1tyung_properties`.`riding_style`
-        FROM `nckp1tyung_product` 
+        FROM `' . DB_PREFIX . 'product` 
             INNER JOIN `nckp1tyung_product_category` ON `nckp1tyung_product`.`category_id` = `nckp1tyung_product_category`.`id` 
             INNER JOIN `nckp1tyung_properties` ON `nckp1tyung_product`.`propertie_id` = `nckp1tyung_properties`.`id`WHERE `nckp1tyung_product`.`sex` LIKE "'.$gender.'" AND `nckp1tyung_properties`.`riding_style` LIKE "'.$style.'" AND `nckp1tyung_product`.`color` LIKE "'.$color.'"
         ';
@@ -21,7 +25,7 @@ class appProducts{
     }
     function getselectedCartItemPricesByColor($gender, $style, $color){
         $sql = 'SELECT `nckp1tyung_product`.*, `nckp1tyung_product_category`.`name` AS "category_name", `nckp1tyung_properties`.`riding_style`
-        FROM `nckp1tyung_product` 
+        FROM `' . DB_PREFIX . 'product` 
             INNER JOIN `nckp1tyung_product_category` ON `nckp1tyung_product`.`category_id` = `nckp1tyung_product_category`.`id` 
             INNER JOIN `nckp1tyung_properties` ON `nckp1tyung_product`.`propertie_id` = `nckp1tyung_properties`.`id`WHERE `nckp1tyung_product`.`sex` LIKE "'.$gender.'" AND `nckp1tyung_properties`.`riding_style` LIKE "'.$style.'" AND `nckp1tyung_product`.`color` LIKE "'.$color.'"
         ';   
@@ -41,7 +45,7 @@ class appProducts{
 
     function getselectedCartItemIdByColor($gender, $style, $color){
         $sql = 'SELECT `nckp1tyung_product`.*, `nckp1tyung_product_category`.`name` AS "category_name", `nckp1tyung_properties`.`riding_style`
-        FROM `nckp1tyung_product` 
+        FROM `' . DB_PREFIX . 'product` 
             INNER JOIN `nckp1tyung_product_category` ON `nckp1tyung_product`.`category_id` = `nckp1tyung_product_category`.`id` 
             INNER JOIN `nckp1tyung_properties` ON `nckp1tyung_product`.`propertie_id` = `nckp1tyung_properties`.`id`WHERE `nckp1tyung_product`.`sex` LIKE "'.$gender.'" AND `nckp1tyung_properties`.`riding_style` LIKE "'.$style.'" AND `nckp1tyung_product`.`color` LIKE "'.$color.'"
         ';     
@@ -62,7 +66,7 @@ class appProducts{
     function getselectedCartItem($gender, $style)
     {
         $sql = 'SELECT `nckp1tyung_product`.*, `nckp1tyung_product_category`.`name` AS "category_name", `nckp1tyung_properties`.`riding_style`
-        FROM `nckp1tyung_product` 
+        FROM `' . DB_PREFIX . 'product` 
             INNER JOIN `nckp1tyung_product_category` ON `nckp1tyung_product`.`category_id` = `nckp1tyung_product_category`.`id` 
             INNER JOIN `nckp1tyung_properties` ON `nckp1tyung_product`.`propertie_id` = `nckp1tyung_properties`.`id`WHERE `nckp1tyung_product`.`sex` LIKE "'.$gender.'" AND `nckp1tyung_properties`.`riding_style` LIKE "'.$style.'" 
         ';
@@ -80,7 +84,7 @@ class appProducts{
     }
     function getselectedCartItemPrices($gender, $style){
         $sql = 'SELECT `nckp1tyung_product`.*, `nckp1tyung_product_category`.`name` AS "category_name", `nckp1tyung_properties`.`riding_style`
-        FROM `nckp1tyung_product` 
+        FROM `' . DB_PREFIX . 'product` 
             INNER JOIN `nckp1tyung_product_category` ON `nckp1tyung_product`.`category_id` = `nckp1tyung_product_category`.`id` 
             INNER JOIN `nckp1tyung_properties` ON `nckp1tyung_product`.`propertie_id` = `nckp1tyung_properties`.`id`WHERE `nckp1tyung_product`.`sex` LIKE "'.$gender.'" AND `nckp1tyung_properties`.`riding_style` LIKE "'.$style.'" 
         ';
@@ -100,7 +104,7 @@ class appProducts{
 
     function getselectedCartItemId($gender, $style){
         $sql = 'SELECT `nckp1tyung_product`.*, `nckp1tyung_product_category`.`name` AS "category_name", `nckp1tyung_properties`.`riding_style`
-        FROM `nckp1tyung_product` 
+        FROM `' . DB_PREFIX . 'product` 
             INNER JOIN `nckp1tyung_product_category` ON `nckp1tyung_product`.`category_id` = `nckp1tyung_product_category`.`id` 
             INNER JOIN `nckp1tyung_properties` ON `nckp1tyung_product`.`propertie_id` = `nckp1tyung_properties`.`id`WHERE `nckp1tyung_product`.`sex` LIKE "'.$gender.'" AND `nckp1tyung_properties`.`riding_style` LIKE "'.$style.'" 
         ';

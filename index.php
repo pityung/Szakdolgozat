@@ -1,6 +1,7 @@
 <?php
 
 session_start();
+
 require "helpers/mysql.php";
 $db = new DataBase;
 require "model/user.php";
