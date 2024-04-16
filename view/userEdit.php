@@ -20,9 +20,9 @@ $db = new DataBase;
     <main class="main flow">
         <h1 class="main__heading">Update</h1>
         <br>
-        <a href="../index.php">
-            <input type="button" value="Go Back" id="goback-btn">
-        </a>
+        <form action="../index.php">
+            <input type="submit" value="Go Back" id ="goback-btn" >
+        </form>
         <div class="main__cards cards">
             <div class="cards__inner">
                 <div class="cards__card card">
@@ -49,7 +49,7 @@ $db = new DataBase;
                             <br>
                             <input type="text" name="last_name_edit" value="'.$_SESSION["last_name"].'" placeholder="'.$_SESSION["last_name"].'" id="last_name" required>
                             <br>
-                            <input type="phone" name="phone_edit" value="'.$_SESSION["phone"].'" placeholder="'.$_SESSION["phone"].'" id="phone" required>
+                            <input type="tel" name="phone_edit" value="'.$_SESSION["phone"].'" placeholder="'.$_SESSION["phone"].'" id="phone" required>
                             <br>
                             <input type="email" name="email_edit" value="'.$_SESSION["email"].'" placeholder="'.$_SESSION["email"].'" id="email" required>
                             <br>

@@ -58,46 +58,51 @@ echo ' <li><a href="view/cart.php">CART</a></li>';
                     if (!empty($_SESSION["isLoginedIn"]) && $_SESSION["isLoginedIn"] == true) {
                         print '
                         <li ><a  onclick=toggleMenu()> <span class="glyphicon glyphicon-user" class="user-pic" id="user" ></span> </a></li>
-                        <div class="sub-menu-wrap" id="subMenu">
-                            <div class="sub-menu">
-                                <div class="user-info">
-                                    <h2>' . $_SESSION["username"] . '</h2>
-                                    
-                                </div>
-                                <a href="index.php?action=logout" class="sub-menu-link">
-                                    <p>Exit</p>
-                                    <span>></span>
-                                </a>';
-                                echo  '<a href="view/userEdit.php" class="sub-menu-link">
-                                <p> Edit profile</p>
-                                <span>></span>
-                                </a>';
-                        if ($_SESSION['addressOk'] == false) {
-                            echo '   </a>
-                                        <a href="view/userAddress.php" class="sub-menu-link">
-                                        <p> Finish your profile</p>
-                                        <span>></span>
-                                        </a>';
-                        } else {
-                            echo ' <p>Your profile is complete</p>';
-                        }
-                        echo '<hr>
-                                <a  class="sub-menu-link">
-                                    <p>' . $_SESSION["name"] . '</p>
-                                    
-                                </a>
-                                <a  class="sub-menu-link">
-                                    <p>' . $_SESSION["phone"] . '</p>
-                                </a>
-                                
-                            </div>
-                        </div>
                         ';
                     } else {
                         print '<li><a href="view/login.php"><span class="glyphicon glyphicon-user" id="user"></span></a></li>';
                     }
                     ?>
                 </ul>
+
+                <?php 
+                if (!empty($_SESSION["isLoginedIn"]) && $_SESSION["isLoginedIn"] == true) {
+                print '<div class="sub-menu-wrap" id="subMenu">
+                <div class="sub-menu">
+                    <div class="user-info">
+                        <h2>' . $_SESSION["username"] . '</h2>
+                        
+                    </div>
+                    <a href="index.php?action=logout" class="sub-menu-link">
+                        <p>Exit</p>
+                        <span>></span>
+                    </a>';
+                    echo  '<a href="view/userEdit.php" class="sub-menu-link">
+                    <p> Edit profile</p>
+                    <span>></span>
+                    </a>';
+            if ($_SESSION['addressOk'] == false) {
+                echo '   </a>
+                            <a href="view/userAddress.php" class="sub-menu-link">
+                            <p> Finish your profile</p>
+                            <span>></span>
+                            </a>';
+            } else {
+                echo ' <p>Your profile is complete</p>';
+            }
+            echo '<hr>
+                    <a  class="sub-menu-link">
+                        <p>' . $_SESSION["name"] . '</p>
+                        
+                    </a>
+                    <a  class="sub-menu-link">
+                        <p>' . $_SESSION["phone"] . '</p>
+                    </a>
+                    
+                </div>
+            </div>
+            ';}
+                ?>
             </div>
         </div>
     </nav>
@@ -262,7 +267,7 @@ echo ' <li><a href="view/cart.php">CART</a></li>';
     <!-- App -->
     <div id="appbutton">
         <p>or if you dont know what to buy, check our app</p>
-        <a href="view/app.php" id="app"><button type="button" class="btn btn-secondary btn-lg btn-block">App</button>
+        <a href="view/app.php" id="app" class="btn btn-secondary btn-lg btn-block">App</button>
         </a>
     </div>
     <br>

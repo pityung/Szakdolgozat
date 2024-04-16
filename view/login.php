@@ -21,9 +21,9 @@ $db = new DataBase;
     <main class="main flow">
         <h1 class="main__heading">Login</h1>
         <br>
-        <a href="../index.php">
-            <input type="button" value="Go Back" id ="goback-btn">
-        </a>
+        <form action="../index.php">
+            <input type="submit" value="Go Back" id ="goback-btn" >
+        </form>
         <div class="main__cards cards">
             <div class="cards__inner">
                 <div class="cards__card card">
@@ -46,7 +46,7 @@ $db = new DataBase;
                             <input type="password" name="password" placeholder="Password">
                             <br>
                             <input type="submit" value="Login In" class="submit-btn">
-                            <a href="../view/register.php" class="shuffle"><input type="button" value=" To Register" class="submit-btn"></a>
+                                <input type="button" value="To Register" class="submit-btn shuffle" onclick="location.href='register.php' ">
                         </form>
                     </div>
                 </div>

@@ -1,6 +1,6 @@
 <?php
 
-
+define('DB_PREFIX', "nckp1tyung_");
 class DataBase
 {
     private $servername = "localhost";

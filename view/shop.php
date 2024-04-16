@@ -33,7 +33,7 @@ $uploadFiles = scandir($dir);
             echo '     <a onclick="' . "menu" . $i . 'Func()" href="javascript:void(0)" class="w3-button w3-block w3-white w3-left-align">
             ' . $majorCategorie[$i] . ' <i class="fa fa-caret-down"></i>
         </a>
-        <div id="' . $majorCategorie[$i] . '" class="w3-bar-block w3-hide w3-padding-large w3-medium">
+        <div id="' . str_replace(" ","_", $majorCategorie[$i] ) . '" class="w3-bar-block w3-hide w3-padding-large w3-medium">
         ';
             for ($j = 1; $j < count($Categories_SubCategories); $j++) {
                 if (str_contains($Categories_SubCategories[$j], $majorCategorie[$i])) {
@@ -46,7 +46,7 @@ $uploadFiles = scandir($dir);
         <script>
             
 function ' . "menu" . $i . 'Func() {
-    var x = document.getElementById("' . $majorCategorie[$i] . '");
+    var x = document.getElementById("' .str_replace(" ","_", $majorCategorie[$i] ) . '");
     if (x.className.indexOf("w3-show") == -1) {
     x.className += " w3-show";
     } else {
@@ -82,7 +82,7 @@ if (isset($_SESSION['isLoginedIn']) and $_SESSION['isAdmin'] == 1) {
                 
 <!-- plus grid -->
 <p>Add an item</p>
-<div id="card-container">
+<div class="outCard-container">
     <div class="card-container">';
     echo '<div class="card" id="plus">
             <div class="front">
@@ -180,7 +180,7 @@ for ($i = 1; $i < count($SubCategories); $i++) {
     }
     echo '<p>' . ($shopItemCount) . ' items</p>';
     echo '</div>';
-    echo '<div id="card-container">
+    echo '<div class="outCard-container">
             <div class="card-container">';
     for ($j = 2; $j < count($uploadFiles); $j++) {
         if (str_contains($uploadFiles[$j],  str_replace(" ", "_", $SubCategories[$i]))) {

@@ -21,9 +21,9 @@ $db = new DataBase;
     <main class="main flow">
         <h1 class="main__heading">Register</h1>
         <br>
-        <a href="../index.php">
-            <input type="button" value="Go Back" id="goback-btn">
-        </a>
+        <form action="../index.php">
+            <input type="submit" value="Go Back" id ="goback-btn" >
+        </form>
         <div class="main__cards cards">
             <div class="cards__inner">
                 <div class="cards__card card">
@@ -55,13 +55,13 @@ $db = new DataBase;
                             <br>
                             <input type="password" name="password_again" value="" placeholder="Password Again" required>
                             <br>
-                            <input type="phone" name="phone" value="" placeholder="+36203893109 " id="phone" required>
+                            <input type="tel" name="phone" value="" placeholder="+36203893109 " id="phone" required>
                             <br>
                             <input type="email" name="email" value="" placeholder="Email" id="email" required>
                             <br>
                             <input type="submit" name="submitbtn" value="Register In" id="submit" class="submit-btn">
-                            <a href="../view/login.php" class="shuffle"><input type="button" value="To Login" class="submit-btn"></a>
-                        </form>
+                            <input type="button" value="To Login" class="submit-btn shuffle" onclick="location.href='login.php' ">
+                       </form>
                         <Script src="../scripts/register.js"></Script>
                     </div>
                 </div>

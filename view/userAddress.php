@@ -20,9 +20,9 @@ $db = new DataBase;
     <main class="main flow">
         <h1 class="main__heading">Address</h1>
         <br>
-        <a href="../index.php">
-            <input type="button" value="Go Back" id ="goback-btn">
-        </a>
+        <form action="../index.php">
+            <input type="submit" value="Go Back" id ="goback-btn" >
+        </form>
         <div class="main__cards cards">
             <div class="cards__inner">
                 <div class="cards__card card">
