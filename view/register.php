@@ -22,7 +22,7 @@ $db = new DataBase;
         <h1 class="main__heading">Register</h1>
         <br>
         <form action="../index.php">
-            <input type="submit" value="Go Back" id ="goback-btn" >
+            <input type="submit" value="Go Back" id="goback-btn">
         </form>
         <div class="main__cards cards">
             <div class="cards__inner">
@@ -61,7 +61,7 @@ $db = new DataBase;
                             <br>
                             <input type="submit" name="submitbtn" value="Register In" id="submit" class="submit-btn">
                             <input type="button" value="To Login" class="submit-btn shuffle" onclick="location.href='login.php' ">
-                       </form>
+                        </form>
                         <Script src="../scripts/register.js"></Script>
                     </div>
                 </div>

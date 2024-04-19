@@ -112,11 +112,13 @@ if (isset($_POST['gender'])) {
         echo '
             <form method="post">
             <br> ';
+            if($selectedCartItemQuantity[$i] > 0){
             if(isset($_SESSION["isLoginedIn"])){
         echo '<button name="btnBuy' . "_" . ($i) . '" value="' . $selectedCartItemId[$i] . '" class="w3-button w3-black">Buy now <i class="fa fa-shopping-cart"></i> </button>';
             }else{
                 echo ' <button name="unsignedBuy'. "_" . ($i) .'" value="' . $selectedCartItemId[$i] . '"  class="w3-button w3-black" >Sign In to Buy</button>  ';
             }
+        }
         echo '
                             </form>
                             
