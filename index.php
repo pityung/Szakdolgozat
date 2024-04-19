@@ -166,10 +166,7 @@ echo ' <li><a href="view/cart.php">CART</a></li>';
                     <div class="back">
                         <div class="details">
                             <div class="caption">
-                                " Lorem ipsum dolor sit amet, consectetur adipisicing elit. Natus
-                                quisquam iure in! Corporis expedita consequatur tenetur rem
-                                ratione saepe, perferendis ipsam alias quam. Libero illum maxime,
-                                unde itaque ratione "
+                                " Protect your passion, safeguard your ride. Wear a helmet, ride with pride. "
                             </div>
                         </div>
                     </div>
@@ -181,10 +178,7 @@ echo ' <li><a href="view/cart.php">CART</a></li>';
                     <div class="back">
                         <div class="details">
                             <div class="caption">
-                                " Lorem ipsum dolor sit amet, consectetur adipisicing elit. Natus
-                                quisquam iure in! Corporis expedita consequatur tenetur rem
-                                ratione saepe, perferendis ipsam alias quam. Libero illum maxime,
-                                unde itaque ratione "
+                                "Elegance in motion, strength in style. Women's riding suits, where grace meets stride."
                             </div>
                         </div>
                     </div>
@@ -196,10 +190,7 @@ echo ' <li><a href="view/cart.php">CART</a></li>';
                     <div class="back">
                         <div class="details">
                             <div class="caption">
-                                " Lorem ipsum dolor sit amet, consectetur adipisicing elit. Natus
-                                quisquam iure in! Corporis expedita consequatur tenetur rem
-                                ratione saepe, perferendis ipsam alias quam. Libero illum maxime,
-                                unde itaque ratione "
+                                " In the saddle, comfort reigns supreme. Riding trousers: the perfect blend of form and function for every equestrian dream. "
                             </div>
                         </div>
                     </div>
@@ -211,10 +202,7 @@ echo ' <li><a href="view/cart.php">CART</a></li>';
                     <div class="back">
                         <div class="details">
                             <div class="caption">
-                                " Lorem ipsum dolor sit amet, consectetur adipisicing elit. Natus
-                                quisquam iure in! Corporis expedita consequatur tenetur rem
-                                ratione saepe, perferendis ipsam alias quam. Libero illum maxime,
-                                unde itaque ratione "
+                                " Stride with confidence, step into the saddle. Riding boots: the ultimate companion for every equestrian adventure. "
                             </div>
                         </div>
                     </div>
