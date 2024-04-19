@@ -27,7 +27,7 @@ if (isset($_SESSION["isLoginedIn"])) {
     $sessionId = $Session->getSessionId();
 }
 
- if (!empty($_FILES["fileToUpload"]) and isset($_POST['productName']) and isset($_POST['description']) and isset($_POST['description'])) {
+if (!empty($_FILES["fileToUpload"]) and isset($_POST['productName']) and isset($_POST['description']) and isset($_POST['description'])) {
     $filemanager = new Filemanager;
     $msg = $filemanager->fileUpload($msg);
     $msg = $shopProducts->checkUploadedProducts();
@@ -49,9 +49,4 @@ if (isset($_SESSION["isLoginedIn"])) {
     }
 }
 
-if (isset($_SESSION['unsignedProduct'])) {
-    if (isset($sessionId)) {
-        $shopProducts->moveProductToCart($_SESSION['unsignedProduct'], $sessionId);
-        unset($_SESSION['unsignedProduct']);
-    }
-}
+

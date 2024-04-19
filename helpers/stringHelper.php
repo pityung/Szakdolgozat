@@ -21,7 +21,7 @@ class StringHelper
         if (!preg_match("/^[a-záéíóöőúüűÁÉÍÓÖŐÚÜŰA-Z-' ]*$/", $_POST['first_name'])) {
             $msg .= "The firstname only can contains letters and blank spaces! ";
         }
-        if (mb_strlen($_POST['last_name'] or $_POST['first_name']) > 30) {
+        if (mb_strlen($_POST['last_name']) > 30 or mb_strlen( $_POST['first_name']) > 30) {
             $msg .= "The name only can contain 30 letter! ";
         }
         if (mb_strlen($_POST['last_name']) < 4) {
